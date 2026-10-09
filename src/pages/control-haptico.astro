@@ -5,7 +5,7 @@ import "../styles/advanced-labs.css";
 
 <BaseLayout
   title="Control háptico | Physics × Software"
-  description="Simulación de la Ley de Hooke aplicada a un gatillo adaptativo."
+  description="Multimedia con análisis y modelo de Ley de Hooke aplicado a la resistencia de un gatillo adaptativo."
 >
   <article
     class="advanced-page haptic-page"
@@ -86,14 +86,17 @@ import "../styles/advanced-labs.css";
           <div>
 
             <p>
-              Un sistema háptico puede convertir una variable del juego
-              en una fuerza que se opone al movimiento del usuario.
+              El mando DualSense de PlayStation 5 utiliza gatillos adaptativos
+              capaces de variar la fuerza y la tensión que percibe el usuario
+              según la acción del juego, por ejemplo al tensar un arco.
             </p>
 
             <p>
-              Una aproximación simple consiste en utilizar una relación
-              tipo resorte. Mientras mayor sea el desplazamiento del
-              gatillo, mayor será la fuerza restauradora.
+              Para analizar físicamente esa sensación, esta página usa un
+              modelo simplificado tipo resorte: mientras mayor sea el
+              desplazamiento x, mayor es la magnitud de la fuerza restauradora.
+              No se afirma que el mecanismo interno del DualSense sea un resorte
+              ideal; F = −kx es el modelo didáctico usado para estudiar la curva.
             </p>
 
           </div>
@@ -538,23 +541,13 @@ import "../styles/advanced-labs.css";
 
           <iframe
             id="haptic-video"
-            title="Demostración de un control háptico"
+            src="https://www.youtube-nocookie.com/embed/7gJLVQy-bvM"
+            title="Adaptive Triggers | PS5 — PlayStation"
             loading="lazy"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
-
-          <div class="video-placeholder">
-
-            <strong>
-              Multimedia del efecto háptico
-            </strong>
-
-            <p>
-              Aquí irá el video que utilizarás en la entrega.
-            </p>
-
-          </div>
 
         </div>
 
@@ -569,15 +562,25 @@ import "../styles/advanced-labs.css";
           </h3>
 
           <p>
-            El instante relevante es cuando el usuario sigue desplazando
-            el gatillo y comienza a percibir un aumento de resistencia.
+            <strong>Segmento analizado: 0:00–0:15.</strong> El video oficial de
+            PlayStation presenta los gatillos adaptativos como una resistencia
+            dinámica que reproduce físicamente acciones del juego. Ese aumento
+            de oposición al movimiento es el aspecto que se analiza aquí.
           </p>
 
           <p>
-            En el modelo de la simulación, ese comportamiento corresponde
-            al aumento de la magnitud de
-            <strong>F = −kx</strong>
-            cuando x aumenta.
+            En el modelo didáctico de esta página, si el dedo aumenta el
+            desplazamiento del gatillo, la magnitud de la fuerza crece como
+            <strong>|F| = kx</strong>, mientras que
+            <strong>F = −kx</strong> conserva el signo que indica que la fuerza
+            restauradora apunta en sentido contrario al desplazamiento.
+          </p>
+
+          <p>
+            La comparación es conceptual: Sony describe resistencia y tensión
+            variables, pero no publica en esta fuente una ley de Hooke para el
+            mecanismo interno. Por eso la curva F-x mostrada es una aproximación
+            física construida para este portafolio.
           </p>
 
           <div class="analysis-note">
@@ -597,6 +600,44 @@ import "../styles/advanced-labs.css";
 
       </div>
 
+    </section>
+
+
+
+    <section class="source-section">
+      <span>FUENTES DEL RECURSO</span>
+
+      <p>
+        El video incrustado pertenece al canal oficial de PlayStation y muestra
+        la función de gatillos adaptativos de PS5. La página oficial de DualSense
+        también describe que los gatillos pueden ofrecer distintos niveles de
+        fuerza y tensión al interactuar con objetos y acciones del juego.
+      </p>
+
+      <p>
+        <strong>Conexión con Dinámica:</strong> este caso convierte una variable
+        de entrada, el desplazamiento x, en una fuerza. Igual que en los otros
+        temas del avance, el software no reproduce una animación fija: recalcula
+        el estado físico a partir de variables que cambian durante la interacción.
+      </p>
+
+      <p>
+        <a
+          href="https://www.youtube.com/watch?v=7gJLVQy-bvM"
+          target="_blank"
+          rel="noreferrer"
+        >
+          PlayStation — Adaptive Triggers | PS5
+        </a>
+        <br />
+        <a
+          href="https://www.playstation.com/es-es/accessories/dualsense-wireless-controller/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          PlayStation — Mando inalámbrico DualSense
+        </a>
+      </p>
     </section>
 
     <section class="advanced-why">

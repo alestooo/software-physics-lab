@@ -10,8 +10,10 @@ type DrivingMode =
 
 type Compound = {
   optimum: number;
-  width: number;
+  sigma: number;
   peak: number;
+  workingMin: number;
+  workingMax: number;
 };
 
 const root =
@@ -122,20 +124,29 @@ if (root instanceof HTMLElement) {
     CompoundName,
     Compound
   > = {
+    // Ventanas térmicas tomadas de Pirelli 2019:
+    // C5: 85–115 °C, C3: 105–135 °C, C1: 110–140 °C.
+    // Los valores peak son parámetros didácticos del modelo, no telemetría real.
     soft: {
-      optimum: 95,
-      width: 22,
-      peak: 1.8,
+      optimum: 100,
+      sigma: 18,
+      peak: 1.78,
+      workingMin: 85,
+      workingMax: 115,
     },
     medium: {
-      optimum: 102,
-      width: 28,
+      optimum: 120,
+      sigma: 18,
       peak: 1.68,
+      workingMin: 105,
+      workingMax: 135,
     },
     hard: {
-      optimum: 108,
-      width: 34,
-      peak: 1.57,
+      optimum: 125,
+      sigma: 18,
+      peak: 1.58,
+      workingMin: 110,
+      workingMax: 140,
     },
   };
 
@@ -201,14 +212,25 @@ if (root instanceof HTMLElement) {
           difference
         ) /
           (2 *
-            config.width *
-            config.width)
+            config.sigma *
+            config.sigma)
       );
 
     return (
       0.72 +
       (config.peak - 0.72) *
         factor
+    );
+  };
+
+  const loadSensitivityFactor = (
+    load: number
+  ): number => {
+    // Aproximación didáctica de sensibilidad a la carga:
+    // al aumentar Fz, el coeficiente efectivo disminuye suavemente.
+    return Math.pow(
+      Math.max(load, 1) / 4000,
+      -0.08
     );
   };
 
@@ -237,6 +259,14 @@ if (root instanceof HTMLElement) {
 
   const buildCurve =
     (): void => {
+      const load = getInput(
+        loadControl,
+        4000
+      );
+
+      const loadFactor =
+        loadSensitivityFactor(load);
+
       const values =
         Array.from(
           { length: 111 },
@@ -246,10 +276,11 @@ if (root instanceof HTMLElement) {
 
             return {
               temperature,
-              mu: gripCoefficient(
-                temperature,
-                compound
-              ),
+              mu:
+                gripCoefficient(
+                  temperature,
+                  compound
+                ) * loadFactor,
             };
           }
         );
@@ -276,12 +307,10 @@ if (root instanceof HTMLElement) {
         compounds[compound];
 
       const lower =
-        config.optimum -
-        config.width * 0.55;
+        config.workingMin;
 
       const upper =
-        config.optimum +
-        config.width * 0.55;
+        config.workingMax;
 
       if (
         optimumWindow instanceof SVGRectElement
@@ -409,10 +438,7 @@ if (root instanceof HTMLElement) {
         );
 
       const loadFactor =
-        Math.pow(
-          load / 4000,
-          -0.08
-        );
+        loadSensitivityFactor(load);
 
       const effectiveMu =
         rawMu * loadFactor;
@@ -423,23 +449,19 @@ if (root instanceof HTMLElement) {
       const config =
         compounds[compound];
 
-      const difference =
-        temperature -
-        config.optimum;
-
       let state =
         "Ventana óptima";
 
       if (
-        difference <
-        -config.width * 0.55
+        temperature <
+        config.workingMin
       ) {
         state = "Neumático frío";
       }
 
       if (
-        difference >
-        config.width * 0.55
+        temperature >
+        config.workingMax
       ) {
         state =
           "Sobrecalentamiento";
@@ -528,7 +550,7 @@ if (root instanceof HTMLElement) {
       const markerX =
         scaleX(temperature);
       const markerY =
-        scaleY(rawMu);
+        scaleY(effectiveMu);
 
       if (
         marker instanceof SVGCircleElement
@@ -901,7 +923,7 @@ if (root instanceof HTMLElement) {
           temperatureControl instanceof HTMLInputElement
         ) {
           temperatureControl.value =
-            "75";
+            "100";
         }
 
         if (
