@@ -1,53 +1,943 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import TopicShell from "../components/ui/TopicShell.astro";
+import "../styles/salto-videojuegos.css";
 ---
 
-<BaseLayout title="Salto en videojuegos | Physics × Software">
-  <TopicShell
-    number="02"
-    category="Cinemática · Caída libre"
-    title="El salto del personaje: cómo los motores de juego falsean la gravedad"
-    description="Un modelo interactivo para estudiar cómo el impulso inicial y la gravedad modifican la sensación de un salto."
-    resource="Simulación interactiva"
-    equation="y(t) = y₀ + v₀t - ½gt²"
-    telemetry={[
-      { label: "Impulso", value: "12.0 m/s" },
-      { label: "Gravedad", value: "9.81 m/s²" },
-      { label: "Altura máx.", value: "0.00 m" },
-    ]}
-    previousHref="/dron"
-    previousLabel="Dron de reparto"
-    nextHref="/gravedad-artificial"
-    nextLabel="Gravedad artificial"
+<BaseLayout
+  title="Salto en videojuegos | Physics × Software"
+  description="Simulación interactiva del salto de un personaje y el uso de gravedad modificada en motores de videojuegos."
+>
+  <article
+    class="jump-page"
+    id="jump-lab"
   >
-    <p slot="case">
-      Los motores de videojuegos utilizan ecuaciones de movimiento
-      para controlar el salto de los personajes.
-    </p>
 
-    <p slot="concept">
-      Durante el salto, la velocidad vertical disminuye debido a la
-      aceleración gravitatoria hasta llegar a cero en el punto más alto.
-    </p>
+    <section class="jump-hero">
 
-    <p slot="justification">
-      Modelar el salto con ecuaciones permite modificar parámetros
-      como el impulso y la gravedad sin crear una animación distinta
-      para cada situación.
-    </p>
+      <div class="jump-stars"></div>
+      <div class="jump-glow jump-glow-a"></div>
+      <div class="jump-glow jump-glow-b"></div>
 
-    <p
-      slot="resource-caption"
-      class="resource-caption"
-    >
-      El usuario podrá modificar el impulso inicial y la gravedad.
-    </p>
+      <div class="jump-hero-copy">
 
-    <p slot="sources">
-      Aquí se documentarán las referencias utilizadas para analizar
-      la física del salto.
-    </p>
-  </TopicShell>
+        <div class="jump-eyebrow">
+
+          <span>02</span>
+
+          <i></i>
+
+          <span>
+            CAÍDA LIBRE · TIRO PARABÓLICO
+          </span>
+
+        </div>
+
+        <h1>
+          El salto del personaje:
+          <em>
+            la gravedad no siempre es 9.81.
+          </em>
+        </h1>
+
+        <p>
+          Los motores de juego suelen modificar la gravedad para conseguir
+          saltos más rápidos, altos o controlables que los que produciría
+          la gravedad terrestre real.
+        </p>
+
+        <div class="jump-tags">
+
+          <span>
+            <i class="jump-dot-pink"></i>
+            Simulación interactiva
+          </span>
+
+          <span>
+            <i class="jump-dot-purple"></i>
+            Tiro parabólico
+          </span>
+
+          <span>
+            <i class="jump-dot-blue"></i>
+            Motor de juego
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="jump-hero-preview">
+
+        <div class="preview-world">
+
+          <div class="preview-platform"></div>
+
+          <div class="preview-character">
+
+            <span class="preview-head"></span>
+            <span class="preview-body"></span>
+
+            <span class="preview-leg preview-leg-a"></span>
+            <span class="preview-leg preview-leg-b"></span>
+
+          </div>
+
+          <div class="preview-trajectory"></div>
+
+        </div>
+
+        <div class="preview-stats">
+
+          <div>
+            <small>GRAVEDAD</small>
+            <strong id="hero-gravity">18.0 m/s²</strong>
+          </div>
+
+          <div>
+            <small>ALTURA MÁX.</small>
+            <strong id="hero-height">4.00 m</strong>
+          </div>
+
+          <div>
+            <small>TIEMPO AIRE</small>
+            <strong id="hero-air-time">1.33 s</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="jump-case">
+
+      <div class="jump-section-index">
+
+        <span>
+          01
+        </span>
+
+        <small>
+          CASO DE USO
+        </small>
+
+      </div>
+
+      <div class="jump-case-main">
+
+        <h2>
+          Un salto correcto
+          <em>
+            no siempre es un salto realista.
+          </em>
+        </h2>
+
+        <div class="jump-case-grid">
+
+          <div>
+
+            <p>
+              En un videojuego de plataformas, un salto calculado únicamente
+              con la gravedad terrestre puede sentirse lento o poco preciso.
+              Por eso muchos motores permiten usar una gravedad mayor y un
+              impulso inicial ajustado al diseño del juego.
+            </p>
+
+            <p>
+              La ventaja es que el mismo modelo físico responde a cualquier
+              combinación de valores. No es necesario dibujar una animación
+              diferente para cada altura o velocidad.
+            </p>
+
+          </div>
+
+          <aside>
+
+            <span>
+              MODELO
+            </span>
+
+            <strong>
+              y(t) = v₀t − ½gt²
+            </strong>
+
+            <p>
+              El personaje asciende mientras la velocidad vertical es positiva
+              y comienza a caer cuando esa velocidad llega a cero.
+            </p>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="jump-simulator-section">
+
+      <div class="jump-simulator-heading">
+
+        <div>
+
+          <span>
+            SIMULACIÓN INTERACTIVA
+          </span>
+
+          <h2>
+            Diseña
+            <em>
+              tu propio salto.
+            </em>
+          </h2>
+
+        </div>
+
+        <p>
+          Cambia el impulso y la gravedad. La trayectoria, la altura máxima
+          y el tiempo en el aire se recalculan automáticamente.
+        </p>
+
+      </div>
+
+      <div class="jump-simulator">
+
+        <aside class="jump-controls">
+
+          <div class="jump-control-head">
+
+            <span>
+              PARÁMETROS
+            </span>
+
+            <button
+              type="button"
+              id="jump-reset"
+            >
+              Reiniciar
+            </button>
+
+          </div>
+
+          <label class="jump-control">
+
+            <div>
+
+              <span>
+                Impulso de salto
+              </span>
+
+              <strong id="jump-impulse-value">
+                12.0 m/s
+              </strong>
+
+            </div>
+
+            <input
+              id="jump-impulse"
+              type="range"
+              min="5"
+              max="20"
+              step="0.5"
+              value="12"
+            />
+
+            <footer>
+
+              <span>
+                5
+              </span>
+
+              <span>
+                20 m/s
+              </span>
+
+            </footer>
+
+          </label>
+
+          <label class="jump-control">
+
+            <div>
+
+              <span>
+                Gravedad
+              </span>
+
+              <strong id="jump-gravity-value">
+                18.0 m/s²
+              </strong>
+
+            </div>
+
+            <input
+              id="jump-gravity"
+              type="range"
+              min="5"
+              max="35"
+              step="0.5"
+              value="18"
+            />
+
+            <footer>
+
+              <span>
+                5
+              </span>
+
+              <span>
+                35 m/s²
+              </span>
+
+            </footer>
+
+          </label>
+
+          <label class="jump-control">
+
+            <div>
+
+              <span>
+                Velocidad horizontal
+              </span>
+
+              <strong id="jump-horizontal-value">
+                4.0 m/s
+              </strong>
+
+            </div>
+
+            <input
+              id="jump-horizontal"
+              type="range"
+              min="0"
+              max="10"
+              step="0.5"
+              value="4"
+            />
+
+            <footer>
+
+              <span>
+                0
+              </span>
+
+              <span>
+                10 m/s
+              </span>
+
+            </footer>
+
+          </label>
+
+          <div class="gravity-presets">
+
+            <span>
+              PREAJUSTES
+            </span>
+
+            <div>
+
+              <button
+                type="button"
+                data-gravity="9.81"
+              >
+                Tierra
+              </button>
+
+              <button
+                type="button"
+                data-gravity="18"
+                class="active"
+              >
+                Arcade
+              </button>
+
+              <button
+                type="button"
+                data-gravity="28"
+              >
+                Pesado
+              </button>
+
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            class="jump-main-button"
+            id="jump-main-button"
+          >
+
+            <span id="jump-main-icon">
+              ▲
+            </span>
+
+            <span id="jump-main-text">
+              Saltar
+            </span>
+
+          </button>
+
+        </aside>
+
+        <div class="jump-world-panel">
+
+          <div class="world-header">
+
+            <div>
+
+              <small>
+                MOTOR FÍSICO
+              </small>
+
+              <strong id="jump-status">
+                Listo
+              </strong>
+
+            </div>
+
+            <span id="jump-time">
+              t = 0.00 s
+            </span>
+
+          </div>
+
+          <div class="world-svg-shell">
+
+            <svg
+              id="jump-world"
+              class="jump-world"
+              viewBox="0 0 840 440"
+              role="img"
+              aria-label="Simulación del salto de un personaje"
+            >
+
+              <defs>
+
+                <linearGradient
+                  id="jump-path-gradient"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="0"
+                >
+
+                  <stop
+                    offset="0%"
+                    stop-color="#8d6cff"
+                  />
+
+                  <stop
+                    offset="100%"
+                    stop-color="#ff7fbd"
+                  />
+
+                </linearGradient>
+
+              </defs>
+
+              <g class="jump-world-grid">
+
+                <line x1="60" y1="370" x2="790" y2="370"></line>
+
+                <line x1="60" y1="290" x2="790" y2="290"></line>
+                <line x1="60" y1="210" x2="790" y2="210"></line>
+                <line x1="60" y1="130" x2="790" y2="130"></line>
+
+                <line x1="240" y1="50" x2="240" y2="370"></line>
+                <line x1="425" y1="50" x2="425" y2="370"></line>
+                <line x1="610" y1="50" x2="610" y2="370"></line>
+
+              </g>
+
+              <rect
+                x="50"
+                y="370"
+                width="750"
+                height="24"
+                rx="10"
+                class="jump-ground"
+              ></rect>
+
+              <path
+                id="jump-path-shadow"
+                class="jump-path-shadow"
+                d=""
+              ></path>
+
+              <path
+                id="jump-path"
+                class="jump-path"
+                d=""
+              ></path>
+
+              <circle
+                id="jump-apex"
+                class="jump-apex"
+                r="6"
+              ></circle>
+
+              <g
+                id="jump-character"
+                class="jump-character"
+                transform="translate(80 346)"
+              >
+
+                <circle
+                  cx="0"
+                  cy="-24"
+                  r="10"
+                  class="character-head"
+                ></circle>
+
+                <rect
+                  x="-8"
+                  y="-14"
+                  width="16"
+                  height="23"
+                  rx="7"
+                  class="character-body"
+                ></rect>
+
+                <line
+                  x1="-4"
+                  y1="8"
+                  x2="-10"
+                  y2="19"
+                  class="character-limb"
+                ></line>
+
+                <line
+                  x1="4"
+                  y1="8"
+                  x2="10"
+                  y2="19"
+                  class="character-limb"
+                ></line>
+
+                <line
+                  x1="-7"
+                  y1="-6"
+                  x2="-16"
+                  y2="1"
+                  class="character-limb"
+                ></line>
+
+                <line
+                  x1="7"
+                  y1="-6"
+                  x2="16"
+                  y2="1"
+                  class="character-limb"
+                ></line>
+
+              </g>
+
+              <text
+                x="420"
+                y="428"
+                text-anchor="middle"
+                class="world-axis-label"
+              >
+                distancia horizontal (m)
+              </text>
+
+              <text
+                x="18"
+                y="210"
+                text-anchor="middle"
+                transform="rotate(-90 18 210)"
+                class="world-axis-label"
+              >
+                altura (m)
+              </text>
+
+            </svg>
+
+          </div>
+
+          <div class="jump-live-stats">
+
+            <div>
+              <span>ALTURA</span>
+              <strong id="live-jump-height">0.00 m</strong>
+            </div>
+
+            <div>
+              <span>V. VERTICAL</span>
+              <strong id="live-jump-vy">12.00 m/s</strong>
+            </div>
+
+            <div>
+              <span>DISTANCIA</span>
+              <strong id="live-jump-distance">0.00 m</strong>
+            </div>
+
+            <div>
+              <span>FASE</span>
+              <strong id="live-jump-phase">Inicio</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="jump-results">
+
+      <div class="jump-results-heading">
+
+        <span>
+          RESULTADOS ACTUALES
+        </span>
+
+        <h2>
+          El mismo modelo.
+          <em>
+            Otra sensación.
+          </em>
+        </h2>
+
+      </div>
+
+      <div class="jump-result-grid">
+
+        <article>
+
+          <span class="result-symbol">
+            H
+          </span>
+
+          <small>
+            ALTURA MÁXIMA
+          </small>
+
+          <strong id="result-height">
+            4.00 m
+          </strong>
+
+          <p>
+            h = v₀² / 2g
+          </p>
+
+        </article>
+
+        <article>
+
+          <span class="result-symbol">
+            T
+          </span>
+
+          <small>
+            TIEMPO AL ÁPICE
+          </small>
+
+          <strong id="result-apex-time">
+            0.67 s
+          </strong>
+
+          <p>
+            t = v₀ / g
+          </p>
+
+        </article>
+
+        <article>
+
+          <span class="result-symbol">
+            ↕
+          </span>
+
+          <small>
+            TIEMPO EN AIRE
+          </small>
+
+          <strong id="result-air-time">
+            1.33 s
+          </strong>
+
+          <p>
+            T = 2v₀ / g
+          </p>
+
+        </article>
+
+        <article>
+
+          <span class="result-symbol">
+            →
+          </span>
+
+          <small>
+            DISTANCIA
+          </small>
+
+          <strong id="result-distance">
+            5.33 m
+          </strong>
+
+          <p>
+            x = vₓT
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="jump-equations">
+
+      <div class="jump-section-index">
+
+        <span>
+          02
+        </span>
+
+        <small>
+          ECUACIÓN
+        </small>
+
+      </div>
+
+      <div class="jump-equation-main">
+
+        <h2>
+          La trayectoria
+          <em>
+            se calcula, no se dibuja.
+          </em>
+        </h2>
+
+        <div class="jump-equation-card">
+
+          <span>
+            POSICIÓN VERTICAL
+          </span>
+
+          <strong>
+            y(t) = v₀t − ½gt²
+          </strong>
+
+          <p id="jump-equation-live">
+            y(0.00) = (12.00)(0.00) − ½(18.00)(0.00)² = 0.00 m
+          </p>
+
+        </div>
+
+        <div class="jump-equation-secondary">
+
+          <article>
+
+            <span>
+              VELOCIDAD VERTICAL
+            </span>
+
+            <strong>
+              vᵧ(t) = v₀ − gt
+            </strong>
+
+          </article>
+
+          <article>
+
+            <span>
+              POSICIÓN HORIZONTAL
+            </span>
+
+            <strong>
+              x(t) = vₓt
+            </strong>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="gravity-comparison">
+
+      <div class="gravity-comparison-copy">
+
+        <span>
+          COMPARACIÓN
+        </span>
+
+        <h2>
+          ¿Qué pasa si usamos
+          <em>
+            9.81 m/s²?
+          </em>
+        </h2>
+
+        <p>
+          Con el mismo impulso, una gravedad menor produce un salto más alto
+          y mantiene al personaje durante más tiempo en el aire. Una gravedad
+          mayor produce un salto más corto y rápido.
+        </p>
+
+      </div>
+
+      <div class="comparison-table">
+
+        <div class="comparison-row comparison-head">
+          <span>MODELO</span>
+          <span>g</span>
+          <span>ALTURA</span>
+          <span>TIEMPO</span>
+        </div>
+
+        <div class="comparison-row">
+
+          <strong>
+            Tierra
+          </strong>
+
+          <span>
+            9.81
+          </span>
+
+          <span id="earth-height">
+            7.34 m
+          </span>
+
+          <span id="earth-time">
+            2.45 s
+          </span>
+
+        </div>
+
+        <div class="comparison-row active">
+
+          <strong>
+            Actual
+          </strong>
+
+          <span id="current-gravity-table">
+            18.0
+          </span>
+
+          <span id="current-height-table">
+            4.00 m
+          </span>
+
+          <span id="current-time-table">
+            1.33 s
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="jump-software">
+
+      <div class="jump-section-index">
+
+        <span>
+          03
+        </span>
+
+        <small>
+          SOFTWARE
+        </small>
+
+      </div>
+
+      <div class="jump-software-main">
+
+        <h2>
+          ¿Por qué no usar
+          <em>
+            una animación fija?
+          </em>
+        </h2>
+
+        <div class="jump-software-grid">
+
+          <article>
+
+            <span class="software-no">
+              ×
+            </span>
+
+            <h3>
+              Animación guionizada
+            </h3>
+
+            <p>
+              Solo funciona para el salto que fue diseñado. Cambiar la gravedad
+              o el impulso obliga a preparar otra trayectoria.
+            </p>
+
+          </article>
+
+          <article class="software-yes">
+
+            <span class="software-ok">
+              ✓
+            </span>
+
+            <h3>
+              Modelo físico
+            </h3>
+
+            <p>
+              Cualquier combinación de impulso y gravedad genera una trayectoria
+              coherente sin tener que animar cada posibilidad por separado.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer class="jump-footer">
+
+      <a href="/dron">
+        ← Dron de reparto
+      </a>
+
+      <a
+        href="/gravedad-artificial"
+        class="jump-next"
+      >
+
+        <div>
+
+          <small>
+            SIGUIENTE · 03
+          </small>
+
+          <strong>
+            Gravedad artificial
+          </strong>
+
+        </div>
+
+        <span>
+          →
+        </span>
+
+      </a>
+
+    </footer>
+
+  </article>
+
+  <script>
+    import "../scripts/simulations/salto-videojuegos.ts";
+  </script>
+
 </BaseLayout>

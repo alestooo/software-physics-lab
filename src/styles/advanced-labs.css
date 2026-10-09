@@ -1,0 +1,1740 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+.advanced-page {
+  width: 100%;
+  overflow: hidden;
+  color: #241e33;
+  background: #fbf9ff;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.advanced-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(350px, 0.8fr);
+  align-items: center;
+  gap: 60px;
+  min-height: 620px;
+  padding: 75px 70px 105px;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 82% 22%, rgba(205, 102, 240, 0.35), transparent 28%),
+    linear-gradient(135deg, #201269, #442092 52%, #8134b9);
+}
+
+.f1-hero {
+  background:
+    radial-gradient(circle at 82% 22%, rgba(246, 83, 143, 0.26), transparent 28%),
+    linear-gradient(135deg, #22134f, #47216e 52%, #9e375e);
+}
+
+.haptic-hero {
+  background:
+    radial-gradient(circle at 82% 22%, rgba(92, 177, 255, 0.27), transparent 28%),
+    linear-gradient(135deg, #17164d, #2d327d 52%, #6648b8);
+}
+
+.advanced-hero::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: -65px;
+  height: 135px;
+  background: #fbf9ff;
+  border-radius: 50% 50% 0 0;
+}
+
+.advanced-hero-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image:
+    linear-gradient(rgba(255,255,255,.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.25) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+
+.advanced-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.glow-a {
+  top: -220px;
+  right: -140px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(188, 112, 255, .35), transparent 70%);
+}
+
+.glow-b {
+  right: 4%;
+  bottom: -290px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 113, 190, .23), transparent 70%);
+}
+
+.advanced-hero-copy,
+.hero-metric-card,
+.f1-wheel-card {
+  position: relative;
+  z-index: 3;
+}
+
+.advanced-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 23px;
+  color: rgba(255,255,255,.6);
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.advanced-eyebrow i {
+  width: 24px;
+  height: 1px;
+  background: rgba(255,255,255,.35);
+}
+
+.advanced-hero h1 {
+  margin: 0;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(3.5rem, 5.4vw, 5.9rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.055em;
+}
+
+.advanced-hero h1 em {
+  display: block;
+  color: #ffb8dc;
+  font-weight: 400;
+}
+
+.advanced-hero-copy > p {
+  max-width: 590px;
+  margin: 27px 0 0;
+  color: rgba(255,255,255,.76);
+  font-size: .84rem;
+  line-height: 1.8;
+}
+
+.advanced-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.advanced-tags span {
+  padding: 7px 11px;
+  color: rgba(255,255,255,.7);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 999px;
+  font-size: .57rem;
+}
+
+.hero-metric-card,
+.f1-wheel-card {
+  width: min(400px, 100%);
+  margin: auto;
+  padding: 30px;
+  background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 28px;
+  backdrop-filter: blur(20px);
+}
+
+.hero-metric-card > span,
+.f1-wheel-card span {
+  display: block;
+  color: rgba(255,255,255,.48);
+  font-size: .5rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.hero-metric-card strong {
+  display: block;
+  margin: 18px 0 3px;
+  font-family: "DM Serif Display", serif;
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.hero-metric-card p {
+  margin: 0;
+  color: #ffc1e1;
+}
+
+.hero-metric-card small {
+  color: rgba(255,255,255,.53);
+  line-height: 1.6;
+}
+
+.metric-line {
+  height: 1px;
+  margin: 25px 0;
+  background: rgba(255,255,255,.11);
+}
+
+/* CASE */
+
+.advanced-case,
+.calculation-section,
+.advanced-why {
+  display: grid;
+  grid-template-columns: 135px minmax(0, 1fr);
+  gap: 50px;
+  padding: 95px 70px;
+}
+
+.advanced-index span {
+  display: block;
+  margin-bottom: 7px;
+  color: #7952d9;
+  font-family: "DM Serif Display", serif;
+  font-size: 1.8rem;
+}
+
+.advanced-index small {
+  color: #aaa2b5;
+  font-size: .49rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.advanced-case-content h2,
+.calculation-content h2,
+.advanced-why h2 {
+  margin: 0 0 38px;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(2.8rem, 4.1vw, 4.4rem);
+  font-weight: 400;
+  line-height: .96;
+  letter-spacing: -.045em;
+}
+
+.advanced-case-content h2 em,
+.calculation-content h2 em,
+.advanced-why h2 em {
+  color: #d64d9e;
+}
+
+.case-columns {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 35px;
+}
+
+.case-columns > div p {
+  margin: 0 0 20px;
+  color: #736a7e;
+  font-size: .8rem;
+  line-height: 1.8;
+}
+
+.concept-card {
+  padding: 23px;
+  background: linear-gradient(145deg, #f0ebff, #fff1f8);
+  border: 1px solid rgba(115, 77, 214, .12);
+  border-radius: 20px;
+}
+
+.concept-card span {
+  display: block;
+  margin-bottom: 12px;
+  color: #8058d8;
+  font-size: .49rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.concept-card strong {
+  display: block;
+  margin-bottom: 12px;
+  color: #7046c9;
+  font-family: "DM Serif Display", serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.concept-card p {
+  margin: 0;
+  color: #776e82;
+  font-size: .68rem;
+  line-height: 1.65;
+}
+
+/* LAB */
+
+.lab-section {
+  padding: 95px 70px 105px;
+  color: #fff;
+  background: linear-gradient(155deg, #1b125d, #312078 58%, #59278d);
+}
+
+.f1-lab-section {
+  background: linear-gradient(155deg, #211235, #48203f 55%, #8f354e);
+}
+
+.haptic-lab-section {
+  background: linear-gradient(155deg, #15164b, #27306f 55%, #5443a4);
+}
+
+.lab-heading {
+  display: grid;
+  grid-template-columns: 1fr .7fr;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.lab-heading > div > span {
+  display: block;
+  margin-bottom: 14px;
+  color: #d4a2ff;
+  font-size: .51rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.lab-heading h2 {
+  margin: 0;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(3rem, 4.8vw, 4.9rem);
+  font-weight: 400;
+  line-height: .94;
+}
+
+.lab-heading h2 em {
+  color: #ffadd7;
+}
+
+.lab-heading > p {
+  margin: 0;
+  color: rgba(255,255,255,.61);
+  font-size: .72rem;
+  line-height: 1.7;
+}
+
+.lab-layout {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 18px;
+}
+
+.lab-controls,
+.gravity-diagram-card,
+.data-panel,
+.haptic-panel {
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 24px;
+}
+
+.lab-controls {
+  padding: 22px;
+}
+
+.controls-title,
+.panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.controls-title > span,
+.panel-top small {
+  color: rgba(255,255,255,.48);
+  font-size: .48rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.panel-top small {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.panel-top strong {
+  font-size: .7rem;
+}
+
+.panel-top > span {
+  color: #e0bdff;
+  font-size: .6rem;
+}
+
+.small-button {
+  min-height: 34px;
+  padding: 0 11px;
+  color: rgba(255,255,255,.72);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-size: .53rem;
+}
+
+.lab-control {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.lab-control > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.lab-control span {
+  color: rgba(255,255,255,.62);
+  font-size: .6rem;
+}
+
+.lab-control strong {
+  font-size: .59rem;
+}
+
+.lab-control input {
+  width: 100%;
+  accent-color: #d476ff;
+}
+
+.lab-control footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: rgba(255,255,255,.32);
+  font-size: .46rem;
+}
+
+.preset-buttons {
+  margin: 6px 0 21px;
+}
+
+.preset-buttons > span {
+  display: block;
+  margin-bottom: 9px;
+  color: rgba(255,255,255,.4);
+  font-size: .46rem;
+  letter-spacing: .11em;
+}
+
+.preset-buttons > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.preset-buttons button {
+  min-height: 36px;
+  color: rgba(255,255,255,.62);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  font-size: .51rem;
+}
+
+.preset-buttons button.active {
+  color: #2c1769;
+  background: #fff;
+}
+
+.primary-lab-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 46px;
+  color: #291566;
+  background: #fff;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  font: inherit;
+  font-size: .65rem;
+  font-weight: 700;
+}
+
+.gravity-diagram-card,
+.data-panel,
+.haptic-panel {
+  min-width: 0;
+  padding: 22px;
+}
+
+/* GRAVITY */
+
+.gravity-diagram {
+  display: block;
+  width: 100%;
+}
+
+.habitat-orbit-guide {
+  fill: none;
+  stroke: rgba(255,255,255,.05);
+  stroke-width: 1;
+  stroke-dasharray: 6 7;
+}
+
+.habitat-ring-outer,
+.habitat-ring-inner {
+  fill: none;
+  stroke: #b894ff;
+  stroke-width: 5;
+}
+
+.habitat-ring-inner {
+  stroke: rgba(255,255,255,.17);
+  stroke-width: 2;
+}
+
+.habitat-spoke {
+  stroke: rgba(255,255,255,.5);
+  stroke-width: 4;
+}
+
+.habitat-person {
+  fill: #ffb0d6;
+}
+
+.person-body {
+  stroke: #ffb0d6;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.rotation-axis {
+  fill: #fff;
+  stroke: #8f6cff;
+  stroke-width: 5;
+}
+
+.radius-line {
+  stroke: #86d9ff;
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+}
+
+.acceleration-line {
+  stroke: #ff8bc7;
+  stroke-width: 3;
+}
+
+.rotation-arrow {
+  fill: none;
+  stroke: #d3adff;
+  stroke-width: 2;
+}
+
+.diagram-arrow-head {
+  fill: #fff;
+}
+
+.diagram-label,
+.diagram-equation {
+  fill: rgba(255,255,255,.62);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+}
+
+.diagram-label.accent {
+  fill: #ff9fd1;
+}
+
+.diagram-equation {
+  font-size: 15px;
+}
+
+.lab-live-values {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.lab-live-values > div {
+  padding: 10px;
+  background: rgba(255,255,255,.045);
+  border-radius: 11px;
+}
+
+.lab-live-values span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(255,255,255,.39);
+  font-size: .45rem;
+}
+
+.lab-live-values strong {
+  font-size: .59rem;
+}
+
+/* EQUATIONS */
+
+.calculation-section {
+  background: #f7f3ff;
+}
+
+.equation-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+}
+
+.equation-cards article {
+  padding: 21px;
+  background: #fff;
+  border: 1px solid #e6dff0;
+  border-radius: 19px;
+}
+
+.equation-cards span {
+  display: block;
+  margin-bottom: 14px;
+  color: #968aa2;
+  font-size: .47rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.equation-cards strong {
+  color: #7246cd;
+  font-family: "DM Serif Display", serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+/* F1 */
+
+.f1-wheel-card {
+  text-align: center;
+}
+
+.f1-tyre {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  margin: 0 auto 25px;
+  background: #18151c;
+  border: 20px solid #29232c;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.07);
+}
+
+.f1-rim {
+  position: absolute;
+  inset: 38px;
+  background: radial-gradient(circle, #111 0 24%, #a5a0ad 25% 45%, #3d3742 46% 100%);
+  border-radius: 50%;
+}
+
+.f1-wheel-card strong {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: .8rem;
+}
+
+.f1-wheel-card p {
+  margin: 0;
+  color: #ffb5d3;
+}
+
+.f1-current-result {
+  padding: 16px;
+  background: rgba(255,255,255,.05);
+  border-radius: 15px;
+}
+
+.f1-current-result span {
+  display: block;
+  margin: 8px 0 4px;
+  color: rgba(255,255,255,.39);
+  font-size: .45rem;
+}
+
+.f1-current-result strong {
+  font-size: .75rem;
+}
+
+.f1-chart,
+.haptic-chart {
+  display: block;
+  width: 100%;
+}
+
+.chart-grid-light line {
+  stroke: rgba(255,255,255,.08);
+}
+
+.optimum-window {
+  fill: rgba(116, 230, 177, .09);
+}
+
+.grip-curve {
+  fill: none;
+  stroke: #ff91c9;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.grip-marker,
+.haptic-marker {
+  fill: #fff;
+  stroke: #ff8fc8;
+  stroke-width: 4;
+}
+
+.chart-label-dark {
+  fill: rgba(255,255,255,.46);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+}
+
+.chart-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255,255,255,.32);
+  font-size: .46rem;
+}
+
+/* HAPTIC */
+
+.trigger-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+}
+
+.controller-shell {
+  position: relative;
+  width: 250px;
+  height: 115px;
+  background: rgba(255,255,255,.08);
+  border: 2px solid rgba(255,255,255,.16);
+  border-radius: 65px 65px 35px 35px;
+}
+
+.virtual-trigger {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  width: 70px;
+  height: 22px;
+  background: linear-gradient(90deg, #b99bff, #ff98ca);
+  border-radius: 12px;
+  transform-origin: right center;
+}
+
+.trigger-axis {
+  position: absolute;
+  top: 22px;
+  right: 18px;
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.force-arrow {
+  position: absolute;
+  right: 35px;
+  bottom: 35px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,.55);
+  font-size: .5rem;
+}
+
+.force-arrow i {
+  display: block;
+  height: 2px;
+  background: #ff94ca;
+  transition: width .2s ease;
+}
+
+.haptic-curve {
+  fill: none;
+  stroke: #92c8ff;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+/* MULTIMEDIA */
+
+.multimedia-section {
+  padding: 95px 70px;
+  background: #1d174f;
+  color: #fff;
+}
+
+.multimedia-copy {
+  max-width: 760px;
+  margin-bottom: 35px;
+}
+
+.multimedia-copy > span {
+  display: block;
+  margin-bottom: 12px;
+  color: #cda7ff;
+  font-size: .5rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.multimedia-copy h2 {
+  margin: 0;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(2.8rem, 4.4vw, 4.6rem);
+  font-weight: 400;
+  line-height: .95;
+}
+
+.multimedia-copy h2 em {
+  color: #ffacd5;
+}
+
+.multimedia-copy p {
+  color: rgba(255,255,255,.6);
+  font-size: .7rem;
+}
+
+.multimedia-grid {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 20px;
+}
+
+.video-frame {
+  position: relative;
+  overflow: hidden;
+  min-height: 380px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 22px;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  z-index: 2;
+}
+
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 30px;
+  color: rgba(255,255,255,.5);
+}
+
+.video-placeholder strong {
+  color: #fff;
+}
+
+.video-analysis {
+  padding: 25px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 22px;
+}
+
+.video-analysis > span {
+  display: block;
+  margin-bottom: 12px;
+  color: #d1adff;
+  font-size: .48rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.video-analysis h3 {
+  margin: 0 0 15px;
+  font-family: "DM Serif Display", serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.video-analysis p {
+  color: rgba(255,255,255,.63);
+  font-size: .68rem;
+  line-height: 1.7;
+}
+
+.analysis-note {
+  margin-top: 18px;
+  padding: 16px;
+  background: rgba(255,255,255,.05);
+  border-radius: 14px;
+}
+
+.analysis-note span {
+  color: #ffacd5;
+  font-size: .46rem;
+}
+
+/* SOURCE */
+
+.source-section {
+  padding: 55px 70px;
+  background: #f1edfa;
+}
+
+.source-section > span {
+  display: block;
+  margin-bottom: 12px;
+  color: #7850ce;
+  font-size: .49rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+}
+
+.source-section p {
+  max-width: 950px;
+  margin: 0 0 10px;
+  color: #71687c;
+  font-size: .7rem;
+  line-height: 1.7;
+}
+
+/* WHY */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.why-grid article {
+  padding: 24px;
+  background: #f4f0f7;
+  border: 1px solid #e7dfec;
+  border-radius: 19px;
+}
+
+.why-grid .positive-card {
+  background: linear-gradient(145deg, #eee8ff, #fff0f8);
+}
+
+.negative,
+.positive {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  margin-bottom: 22px;
+  border-radius: 11px;
+}
+
+.negative {
+  color: #8b8193;
+  background: #e8e2eb;
+}
+
+.positive {
+  color: #7247ce;
+  background: rgba(114,71,206,.1);
+}
+
+.why-grid h3 {
+  margin: 0 0 9px;
+  font-size: .79rem;
+}
+
+.why-grid p {
+  margin: 0;
+  color: #756d80;
+  font-size: .68rem;
+  line-height: 1.67;
+}
+
+/* FOOTER */
+
+.advanced-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 42px 70px;
+  background: #fff;
+}
+
+.advanced-footer > a:first-child {
+  color: #746c80;
+  font-size: .67rem;
+}
+
+.advanced-next {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 19px;
+  color: #fff;
+  background: linear-gradient(135deg, #4e2bb1, #9f42b9);
+  border-radius: 16px;
+}
+
+.advanced-next small {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(255,255,255,.5);
+  font-size: .43rem;
+}
+
+.advanced-next strong {
+  font-size: .68rem;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .advanced-hero,
+  .lab-layout,
+  .lab-heading,
+  .multimedia-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .advanced-hero,
+  .advanced-case,
+  .lab-section,
+  .calculation-section,
+  .multimedia-section,
+  .source-section,
+  .advanced-why,
+  .advanced-footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .advanced-case,
+  .calculation-section,
+  .advanced-why {
+    grid-template-columns: 1fr;
+  }
+
+  .equation-cards,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-live-values {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .advanced-hero h1 {
+    font-size: 3.1rem;
+  }
+
+  .advanced-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .advanced-next {
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .virtual-trigger,
+  .force-arrow i {
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   EXTRA SIMULATION CONTROLS
+========================================================= */
+
+.preset-buttons.four-options > div {
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+}
+
+.direction-buttons > div {
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+}
+
+.simulation-readout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 14px;
+
+  padding: 15px 17px;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 14px;
+}
+
+.simulation-readout > span {
+  color:
+    rgba(255, 255, 255, 0.38);
+
+  font-size: 0.45rem;
+
+  letter-spacing: 0.12em;
+}
+
+.simulation-readout strong {
+  color: white;
+
+  font-size: 0.72rem;
+}
+
+.simulation-readout p {
+  margin:
+    0
+    0
+    0
+    auto;
+
+  color:
+    rgba(255, 255, 255, 0.52);
+
+  font-size: 0.56rem;
+}
+
+/* =========================================================
+   F1 LAP
+========================================================= */
+
+.lap-progress {
+  display: grid;
+
+  grid-template-columns:
+    80px
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin:
+    5px
+    0
+    16px;
+
+  padding:
+    12px
+    14px;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  border-radius:
+    13px;
+}
+
+.lap-progress span {
+  display: block;
+
+  margin-bottom:
+    3px;
+
+  color:
+    rgba(255, 255, 255, 0.37);
+
+  font-size:
+    0.43rem;
+
+  letter-spacing:
+    0.1em;
+}
+
+.lap-progress strong {
+  color: white;
+
+  font-size:
+    0.61rem;
+}
+
+.progress-track {
+  position:
+    relative;
+
+  height:
+    7px;
+
+  overflow:
+    hidden;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border-radius:
+    999px;
+}
+
+.progress-fill {
+  position:
+    absolute;
+
+  left:
+    0;
+
+  top:
+    0;
+
+  bottom:
+    0;
+
+  width:
+    0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ca73ff,
+      #ff84bc
+    );
+
+  border-radius:
+    inherit;
+
+  transition:
+    width
+    90ms
+    linear;
+}
+
+/* =========================================================
+   F1 TYRE STATE
+========================================================= */
+
+.f1-tyre {
+  transition:
+    box-shadow
+    300ms
+    ease,
+    border-color
+    300ms
+    ease;
+}
+
+.f1-tyre[data-state="Neumático frío"] {
+  box-shadow:
+    0
+    0
+    25px
+    rgba(100, 184, 255, 0.18),
+    inset
+    0
+    0
+    0
+    3px
+    rgba(122, 191, 255, 0.08);
+}
+
+.f1-tyre[data-state="Ventana óptima"] {
+  box-shadow:
+    0
+    0
+    28px
+    rgba(255, 123, 190, 0.24),
+    inset
+    0
+    0
+    0
+    3px
+    rgba(255, 151, 202, 0.08);
+}
+
+.f1-tyre[data-state="Sobrecalentamiento"] {
+  box-shadow:
+    0
+    0
+    32px
+    rgba(255, 95, 95, 0.27),
+    inset
+    0
+    0
+    0
+    3px
+    rgba(255, 95, 95, 0.09);
+}
+
+/* =========================================================
+   HAPTIC
+========================================================= */
+
+.haptic-panel .primary-lab-button {
+  margin-top:
+    12px;
+}
+
+.virtual-trigger {
+  transition:
+    transform
+    80ms
+    linear;
+}
+
+.force-arrow i {
+  position:
+    relative;
+
+  min-width:
+    25px;
+
+  max-width:
+    120px;
+}
+
+.force-arrow i::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    -1px;
+
+  top:
+    50%;
+
+  width:
+    7px;
+
+  height:
+    7px;
+
+  border-left:
+    2px solid
+    #ff94ca;
+
+  border-bottom:
+    2px solid
+    #ff94ca;
+
+  transform:
+    translateY(-50%)
+    rotate(45deg);
+}
+
+/* =========================================================
+   BUTTON INTERACTION
+========================================================= */
+
+.preset-buttons button,
+.primary-lab-button,
+.small-button {
+  transition:
+    transform
+    220ms
+    ease,
+    background
+    220ms
+    ease,
+    color
+    220ms
+    ease,
+    border-color
+    220ms
+    ease;
+}
+
+.preset-buttons button:hover,
+.small-button:hover {
+  transform:
+    translateY(-2px);
+}
+
+.primary-lab-button:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0
+    12px
+    25px
+    rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================
+   MOBILE EXTRA
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .preset-buttons.four-options > div {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .simulation-readout {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+  .simulation-readout p {
+    margin-left:
+      0;
+  }
+
+  .lap-progress {
+    grid-template-columns:
+      1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .progress-fill,
+  .f1-tyre {
+    transition:
+      none !important;
+  }
+}
+
+/* =========================================================
+   F1 TRACK + CAR + GRAPH VISUALS
+========================================================= */
+
+.f1-track-scene {
+  margin: 8px 0 18px;
+  padding: 14px 16px 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+}
+
+.f1-track-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.f1-track-header span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.43rem;
+  letter-spacing: 0.12em;
+}
+
+.f1-track-header strong {
+  color: white;
+  font-size: 0.62rem;
+}
+
+.f1-track-lights {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.f1-track-lights i {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.f1-track-lights i[data-state="warm"] {
+  background: rgba(255, 177, 92, 0.9);
+  box-shadow: 0 0 12px rgba(255, 177, 92, 0.55);
+}
+
+.f1-track-lights i[data-state="on"] {
+  background: rgba(255, 105, 180, 0.95);
+  box-shadow: 0 0 14px rgba(255, 105, 180, 0.55);
+}
+
+.f1-track-lights i[data-state="blink"] {
+  background: rgba(255, 105, 180, 0.95);
+  box-shadow: 0 0 14px rgba(255, 105, 180, 0.7);
+  animation: lightBlink 0.7s ease-in-out infinite;
+}
+
+.f1-track-lights i[data-state="done"] {
+  background: rgba(132, 255, 182, 0.95);
+  box-shadow: 0 0 16px rgba(132, 255, 182, 0.65);
+}
+
+@keyframes lightBlink {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.f1-track-visual {
+  position: relative;
+  height: 78px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.02)
+    );
+}
+
+.f1-track-lane {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 50%;
+  height: 18px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.08)
+    );
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.f1-track-lane::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.55) 0 24px,
+      transparent 24px 46px
+    );
+  opacity: 0.5;
+}
+
+.f1-car {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  width: 88px;
+  height: 42px;
+  pointer-events: none;
+  transition: transform 80ms linear;
+}
+
+.f1-car .car-body {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 52px;
+  height: 14px;
+  border-radius: 12px 10px 10px 12px;
+  background:
+    linear-gradient(
+      90deg,
+      #ff75bb,
+      #ff9dd3 45%,
+      #c77bff 100%
+    );
+  box-shadow:
+    0 8px 18px rgba(255, 113, 186, 0.25);
+}
+
+.f1-car .car-cockpit {
+  position: absolute;
+  left: 34px;
+  top: 11px;
+  width: 15px;
+  height: 10px;
+  border-radius: 8px 8px 4px 4px;
+  background:
+    linear-gradient(
+      180deg,
+      #eef3ff,
+      #9fc5ff
+    );
+}
+
+.f1-car .car-front-wing {
+  position: absolute;
+  left: 66px;
+  top: 16px;
+  width: 16px;
+  height: 8px;
+  border-radius: 4px;
+  background: #f3ecff;
+}
+
+.f1-car .car-rear-wing {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  width: 8px;
+  height: 16px;
+  border-radius: 4px;
+  background: #7f47ff;
+}
+
+.f1-car .car-wheel {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 35%, #7f88a8 0 18%, #0f1430 20% 100%);
+  box-shadow:
+    0 0 0 2px rgba(18, 20, 44, 0.45);
+}
+
+.f1-car .wheel-front {
+  right: 15px;
+  top: 7px;
+}
+
+.f1-car .wheel-rear {
+  left: 14px;
+  top: 24px;
+}
+
+.f1-progress-track {
+  margin-top: 4px;
+}
+
+.marker-guide {
+  stroke: rgba(255, 171, 214, 0.38);
+  stroke-width: 1.4;
+  stroke-dasharray: 5 6;
+}
+
+.grip-marker-pulse {
+  fill: rgba(255, 155, 211, 0.16);
+  animation: gripPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes gripPulse {
+  0%, 100% {
+    transform-origin: center;
+    opacity: 0.45;
+    r: 14;
+  }
+  50% {
+    opacity: 0.18;
+    r: 20;
+  }
+}
+
+.grip-marker {
+  fill: #fff3fb;
+  stroke: #ff8fc8;
+  stroke-width: 4;
+}
+
+.f1-chart .grip-curve {
+  fill: none;
+  stroke: #f78cc8;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.f1-chart .optimum-window {
+  fill: rgba(255, 255, 255, 0.08);
+}
+
+.f1-tyre {
+  transition:
+    box-shadow 300ms ease,
+    border-color 300ms ease,
+    transform 300ms ease;
+}
+
+.f1-tyre[data-state="Neumático frío"] {
+  box-shadow:
+    0 0 26px rgba(110, 194, 255, 0.22),
+    inset 0 0 0 3px rgba(110, 194, 255, 0.08);
+}
+
+.f1-tyre[data-state="Ventana óptima"] {
+  box-shadow:
+    0 0 28px rgba(255, 126, 202, 0.25),
+    inset 0 0 0 3px rgba(255, 144, 209, 0.08);
+}
+
+.f1-tyre[data-state="Sobrecalentamiento"] {
+  box-shadow:
+    0 0 28px rgba(255, 110, 110, 0.3),
+    inset 0 0 0 3px rgba(255, 110, 110, 0.09);
+  transform: scale(1.04);
+}
+
+@media (max-width: 720px) {
+  .f1-car {
+    transform: scale(0.88);
+    transform-origin: left center;
+  }
+
+  .f1-track-visual {
+    height: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .f1-car,
+  .f1-track-lights i,
+  .grip-marker-pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+}

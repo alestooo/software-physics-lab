@@ -19,7 +19,9 @@ const {
 <!doctype html>
 
 <html lang="es">
+
   <head>
+
     <meta charset="UTF-8" />
 
     <meta
@@ -37,45 +39,135 @@ const {
       content="#20106f"
     />
 
-    <title>{title}</title>
+    <title>
+      {title}
+    </title>
+
   </head>
 
   <body>
+
     <div class="app-shell">
 
-      <div class="desktop-sidebar">
+      <!-- =========================================
+           MOBILE HEADER
+      ========================================== -->
+
+      <header class="mobile-topbar">
+
+        <a
+          href="/"
+          class="mobile-brand"
+          aria-label="Ir al inicio"
+        >
+
+          <span class="mobile-brand-mark">
+
+            <span class="mobile-brand-ring"></span>
+            <span class="mobile-brand-dot"></span>
+
+          </span>
+
+          <span class="mobile-brand-text">
+
+            <span>
+              Physics
+            </span>
+
+            <b>
+              ×
+            </b>
+
+            <span>
+              Software
+            </span>
+
+          </span>
+
+        </a>
+
+        <button
+          id="mobile-menu-toggle"
+          class="mobile-menu-toggle"
+          type="button"
+          aria-label="Abrir menú"
+          aria-controls="site-sidebar"
+          aria-expanded="false"
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </button>
+
+      </header>
+
+
+      <!-- =========================================
+           MOBILE OVERLAY
+      ========================================== -->
+
+      <button
+        id="mobile-sidebar-backdrop"
+        class="mobile-sidebar-backdrop"
+        type="button"
+        tabindex="-1"
+        aria-label="Cerrar menú"
+      ></button>
+
+
+      <!-- =========================================
+           SIDEBAR
+      ========================================== -->
+
+      <div
+        class="desktop-sidebar"
+        id="site-sidebar"
+      >
+
         <Sidebar />
+
       </div>
 
-      <header class="mobile-header">
-        <a
-          class="mobile-brand"
-          href="/"
-        >
-          Physics × Software
-        </a>
 
-        <a href="#temas">
-          Temas
-        </a>
-      </header>
+      <!-- =========================================
+           CONTENT
+      ========================================== -->
 
       <main
         class:list={[
           "main-content",
-          fullBleed && "main-content-full",
+          fullBleed &&
+            "main-content-full"
         ]}
       >
+
         <div
           class:list={[
             "content-container",
-            fullBleed && "content-container-full",
+            fullBleed &&
+              "content-container-full"
           ]}
         >
+
           <slot />
+
         </div>
+
       </main>
 
     </div>
+
+
+    <!-- =========================================
+         MOBILE MENU SCRIPT
+    ========================================== -->
+
+    <script>
+      import "../scripts/ui/mobile-sidebar.ts";
+    </script>
+
   </body>
+
 </html>

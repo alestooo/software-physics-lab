@@ -1,54 +1,684 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import TopicShell from "../components/ui/TopicShell.astro";
+import "../styles/advanced-labs.css";
 ---
 
-<BaseLayout title="Gravedad artificial | Physics × Software">
-  <TopicShell
-    number="03"
-    category="Dinámica · Movimiento circular"
-    title="Gravedad artificial por rotación en hábitats espaciales"
-    description="Relación entre radio, velocidad angular y aceleración centrípeta para producir una gravedad aparente."
-    resource="Diagrama"
-    equation="aₙ = ω²R"
-    telemetry={[
-      { label: "Radio", value: "R m" },
-      { label: "Vel. angular", value: "ω rad/s" },
-      { label: "Objetivo", value: "1 g" },
-    ]}
-    previousHref="/salto-videojuegos"
-    previousLabel="Salto en videojuegos"
-    nextHref="/formula-1"
-    nextLabel="Llantas de Fórmula 1"
+<BaseLayout
+  title="Gravedad artificial | Physics × Software"
+  description="Simulación y diagrama interactivo de gravedad artificial mediante rotación."
+>
+  <article
+    class="advanced-page gravity-page"
+    id="gravity-lab"
   >
-    <p slot="case">
-      Un hábitat espacial puede rotar para producir una aceleración
-      aparente sobre sus ocupantes.
-    </p>
 
-    <p slot="concept">
-      En el movimiento circular uniforme existe una aceleración
-      dirigida hacia el centro de la trayectoria.
-    </p>
+    <section class="advanced-hero">
 
-    <p slot="justification">
-      El modelo físico permite calcular qué combinación de radio y
-      velocidad de rotación produce una aceleración equivalente a la
-      gravedad terrestre.
-    </p>
+      <div class="advanced-hero-grid"></div>
+      <div class="advanced-glow glow-a"></div>
+      <div class="advanced-glow glow-b"></div>
 
-    <p
-      slot="resource-caption"
-      class="resource-caption"
-    >
-      El diagrama señalará el eje de giro, radio, aceleración
-      centrípeta y ecuaciones.
-    </p>
+      <div class="advanced-hero-copy">
 
-    <p slot="sources">
-      Se incluirán aquí las referencias empleadas para las ecuaciones
-      y el caso numérico equivalente a 1 g.
-    </p>
-  </TopicShell>
+        <div class="advanced-eyebrow">
+          <span>03</span>
+          <i></i>
+          <span>MOVIMIENTO CIRCULAR</span>
+        </div>
+
+        <h1>
+          Gravedad artificial
+          <em>por rotación.</em>
+        </h1>
+
+        <p>
+          Un hábitat espacial puede producir una aceleración aparente
+          haciendo girar a sus ocupantes alrededor de un eje.
+          El radio y la velocidad angular determinan la intensidad
+          de esa aceleración.
+        </p>
+
+        <div class="advanced-tags">
+          <span>Movimiento circular</span>
+          <span>Aceleración centrípeta</span>
+          <span>Diagrama interactivo</span>
+          <span>Simulación temporal</span>
+        </div>
+
+      </div>
+
+      <div class="hero-metric-card">
+
+        <span>GRAVEDAD APARENTE</span>
+
+        <strong id="gravity-hero-g">
+          1.00 g
+        </strong>
+
+        <p id="gravity-hero-ms">
+          9.81 m/s²
+        </p>
+
+        <div class="metric-line"></div>
+
+        <small id="gravity-hero-world">
+          Equivalente aproximado: Tierra
+        </small>
+
+      </div>
+
+    </section>
+
+    <section class="advanced-case">
+
+      <div class="advanced-index">
+        <span>01</span>
+        <small>CASO DE USO</small>
+      </div>
+
+      <div class="advanced-case-content">
+
+        <h2>
+          Un hábitat que
+          <em>simula peso.</em>
+        </h2>
+
+        <div class="case-columns">
+
+          <div>
+
+            <p>
+              En un simulador o gemelo digital de un hábitat espacial,
+              el software necesita calcular qué aceleración experimentaría
+              una persona para diferentes radios y velocidades de rotación.
+            </p>
+
+            <p>
+              Una gravedad almacenada como valor fijo no permite estudiar
+              cambios de diseño. Un modelo físico permite modificar las
+              dimensiones del hábitat y recalcular automáticamente el
+              resultado.
+            </p>
+
+          </div>
+
+          <aside class="concept-card">
+
+            <span>ECUACIÓN PRINCIPAL</span>
+
+            <strong>
+              aₙ = ω²r
+            </strong>
+
+            <p>
+              La aceleración aumenta proporcionalmente con el radio y
+              con el cuadrado de la velocidad angular.
+            </p>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="lab-section dark-lab">
+
+      <div class="lab-heading">
+
+        <div>
+
+          <span>
+            DIAGRAMA + SIMULACIÓN
+          </span>
+
+          <h2>
+            Diseña el
+            <em>hábitat rotatorio.</em>
+          </h2>
+
+        </div>
+
+        <p>
+          Cambia el radio, las revoluciones por minuto y el sentido
+          de rotación. También puedes reproducir diferentes niveles
+          de gravedad aparente.
+        </p>
+
+      </div>
+
+      <div class="lab-layout">
+
+        <aside class="lab-controls">
+
+          <div class="controls-title">
+
+            <span>PARÁMETROS</span>
+
+            <button
+              id="gravity-reset"
+              type="button"
+              class="small-button"
+            >
+              Reiniciar
+            </button>
+
+          </div>
+
+          <label class="lab-control">
+
+            <div>
+              <span>Radio del hábitat</span>
+              <strong id="radius-value">100 m</strong>
+            </div>
+
+            <input
+              id="radius-control"
+              type="range"
+              min="20"
+              max="300"
+              step="5"
+              value="100"
+            />
+
+            <footer>
+              <span>20 m</span>
+              <span>300 m</span>
+            </footer>
+
+          </label>
+
+          <label class="lab-control">
+
+            <div>
+              <span>Velocidad de rotación</span>
+              <strong id="rpm-value">2.99 rpm</strong>
+            </div>
+
+            <input
+              id="rpm-control"
+              type="range"
+              min="0.20"
+              max="8"
+              step="0.01"
+              value="2.99"
+            />
+
+            <footer>
+              <span>0.20 rpm</span>
+              <span>8 rpm</span>
+            </footer>
+
+          </label>
+
+          <div class="preset-buttons four-options">
+
+            <span>GRAVEDAD OBJETIVO</span>
+
+            <div>
+
+              <button
+                type="button"
+                data-gravity-preset="earth"
+                class="active"
+              >
+                Tierra
+              </button>
+
+              <button
+                type="button"
+                data-gravity-preset="moon"
+              >
+                Luna
+              </button>
+
+              <button
+                type="button"
+                data-gravity-preset="mars"
+              >
+                Marte
+              </button>
+
+              <button
+                type="button"
+                data-gravity-preset="europa"
+              >
+                Europa
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="preset-buttons direction-buttons">
+
+            <span>SENTIDO DE ROTACIÓN</span>
+
+            <div>
+
+              <button
+                type="button"
+                data-direction="cw"
+                class="active"
+              >
+                ↻ Horario
+              </button>
+
+              <button
+                type="button"
+                data-direction="ccw"
+              >
+                ↺ Antihorario
+              </button>
+
+            </div>
+
+          </div>
+
+          <button
+            id="gravity-play"
+            type="button"
+            class="primary-lab-button"
+          >
+
+            <span id="gravity-play-icon">
+              ▶
+            </span>
+
+            <span id="gravity-play-text">
+              Iniciar rotación
+            </span>
+
+          </button>
+
+        </aside>
+
+        <div class="gravity-diagram-card">
+
+          <div class="panel-top">
+
+            <div>
+              <small>DIAGRAMA DEL SISTEMA</small>
+              <strong>Hábitat rotatorio</strong>
+            </div>
+
+            <span id="gravity-status">
+              En reposo
+            </span>
+
+          </div>
+
+          <svg
+            class="gravity-diagram"
+            viewBox="0 0 700 520"
+            role="img"
+            aria-label="Diagrama interactivo de un hábitat rotatorio"
+          >
+
+            <defs>
+
+              <marker
+                id="gravity-arrow"
+                markerWidth="8"
+                markerHeight="8"
+                refX="5"
+                refY="3"
+                orient="auto"
+              >
+                <path
+                  d="M0,0 L0,6 L6,3 z"
+                  class="diagram-arrow-head"
+                ></path>
+              </marker>
+
+            </defs>
+
+            <circle
+              cx="350"
+              cy="250"
+              r="190"
+              class="habitat-orbit-guide"
+            ></circle>
+
+            <g
+              id="habitat-ring"
+              transform="rotate(0 350 250)"
+            >
+
+              <circle
+                cx="350"
+                cy="250"
+                r="170"
+                class="habitat-ring-outer"
+              ></circle>
+
+              <circle
+                cx="350"
+                cy="250"
+                r="142"
+                class="habitat-ring-inner"
+              ></circle>
+
+              <line
+                x1="350"
+                y1="80"
+                x2="350"
+                y2="115"
+                class="habitat-spoke"
+              ></line>
+
+              <line
+                x1="520"
+                y1="250"
+                x2="485"
+                y2="250"
+                class="habitat-spoke"
+              ></line>
+
+              <line
+                x1="350"
+                y1="420"
+                x2="350"
+                y2="385"
+                class="habitat-spoke"
+              ></line>
+
+              <line
+                x1="180"
+                y1="250"
+                x2="215"
+                y2="250"
+                class="habitat-spoke"
+              ></line>
+
+              <circle
+                cx="350"
+                cy="94"
+                r="9"
+                class="habitat-person"
+              ></circle>
+
+              <line
+                x1="350"
+                y1="105"
+                x2="350"
+                y2="128"
+                class="person-body"
+              ></line>
+
+            </g>
+
+            <circle
+              cx="350"
+              cy="250"
+              r="15"
+              class="rotation-axis"
+            ></circle>
+
+            <text
+              x="350"
+              y="285"
+              text-anchor="middle"
+              class="diagram-label"
+            >
+              eje de giro
+            </text>
+
+            <line
+              x1="350"
+              y1="250"
+              x2="350"
+              y2="100"
+              class="radius-line"
+              marker-end="url(#gravity-arrow)"
+            ></line>
+
+            <text
+              x="365"
+              y="175"
+              class="diagram-label"
+              id="diagram-radius"
+            >
+              r = 100 m
+            </text>
+
+            <line
+              x1="350"
+              y1="105"
+              x2="350"
+              y2="190"
+              class="acceleration-line"
+              marker-end="url(#gravity-arrow)"
+            ></line>
+
+            <text
+              x="365"
+              y="145"
+              class="diagram-label accent"
+            >
+              aₙ hacia el eje
+            </text>
+
+            <path
+              id="rotation-arrow-visual"
+              d="M 490 115 A 190 190 0 0 1 535 205"
+              class="rotation-arrow"
+              marker-end="url(#gravity-arrow)"
+            ></path>
+
+            <text
+              x="525"
+              y="105"
+              class="diagram-label"
+            >
+              ω
+            </text>
+
+            <text
+              x="70"
+              y="470"
+              class="diagram-equation"
+            >
+              aₙ = ω²r
+            </text>
+
+            <text
+              x="275"
+              y="470"
+              class="diagram-equation"
+            >
+              ω = 2π · rpm / 60
+            </text>
+
+          </svg>
+
+          <div class="lab-live-values gravity-values">
+
+            <div>
+              <span>ω</span>
+              <strong id="omega-live">
+                0.313 rad/s
+              </strong>
+            </div>
+
+            <div>
+              <span>aₙ</span>
+              <strong id="acceleration-live">
+                9.80 m/s²
+              </strong>
+            </div>
+
+            <div>
+              <span>g</span>
+              <strong id="gravity-live">
+                1.00 g
+              </strong>
+            </div>
+
+            <div>
+              <span>Período</span>
+              <strong id="period-live">
+                20.07 s
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="simulation-readout">
+
+            <span>NIVEL APROXIMADO</span>
+
+            <strong id="gravity-world-name">
+              Tierra
+            </strong>
+
+            <p id="gravity-world-detail">
+              100 % de la gravedad terrestre.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="calculation-section">
+
+      <div class="advanced-index">
+        <span>02</span>
+        <small>CASO NUMÉRICO</small>
+      </div>
+
+      <div class="calculation-content">
+
+        <h2>
+          Las ecuaciones
+          <em>siguen al simulador.</em>
+        </h2>
+
+        <div class="equation-cards">
+
+          <article>
+
+            <span>VELOCIDAD ANGULAR</span>
+
+            <strong id="omega-equation">
+              ω = 2π(2.99) / 60 = 0.313 rad/s
+            </strong>
+
+          </article>
+
+          <article>
+
+            <span>ACELERACIÓN</span>
+
+            <strong id="gravity-equation">
+              aₙ = (0.313)²(100) = 9.80 m/s²
+            </strong>
+
+          </article>
+
+          <article>
+
+            <span>EQUIVALENCIA</span>
+
+            <strong id="g-equation">
+              9.80 / 9.81 = 1.00 g
+            </strong>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="advanced-why">
+
+      <div class="advanced-index">
+        <span>03</span>
+        <small>SOFTWARE</small>
+      </div>
+
+      <div>
+
+        <h2>
+          El diseño puede
+          <em>recalcularse.</em>
+        </h2>
+
+        <div class="why-grid">
+
+          <article>
+
+            <span class="negative">
+              ×
+            </span>
+
+            <h3>
+              Valor fijo
+            </h3>
+
+            <p>
+              Una constante de gravedad no permite analizar distintos
+              radios ni velocidades.
+            </p>
+
+          </article>
+
+          <article class="positive-card">
+
+            <span class="positive">
+              ✓
+            </span>
+
+            <h3>
+              Modelo físico
+            </h3>
+
+            <p>
+              El software puede evaluar diferentes configuraciones
+              antes de construir el sistema.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer class="advanced-footer">
+
+      <a href="/salto-videojuegos">
+        ← Salto en videojuegos
+      </a>
+
+      <a
+        href="/formula-1"
+        class="advanced-next"
+      >
+
+        <div>
+          <small>SIGUIENTE · 04</small>
+          <strong>Fórmula 1</strong>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+    </footer>
+
+  </article>
+
+  <script>
+    import "../scripts/simulations/gravedad-artificial.ts";
+  </script>
+
 </BaseLayout>

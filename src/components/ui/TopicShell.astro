@@ -13,12 +13,9 @@ interface Props {
   description: string;
   resource: string;
   equation: string;
-
   telemetry?: TelemetryItem[];
-
   previousHref?: string;
   previousLabel?: string;
-
   nextHref?: string;
   nextLabel?: string;
 }
@@ -30,182 +27,186 @@ const {
   description,
   resource,
   equation,
-
   telemetry = [
-    {
-      label: "Estado",
-      value: "Preparado",
-    },
-    {
-      label: "Modelo",
-      value: "Físico",
-    },
-    {
-      label: "Recurso",
-      value: "Interactivo",
-    },
+    { label: "Estado", value: "Activo" },
+    { label: "Modelo", value: "Interactivo" },
+    { label: "Recurso", value: resource },
   ],
-
   previousHref,
   previousLabel,
-
   nextHref,
   nextLabel,
 } = Astro.props;
 ---
 
 <article class="topic-page">
-  <header class="topic-header">
-    <div class="topic-index">
-      {number}
-    </div>
+  <section class="topic-hero">
+    <div class="topic-hero-stars" aria-hidden="true"></div>
+    <div class="topic-hero-glow topic-hero-glow-left" aria-hidden="true"></div>
+    <div class="topic-hero-glow topic-hero-glow-right" aria-hidden="true"></div>
+    <div class="topic-hero-orbit orbit-one" aria-hidden="true"></div>
+    <div class="topic-hero-orbit orbit-two" aria-hidden="true"></div>
+    <div class="topic-hero-orbit orbit-three" aria-hidden="true"></div>
 
-    <div>
-      <p class="eyebrow">
-        {category}
-      </p>
-
-      <h1 class="topic-title">
-        {title}
-      </h1>
-
-      <p class="topic-description">
-        {description}
-      </p>
-
-      <div class="topic-tags">
-        <span class="topic-tag">
-          Física I
-        </span>
-
-        <span class="topic-tag">
-          Ingeniería del Software
-        </span>
-
-        <span class="topic-tag topic-tag-resource">
-          {resource}
-        </span>
-      </div>
-    </div>
-  </header>
-
-  <div class="topic-layout">
-    <div class="topic-copy">
-      <section class="topic-section">
-        <p class="topic-section-label">
-          Caso de uso en software
-        </p>
-
-        <slot name="case" />
-      </section>
-
-      <section class="topic-section">
-        <p class="topic-section-label">
-          Concepto físico
-        </p>
-
-        <slot name="concept" />
-      </section>
-
-      <div class="equation-box">
-        {equation}
-      </div>
-
-      <section class="topic-section">
-        <p class="topic-section-label">
-          Justificación
-        </p>
-
-        <slot name="justification" />
-      </section>
-    </div>
-
-    <aside class="topic-resource-column">
-      <p class="topic-section-label">
-        {resource}
-      </p>
-
-      <div class="visual-panel">
-        <div class="visual-grid"></div>
-
-        <div class="visual-placeholder">
-          <div>
-            <strong>
-              Recurso en desarrollo
-            </strong>
-
-            <span>
-              Aquí se integrará el recurso específico de este tema.
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <slot name="resource-caption" />
-
-      <div class="telemetry-card">
-        <div class="telemetry-header">
-          <span>
-            Datos del modelo
+    <div class="topic-hero-shell">
+      <div class="topic-topbar">
+        <div class="topic-topbar-brand">
+          <span class="topic-topbar-brand-icon">
+            <span class="topic-topbar-ring"></span>
+            <span class="topic-topbar-dot"></span>
           </span>
 
-          <span class="live-indicator"></span>
+          <span class="topic-topbar-brand-text">
+            Physics <span class="topic-topbar-x">×</span> Software
+          </span>
         </div>
 
-        <div class="telemetry-grid">
-          {
-            telemetry.map((item) => (
-              <div class="telemetry-item">
-                <span>
-                  {item.label}
-                </span>
-
-                <strong>
-                  {item.value}
-                </strong>
-              </div>
-            ))
-          }
-        </div>
+        <nav class="topic-topbar-nav">
+          <a href="/" class="active">Inicio</a>
+          <a href="/#topics">Temas</a>
+          <a href="/#metodo">Método</a>
+          <a
+            href="https://github.com/alestooo/software-physics-lab"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        </nav>
       </div>
-    </aside>
-  </div>
 
-  <section class="topic-source-section">
-    <p class="topic-section-label">
-      Fuentes y notas
-    </p>
+      <div class="topic-hero-grid">
+        <div class="topic-hero-copy">
+          <div class="topic-meta-row">
+            <span class="topic-number-chip">{number}</span>
+            <span class="topic-meta-line"></span>
+            <span class="topic-category-chip">{category}</span>
+          </div>
 
-    <slot name="sources" />
+          <h1 class="topic-title">{title}</h1>
+
+          <p class="topic-description">{description}</p>
+
+          <div class="topic-tags">
+            <span class="topic-tag">Física I</span>
+            <span class="topic-tag">Simulación</span>
+            <span class="topic-tag">{resource}</span>
+          </div>
+        </div>
+
+        <aside class="topic-hero-aside">
+          <div class="topic-visual-card">
+            <slot name="visual">
+              <div class="topic-visual-placeholder">
+                <div class="topic-visual-placeholder-inner">
+                  <strong>Visual interactivo</strong>
+                  <span>
+                    Inserta aquí la simulación, diagrama o panel del tema.
+                  </span>
+                </div>
+              </div>
+            </slot>
+          </div>
+
+          <div class="telemetry-card">
+            <div class="telemetry-header">
+              <span>Datos del modelo</span>
+              <span class="live-indicator"></span>
+            </div>
+
+            <div class="telemetry-grid">
+              {
+                telemetry.map((item) => (
+                  <div class="telemetry-item">
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="topic-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
+        <path
+          d="M0,80 C240,150 430,145 720,105 C985,70 1180,55 1440,95 L1440,160 L0,160 Z"
+          fill="#f6f3fb"
+        />
+      </svg>
+    </div>
   </section>
 
-  <footer class="topic-pagination">
-    <div>
-      {
-        previousHref && (
-          <a href={previousHref}>
-            <span>← Anterior</span>
+  <section class="topic-body">
+    <div class="topic-body-shell">
+      <section class="topic-section-grid">
+        <div class="topic-section-side">
+          <span class="topic-step-number">01</span>
+          <span class="topic-step-label">Caso de uso</span>
+        </div>
 
-            <strong>
-              {previousLabel}
-            </strong>
-          </a>
-        )
-      }
+        <div class="topic-section-main">
+          <slot name="case" />
+        </div>
+      </section>
+
+      <section class="topic-section-grid">
+        <div class="topic-section-side">
+          <span class="topic-step-number">02</span>
+          <span class="topic-step-label">Concepto físico</span>
+        </div>
+
+        <div class="topic-section-main">
+          <slot name="concept" />
+
+          <div class="equation-box">
+            <span class="equation-label">Modelo</span>
+            <code>{equation}</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="topic-section-grid">
+        <div class="topic-section-side">
+          <span class="topic-step-number">03</span>
+          <span class="topic-step-label">Justificación</span>
+        </div>
+
+        <div class="topic-section-main">
+          <slot name="justification" />
+        </div>
+      </section>
+
+      <section class="topic-source-section">
+        <p class="topic-section-heading">Fuentes y notas</p>
+        <slot name="sources" />
+      </section>
+
+      <footer class="topic-pagination">
+        <div class="topic-pagination-col">
+          {
+            previousHref && (
+              <a href={previousHref} class="topic-pagination-link">
+                <span>← Anterior</span>
+                <strong>{previousLabel}</strong>
+              </a>
+            )
+          }
+        </div>
+
+        <div class="topic-pagination-col topic-pagination-next">
+          {
+            nextHref && (
+              <a href={nextHref} class="topic-pagination-link">
+                <span>Siguiente →</span>
+                <strong>{nextLabel}</strong>
+              </a>
+            )
+          }
+        </div>
+      </footer>
     </div>
-
-    <div class="topic-pagination-next">
-      {
-        nextHref && (
-          <a href={nextHref}>
-            <span>Siguiente →</span>
-
-            <strong>
-              {nextLabel}
-            </strong>
-          </a>
-        )
-      }
-    </div>
-  </footer>
+  </section>
 </article>

@@ -1,50 +1,674 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import TopicShell from "../components/ui/TopicShell.astro";
+import "../styles/advanced-labs.css";
 ---
 
-<BaseLayout title="Control háptico | Physics × Software">
-  <TopicShell
-    number="05"
-    category="Dinámica · Fuerza elástica"
-    title="El resorte virtual detrás de un control háptico"
-    description="Cómo un dispositivo puede simular una fuerza restauradora utilizando un modelo semejante al de un resorte."
-    resource="Multimedia con análisis"
-    equation="F = -kx"
-    telemetry={[
-      { label: "Desplazamiento", value: "x" },
-      { label: "Rigidez", value: "k" },
-      { label: "Fuerza", value: "F" },
-    ]}
-    previousHref="/formula-1"
-    previousLabel="Llantas de Fórmula 1"
+<BaseLayout
+  title="Control háptico | Physics × Software"
+  description="Simulación de la Ley de Hooke aplicada a un gatillo adaptativo."
+>
+  <article
+    class="advanced-page haptic-page"
+    id="haptic-lab"
   >
-    <p slot="case">
-      Algunos controles y dispositivos hápticos utilizan motores
-      para ofrecer resistencia al movimiento.
-    </p>
 
-    <p slot="concept">
-      La ley de Hooke describe una fuerza restauradora proporcional
-      al desplazamiento y dirigida en sentido contrario.
-    </p>
+    <section class="advanced-hero haptic-hero">
 
-    <p slot="justification">
-      Una respuesta calculada a partir del desplazamiento permite que
-      la resistencia cambie continuamente según la acción del usuario.
-    </p>
+      <div class="advanced-hero-grid"></div>
+      <div class="advanced-glow glow-a"></div>
+      <div class="advanced-glow glow-b"></div>
 
-    <p
-      slot="resource-caption"
-      class="resource-caption"
-    >
-      Se incorporará un video acompañado de su análisis físico.
-    </p>
+      <div class="advanced-hero-copy">
 
-    <p slot="sources">
-      Aquí se citará el material multimedia utilizado y las referencias
-      sobre la ley de Hooke.
-    </p>
-  </TopicShell>
+        <div class="advanced-eyebrow">
+          <span>05</span>
+          <i></i>
+          <span>LEY DE HOOKE</span>
+        </div>
+
+        <h1>
+          El resorte virtual
+          <em>detrás del control háptico.</em>
+        </h1>
+
+        <p>
+          Un gatillo adaptativo puede variar la resistencia que
+          siente el usuario dependiendo de su desplazamiento.
+        </p>
+
+        <div class="advanced-tags">
+          <span>Ley de Hooke</span>
+          <span>Fuerza restauradora</span>
+          <span>Ciclo animado</span>
+          <span>Curva F-x</span>
+        </div>
+
+      </div>
+
+      <div class="hero-metric-card">
+
+        <span>FUERZA ACTUAL</span>
+
+        <strong id="haptic-force-hero">
+          0.66 N
+        </strong>
+
+        <p>
+          F = −kx
+        </p>
+
+        <div class="metric-line"></div>
+
+        <small id="haptic-hero-phase">
+          Gatillo en reposo
+        </small>
+
+      </div>
+
+    </section>
+
+    <section class="advanced-case">
+
+      <div class="advanced-index">
+        <span>01</span>
+        <small>CASO DE USO</small>
+      </div>
+
+      <div class="advanced-case-content">
+
+        <h2>
+          El software controla
+          <em>lo que la mano siente.</em>
+        </h2>
+
+        <div class="case-columns">
+
+          <div>
+
+            <p>
+              Un sistema háptico puede convertir una variable del juego
+              en una fuerza que se opone al movimiento del usuario.
+            </p>
+
+            <p>
+              Una aproximación simple consiste en utilizar una relación
+              tipo resorte. Mientras mayor sea el desplazamiento del
+              gatillo, mayor será la fuerza restauradora.
+            </p>
+
+          </div>
+
+          <aside class="concept-card">
+
+            <span>LEY DE HOOKE</span>
+
+            <strong>
+              F = −kx
+            </strong>
+
+            <p>
+              El signo negativo representa que la fuerza actúa en
+              dirección opuesta al desplazamiento.
+            </p>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="lab-section haptic-lab-section">
+
+      <div class="lab-heading">
+
+        <div>
+
+          <span>
+            SIMULACIÓN INTERACTIVA
+          </span>
+
+          <h2>
+            Construye un
+            <em>resorte virtual.</em>
+          </h2>
+
+        </div>
+
+        <p>
+          Puedes controlar manualmente el gatillo o ejecutar un
+          ciclo automático de presión y liberación.
+        </p>
+
+      </div>
+
+      <div class="lab-layout">
+
+        <aside class="lab-controls">
+
+          <div class="controls-title">
+
+            <span>PARÁMETROS</span>
+
+            <button
+              id="haptic-reset"
+              type="button"
+              class="small-button"
+            >
+              Reiniciar
+            </button>
+
+          </div>
+
+          <label class="lab-control">
+
+            <div>
+              <span>Constante k</span>
+              <strong id="spring-value">
+                22 N/m
+              </strong>
+            </div>
+
+            <input
+              id="spring-control"
+              type="range"
+              min="5"
+              max="70"
+              step="1"
+              value="22"
+            />
+
+            <footer>
+              <span>5 N/m</span>
+              <span>70 N/m</span>
+            </footer>
+
+          </label>
+
+          <label class="lab-control">
+
+            <div>
+              <span>Recorrido máximo</span>
+              <strong id="travel-value">
+                50 mm
+              </strong>
+            </div>
+
+            <input
+              id="travel-control"
+              type="range"
+              min="20"
+              max="60"
+              step="1"
+              value="50"
+            />
+
+            <footer>
+              <span>20 mm</span>
+              <span>60 mm</span>
+            </footer>
+
+          </label>
+
+          <label class="lab-control">
+
+            <div>
+              <span>Desplazamiento</span>
+              <strong id="displacement-value">
+                30 mm
+              </strong>
+            </div>
+
+            <input
+              id="displacement-control"
+              type="range"
+              min="0"
+              max="50"
+              step="1"
+              value="30"
+            />
+
+            <footer>
+              <span>0 mm</span>
+              <span id="displacement-max-label">
+                50 mm
+              </span>
+            </footer>
+
+          </label>
+
+          <label class="lab-control">
+
+            <div>
+              <span>Velocidad del ciclo</span>
+              <strong id="cycle-speed-value">
+                0.70 Hz
+              </strong>
+            </div>
+
+            <input
+              id="cycle-speed-control"
+              type="range"
+              min="0.20"
+              max="1.50"
+              step="0.05"
+              value="0.70"
+            />
+
+            <footer>
+              <span>0.20 Hz</span>
+              <span>1.50 Hz</span>
+            </footer>
+
+          </label>
+
+          <div class="preset-buttons four-options">
+
+            <span>PERFIL</span>
+
+            <div>
+
+              <button
+                type="button"
+                data-haptic-profile="soft"
+              >
+                Suave
+              </button>
+
+              <button
+                type="button"
+                data-haptic-profile="medium"
+                class="active"
+              >
+                Medio
+              </button>
+
+              <button
+                type="button"
+                data-haptic-profile="hard"
+              >
+                Fuerte
+              </button>
+
+              <button
+                type="button"
+                data-haptic-profile="bow"
+              >
+                Arco
+              </button>
+
+            </div>
+
+          </div>
+
+          <button
+            id="haptic-play"
+            type="button"
+            class="primary-lab-button"
+          >
+
+            <span id="haptic-play-icon">
+              ▶
+            </span>
+
+            <span id="haptic-play-text">
+              Iniciar ciclo
+            </span>
+
+          </button>
+
+          <div class="f1-current-result">
+
+            <span>FUERZA</span>
+
+            <strong id="haptic-force">
+              0.66 N
+            </strong>
+
+            <span>FASE</span>
+
+            <strong id="haptic-phase">
+              Manual
+            </strong>
+
+          </div>
+
+        </aside>
+
+        <div class="haptic-panel">
+
+          <div class="panel-top">
+
+            <div>
+              <small>GATILLO VIRTUAL</small>
+              <strong>
+                Desplazamiento y resistencia
+              </strong>
+            </div>
+
+            <span id="haptic-state">
+              Resistencia media
+            </span>
+
+          </div>
+
+          <div class="trigger-stage">
+
+            <div class="controller-shell">
+
+              <div
+                class="virtual-trigger"
+                id="virtual-trigger"
+              ></div>
+
+              <div class="trigger-axis"></div>
+
+            </div>
+
+            <div class="force-arrow">
+
+              <span>
+                F restauradora
+              </span>
+
+              <i id="force-arrow-line"></i>
+
+            </div>
+
+          </div>
+
+          <svg
+            class="haptic-chart"
+            viewBox="0 0 760 320"
+            role="img"
+            aria-label="Curva de fuerza contra desplazamiento"
+          >
+
+            <g class="chart-grid-light">
+
+              <line x1="70" y1="30" x2="70" y2="260"></line>
+              <line x1="70" y1="260" x2="720" y2="260"></line>
+
+              <line x1="70" y1="202" x2="720" y2="202"></line>
+              <line x1="70" y1="145" x2="720" y2="145"></line>
+              <line x1="70" y1="87" x2="720" y2="87"></line>
+
+              <line x1="232" y1="30" x2="232" y2="260"></line>
+              <line x1="395" y1="30" x2="395" y2="260"></line>
+              <line x1="557" y1="30" x2="557" y2="260"></line>
+
+            </g>
+
+            <path
+              id="haptic-curve"
+              class="haptic-curve"
+              d=""
+            ></path>
+
+            <circle
+              id="haptic-marker"
+              class="haptic-marker"
+              r="8"
+            ></circle>
+
+            <text
+              x="395"
+              y="305"
+              text-anchor="middle"
+              class="chart-label-dark"
+            >
+              desplazamiento x (m)
+            </text>
+
+            <text
+              x="18"
+              y="145"
+              text-anchor="middle"
+              transform="rotate(-90 18 145)"
+              class="chart-label-dark"
+            >
+              magnitud de fuerza (N)
+            </text>
+
+          </svg>
+
+          <div class="lab-live-values">
+
+            <div>
+              <span>k</span>
+              <strong id="k-live">
+                22 N/m
+              </strong>
+            </div>
+
+            <div>
+              <span>x</span>
+              <strong id="x-live">
+                0.030 m
+              </strong>
+            </div>
+
+            <div>
+              <span>|F|</span>
+              <strong id="force-live-haptic">
+                0.66 N
+              </strong>
+            </div>
+
+            <div>
+              <span>Ciclo</span>
+              <strong id="cycle-live">
+                detenido
+              </strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="calculation-section">
+
+      <div class="advanced-index">
+        <span>02</span>
+        <small>ECUACIÓN</small>
+      </div>
+
+      <div class="calculation-content">
+
+        <h2>
+          La fuerza cambia
+          <em>con cada milímetro.</em>
+        </h2>
+
+        <div class="equation-cards">
+
+          <article>
+            <span>LEY DE HOOKE</span>
+            <strong>F = −kx</strong>
+          </article>
+
+          <article>
+            <span>SUSTITUCIÓN</span>
+            <strong id="haptic-substitution">
+              F = −(22)(0.030)
+            </strong>
+          </article>
+
+          <article>
+            <span>RESULTADO</span>
+            <strong id="haptic-result">
+              F = −0.66 N
+            </strong>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="multimedia-section">
+
+      <div class="multimedia-copy">
+
+        <span>
+          RECURSO PRESCRITO · MULTIMEDIA CON ANÁLISIS
+        </span>
+
+        <h2>
+          La sensación
+          <em>en un dispositivo real.</em>
+        </h2>
+
+        <p>
+          La simulación complementa el recurso multimedia,
+          pero el análisis del video se mantiene por separado.
+        </p>
+
+      </div>
+
+      <div class="multimedia-grid">
+
+        <div class="video-frame">
+
+          <iframe
+            id="haptic-video"
+            title="Demostración de un control háptico"
+            loading="lazy"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+
+          <div class="video-placeholder">
+
+            <strong>
+              Multimedia del efecto háptico
+            </strong>
+
+            <p>
+              Aquí irá el video que utilizarás en la entrega.
+            </p>
+
+          </div>
+
+        </div>
+
+        <aside class="video-analysis">
+
+          <span>
+            ANÁLISIS
+          </span>
+
+          <h3>
+            ¿Cuándo aparece la fuerza restauradora?
+          </h3>
+
+          <p>
+            El instante relevante es cuando el usuario sigue desplazando
+            el gatillo y comienza a percibir un aumento de resistencia.
+          </p>
+
+          <p>
+            En el modelo de la simulación, ese comportamiento corresponde
+            al aumento de la magnitud de
+            <strong>F = −kx</strong>
+            cuando x aumenta.
+          </p>
+
+          <div class="analysis-note">
+
+            <span>
+              TERCERA LEY DE NEWTON
+            </span>
+
+            <p>
+              El mecanismo ejerce una fuerza sobre el dedo y el dedo
+              ejerce una fuerza igual y opuesta sobre el mecanismo.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+    <section class="advanced-why">
+
+      <div class="advanced-index">
+        <span>03</span>
+        <small>SOFTWARE</small>
+      </div>
+
+      <div>
+
+        <h2>
+          Una ecuación se convierte
+          <em>en una sensación.</em>
+        </h2>
+
+        <div class="why-grid">
+
+          <article>
+            <span class="negative">×</span>
+
+            <h3>Resistencia fija</h3>
+
+            <p>
+              Produce prácticamente la misma sensación
+              durante todo el recorrido.
+            </p>
+          </article>
+
+          <article class="positive-card">
+            <span class="positive">✓</span>
+
+            <h3>Fuerza dependiente de x</h3>
+
+            <p>
+              El comportamiento puede responder al desplazamiento
+              actual del gatillo.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer class="advanced-footer">
+
+      <a href="/formula-1">
+        ← Fórmula 1
+      </a>
+
+      <a
+        href="/"
+        class="advanced-next"
+      >
+
+        <div>
+          <small>PORTAFOLIO</small>
+          <strong>Volver al inicio</strong>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+    </footer>
+
+  </article>
+
+  <script>
+    import "../scripts/simulations/control-haptico.ts";
+  </script>
+
 </BaseLayout>

@@ -1,54 +1,537 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import TopicShell from "../components/ui/TopicShell.astro";
+import "../styles/advanced-labs.css";
 ---
 
-<BaseLayout title="Fórmula 1 | Physics × Software">
-  <TopicShell
-    number="04"
-    category="Dinámica · Fricción"
-    title="Llantas de Fórmula 1: la ventana de temperatura y el agarre"
-    description="Visualización de cómo la temperatura modifica el comportamiento del neumático y su capacidad de generar agarre."
-    resource="Visualización de datos"
-    equation="Ff = μN"
-    telemetry={[
-      { label: "Temperatura", value: "— °C" },
-      { label: "Coeficiente μ", value: "—" },
-      { label: "Agarre", value: "—" },
-    ]}
-    previousHref="/gravedad-artificial"
-    previousLabel="Gravedad artificial"
-    nextHref="/control-haptico"
-    nextLabel="Control háptico"
+<BaseLayout
+  title="Llantas de Fórmula 1 | Physics × Software"
+  description="Simulación interactiva de temperatura, fricción y agarre de un neumático de competición."
+>
+  <article
+    class="advanced-page f1-page"
+    id="f1-lab"
   >
-    <p slot="case">
-      En simuladores de automovilismo y herramientas de análisis
-      vehicular, el software necesita representar la interacción
-      entre los neumáticos y la pista.
-    </p>
+    <section class="advanced-hero f1-hero">
+      <div class="advanced-hero-grid"></div>
+      <div class="advanced-glow glow-a"></div>
+      <div class="advanced-glow glow-b"></div>
 
-    <p slot="concept">
-      El modelo básico de fricción relaciona la fuerza máxima de
-      agarre con el coeficiente de fricción y la fuerza normal.
-    </p>
+      <div class="advanced-hero-copy">
+        <div class="advanced-eyebrow">
+          <span>04</span>
+          <i></i>
+          <span>FRICCIÓN</span>
+        </div>
 
-    <p slot="justification">
-      Un modelo dependiente de las condiciones permite que el vehículo
-      responda de forma diferente cuando los neumáticos están fríos,
-      en temperatura óptima o sobrecalentados.
-    </p>
+        <h1>
+          Fórmula 1:
+          <em>temperatura y agarre.</em>
+        </h1>
 
-    <p
-      slot="resource-caption"
-      class="resource-caption"
-    >
-      Se mostrará una gráfica de agarre en función de la temperatura.
-    </p>
+        <p>
+          La cantidad de agarre disponible depende del estado térmico
+          del neumático, de la carga vertical y del modelo utilizado
+          por el software.
+        </p>
 
-    <p slot="sources">
-      Los datos definitivos de la gráfica se incorporarán únicamente
-      a partir de fuentes identificadas y citadas.
-    </p>
-  </TopicShell>
+        <div class="advanced-tags">
+          <span>Fricción</span>
+          <span>Temperatura</span>
+          <span>Fuerza normal</span>
+          <span>Simulación de vuelta</span>
+        </div>
+      </div>
+
+      <div class="f1-wheel-card">
+        <div
+          class="f1-tyre"
+          id="f1-tyre"
+          data-state="Ventana óptima"
+        >
+          <div class="f1-rim"></div>
+        </div>
+
+        <div>
+          <span>ESTADO</span>
+          <strong id="tyre-state">Ventana óptima</strong>
+          <p id="tyre-temperature-hero">75 °C</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="advanced-case">
+      <div class="advanced-index">
+        <span>01</span>
+        <small>CASO DE USO</small>
+      </div>
+
+      <div class="advanced-case-content">
+        <h2>
+          El neumático cambia
+          <em>durante la vuelta.</em>
+        </h2>
+
+        <div class="case-columns">
+          <div>
+            <p>
+              Un simulador de dinámica vehicular no puede representar
+              correctamente un neumático mediante un único valor constante
+              de fricción.
+            </p>
+
+            <p>
+              La temperatura, la carga vertical y la conducción modifican
+              el estado del neumático. Un modelo permite actualizar esas
+              variables mientras el automóvil continúa circulando.
+            </p>
+          </div>
+
+          <aside class="concept-card">
+            <span>MODELO BASE</span>
+            <strong>F ≤ μN</strong>
+            <p>
+              En esta simulación μ cambia con la temperatura y presenta
+              además una pequeña sensibilidad a la carga.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-section f1-lab-section">
+      <div class="lab-heading">
+        <div>
+          <span>SIMULACIÓN DE VUELTA</span>
+          <h2>
+            Lleva el neumático
+            <em>a su ventana.</em>
+          </h2>
+        </div>
+
+        <p>
+          Inicia una vuelta y observa cómo la temperatura evoluciona
+          dependiendo de la pista, la carga y el estilo de conducción.
+        </p>
+      </div>
+
+      <div class="lab-layout">
+        <aside class="lab-controls">
+          <div class="controls-title">
+            <span>PARÁMETROS</span>
+
+            <button
+              id="f1-reset"
+              type="button"
+              class="small-button"
+            >
+              Reiniciar
+            </button>
+          </div>
+
+          <label class="lab-control">
+            <div>
+              <span>Temperatura inicial</span>
+              <strong id="temperature-value">75 °C</strong>
+            </div>
+
+            <input
+              id="temperature-control"
+              type="range"
+              min="40"
+              max="150"
+              step="1"
+              value="75"
+            />
+
+            <footer>
+              <span>40 °C</span>
+              <span>150 °C</span>
+            </footer>
+          </label>
+
+          <label class="lab-control">
+            <div>
+              <span>Temperatura de pista</span>
+              <strong id="track-temperature-value">35 °C</strong>
+            </div>
+
+            <input
+              id="track-temperature-control"
+              type="range"
+              min="15"
+              max="60"
+              step="1"
+              value="35"
+            />
+
+            <footer>
+              <span>15 °C</span>
+              <span>60 °C</span>
+            </footer>
+          </label>
+
+          <label class="lab-control">
+            <div>
+              <span>Carga vertical</span>
+              <strong id="load-value">4000 N</strong>
+            </div>
+
+            <input
+              id="load-control"
+              type="range"
+              min="1000"
+              max="8000"
+              step="100"
+              value="4000"
+            />
+
+            <footer>
+              <span>1000 N</span>
+              <span>8000 N</span>
+            </footer>
+          </label>
+
+          <div class="preset-buttons">
+            <span>COMPUESTO DIDÁCTICO</span>
+
+            <div>
+              <button
+                type="button"
+                data-compound="soft"
+                class="active"
+              >
+                Soft
+              </button>
+
+              <button
+                type="button"
+                data-compound="medium"
+              >
+                Medium
+              </button>
+
+              <button
+                type="button"
+                data-compound="hard"
+              >
+                Hard
+              </button>
+            </div>
+          </div>
+
+          <div class="preset-buttons">
+            <span>CONDUCCIÓN</span>
+
+            <div>
+              <button
+                type="button"
+                data-driving="conservative"
+              >
+                Suave
+              </button>
+
+              <button
+                type="button"
+                data-driving="balanced"
+                class="active"
+              >
+                Normal
+              </button>
+
+              <button
+                type="button"
+                data-driving="push"
+              >
+                Push
+              </button>
+            </div>
+          </div>
+
+          <button
+            id="f1-play"
+            type="button"
+            class="primary-lab-button"
+          >
+            <span id="f1-play-icon">▶</span>
+            <span id="f1-play-text">Simular vuelta</span>
+          </button>
+
+          <div class="f1-current-result">
+            <span>μ EFECTIVO</span>
+            <strong id="mu-current">1.30</strong>
+
+            <span>FUERZA MÁXIMA</span>
+            <strong id="force-current">5200 N</strong>
+          </div>
+        </aside>
+
+        <div class="data-panel">
+          <div class="panel-top">
+            <div>
+              <small>SIMULACIÓN TÉRMICA</small>
+              <strong>Coeficiente de agarre vs. temperatura</strong>
+            </div>
+
+            <span id="f1-chart-state">Calentando</span>
+          </div>
+
+          <div class="f1-track-scene">
+            <div class="f1-track-header">
+              <div>
+                <span>VUELTA</span>
+                <strong id="f1-lap-time">0.0 s</strong>
+              </div>
+
+              <div class="f1-track-lights">
+                <i id="f1-light-1"></i>
+                <i id="f1-light-2"></i>
+                <i id="f1-light-3"></i>
+              </div>
+            </div>
+
+            <div class="f1-track-visual">
+              <div class="f1-track-lane"></div>
+
+              <div
+                id="f1-car"
+                class="f1-car"
+              >
+                <div class="car-body"></div>
+                <div class="car-cockpit"></div>
+                <div class="car-front-wing"></div>
+                <div class="car-rear-wing"></div>
+                <span class="car-wheel wheel-front"></span>
+                <span class="car-wheel wheel-rear"></span>
+              </div>
+            </div>
+
+            <div class="progress-track f1-progress-track">
+              <i
+                id="f1-progress"
+                class="progress-fill"
+              ></i>
+            </div>
+          </div>
+
+          <svg
+            class="f1-chart"
+            viewBox="0 0 800 440"
+            role="img"
+            aria-label="Coeficiente de agarre en función de la temperatura"
+          >
+            <g class="chart-grid-light">
+              <line x1="75" y1="40" x2="75" y2="365"></line>
+              <line x1="75" y1="365" x2="755" y2="365"></line>
+
+              <line x1="75" y1="285" x2="755" y2="285"></line>
+              <line x1="75" y1="205" x2="755" y2="205"></line>
+              <line x1="75" y1="125" x2="755" y2="125"></line>
+
+              <line x1="230" y1="40" x2="230" y2="365"></line>
+              <line x1="385" y1="40" x2="385" y2="365"></line>
+              <line x1="540" y1="40" x2="540" y2="365"></line>
+              <line x1="695" y1="40" x2="695" y2="365"></line>
+            </g>
+
+            <rect
+              id="optimum-window"
+              x="0"
+              y="40"
+              width="0"
+              height="325"
+              class="optimum-window"
+            ></rect>
+
+            <path
+              id="grip-curve"
+              class="grip-curve"
+              d=""
+            ></path>
+
+            <line
+              id="marker-guide-x"
+              class="marker-guide"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="365"
+            ></line>
+
+            <line
+              id="marker-guide-y"
+              class="marker-guide"
+              x1="75"
+              y1="0"
+              x2="0"
+              y2="0"
+            ></line>
+
+            <circle
+              id="grip-marker-pulse"
+              class="grip-marker-pulse"
+              r="16"
+            ></circle>
+
+            <circle
+              id="grip-marker"
+              class="grip-marker"
+              r="8"
+            ></circle>
+
+            <text
+              x="415"
+              y="420"
+              text-anchor="middle"
+              class="chart-label-dark"
+            >
+              temperatura del neumático (°C)
+            </text>
+
+            <text
+              x="18"
+              y="205"
+              text-anchor="middle"
+              transform="rotate(-90 18 205)"
+              class="chart-label-dark"
+            >
+              coeficiente efectivo μ
+            </text>
+          </svg>
+
+          <div class="chart-scale-labels">
+            <span>40 °C</span>
+            <span>70 °C</span>
+            <span>100 °C</span>
+            <span>130 °C</span>
+            <span>150 °C</span>
+          </div>
+
+          <div class="lab-live-values">
+            <div>
+              <span>Neumático</span>
+              <strong id="temperature-live">75 °C</strong>
+            </div>
+
+            <div>
+              <span>Pista</span>
+              <strong id="track-live">35 °C</strong>
+            </div>
+
+            <div>
+              <span>μ</span>
+              <strong id="mu-live">1.30</strong>
+            </div>
+
+            <div>
+              <span>F máx.</span>
+              <strong id="force-live">5200 N</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculation-section">
+      <div class="advanced-index">
+        <span>02</span>
+        <small>MODELO</small>
+      </div>
+
+      <div class="calculation-content">
+        <h2>
+          De temperatura
+          <em>a fuerza disponible.</em>
+        </h2>
+
+        <div class="equation-cards">
+          <article>
+            <span>MODELO BASE</span>
+            <strong>F = μN</strong>
+          </article>
+
+          <article>
+            <span>SUSTITUCIÓN ACTUAL</span>
+            <strong id="f1-substitution">F = (1.30)(4000)</strong>
+          </article>
+
+          <article>
+            <span>RESULTADO</span>
+            <strong id="f1-result">F = 5200 N</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="source-section">
+      <span>FUENTE Y LIMITACIÓN</span>
+
+      <p>
+        La curva mostrada es un modelo didáctico calculado por esta
+        aplicación. No corresponde a telemetría real ni a datos
+        propietarios de un equipo de Fórmula 1.
+      </p>
+
+      <p>
+        El modelo representa una ventana térmica y una pérdida gradual
+        de coeficiente fuera de ella, además de una pequeña sensibilidad
+        a la carga vertical.
+      </p>
+    </section>
+
+    <section class="advanced-why">
+      <div class="advanced-index">
+        <span>03</span>
+        <small>SOFTWARE</small>
+      </div>
+
+      <div>
+        <h2>
+          El neumático es
+          <em>un estado dinámico.</em>
+        </h2>
+
+        <div class="why-grid">
+          <article>
+            <span class="negative">×</span>
+            <h3>Valor fijo</h3>
+            <p>
+              No diferencia entre un neumático frío, óptimo
+              o sobrecalentado.
+            </p>
+          </article>
+
+          <article class="positive-card">
+            <span class="positive">✓</span>
+            <h3>Modelo dinámico</h3>
+            <p>
+              Temperatura, carga y conducción pueden cambiar
+              durante la simulación.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="advanced-footer">
+      <a href="/gravedad-artificial">
+        ← Gravedad artificial
+      </a>
+
+      <a
+        href="/control-haptico"
+        class="advanced-next"
+      >
+        <div>
+          <small>SIGUIENTE · 05</small>
+          <strong>Control háptico</strong>
+        </div>
+
+        <span>→</span>
+      </a>
+    </footer>
+  </article>
+
+  <script>
+    import "../scripts/simulations/formula-1.ts";
+  </script>
 </BaseLayout>

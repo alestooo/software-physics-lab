@@ -1,55 +1,1033 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import TopicShell from "../components/ui/TopicShell.astro";
+import "../styles/dron.css";
 ---
 
-<BaseLayout title="Dron de reparto | Physics × Software">
-  <TopicShell
-    number="01"
-    category="Cinemática · Movimiento en 2D"
-    title="Rastreo y navegación de un dron de reparto"
-    description="Análisis de posición, velocidad y aceleración durante una ruta de navegación bidimensional."
-    resource="Visualización de datos"
-    equation="r(t) = x(t)i + y(t)j"
-    telemetry={[
-      { label: "Posición", value: "(x, y) m" },
-      { label: "Velocidad", value: "0.00 m/s" },
-      { label: "Aceleración", value: "0.00 m/s²" },
-    ]}
-    nextHref="/salto-videojuegos"
-    nextLabel="Salto en videojuegos"
-  >
-    <p slot="case">
-      Los sistemas de navegación de drones necesitan conocer
-      continuamente la posición del vehículo para seguir una ruta,
-      corregir desviaciones y alcanzar un destino de forma segura.
-    </p>
+<BaseLayout
+  title="Dron de reparto | Physics × Software"
+  description="Visualización interactiva de cinemática bidimensional aplicada a la navegación de un dron de reparto."
+>
+  <article class="drone-page" id="drone-lab">
 
-    <p slot="concept">
-      En cinemática bidimensional, la posición se representa mediante
-      un vector con componentes <strong>x</strong> y
-      <strong>y</strong>. A partir de su cambio respecto al tiempo
-      pueden obtenerse la velocidad y la aceleración.
-    </p>
+    <section class="drone-hero">
 
-    <p slot="justification">
-      Utilizar un modelo cinemático permite recalcular la trayectoria
-      cuando cambia la velocidad, aparece una desviación o se modifica
-      el destino.
-    </p>
+      <div class="drone-hero-grid"></div>
+      <div class="drone-hero-glow glow-one"></div>
+      <div class="drone-hero-glow glow-two"></div>
 
-    <p
-      slot="resource-caption"
-      class="resource-caption"
-    >
-      La visualización mostrará posición, velocidad y aceleración
-      a lo largo de una ruta declarada.
-    </p>
+      <div class="drone-hero-copy">
 
-    <p slot="sources">
-      Las fuentes de datos y referencias utilizadas para construir
-      la visualización serán indicadas aquí.
-    </p>
-  </TopicShell>
+        <div class="drone-eyebrow">
+          <span>01</span>
+          <i></i>
+          <span>CINEMÁTICA</span>
+        </div>
+
+        <h1>
+          Rastreo y navegación
+          <em>de un dron de reparto.</em>
+        </h1>
+
+        <p>
+          La posición por sí sola no basta. Para que el software pueda
+          corregir una trayectoria necesita conocer también la velocidad
+          y la aceleración del dron en cada instante.
+        </p>
+
+        <div class="drone-tags">
+
+          <span>
+            <i class="tag-purple"></i>
+            Cinemática 2D
+          </span>
+
+          <span>
+            <i class="tag-pink"></i>
+            Datos calculados
+          </span>
+
+          <span>
+            <i class="tag-blue"></i>
+            Simulación en vivo
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="drone-hero-card">
+
+        <div class="hero-card-header">
+
+          <div>
+            <small>ESTADO</small>
+            <strong id="hero-status">Listo para despegar</strong>
+          </div>
+
+          <span class="live-badge">
+            <i></i>
+            LIVE
+          </span>
+
+        </div>
+
+        <div class="hero-drone-stage">
+
+          <div class="hero-drone">
+
+            <span class="hero-arm arm-a"></span>
+            <span class="hero-arm arm-b"></span>
+            <span class="hero-arm arm-c"></span>
+            <span class="hero-arm arm-d"></span>
+
+            <span class="hero-prop prop-a"></span>
+            <span class="hero-prop prop-b"></span>
+            <span class="hero-prop prop-c"></span>
+            <span class="hero-prop prop-d"></span>
+
+            <span class="hero-body"></span>
+            <span class="hero-package"></span>
+
+          </div>
+
+        </div>
+
+        <div class="hero-live-stats">
+
+          <div>
+            <small>TIEMPO</small>
+            <strong id="hero-time">0.0 s</strong>
+          </div>
+
+          <div>
+            <small>RAPIDEZ</small>
+            <strong id="hero-speed">0.00 m/s</strong>
+          </div>
+
+          <div>
+            <small>ACELERACIÓN</small>
+            <strong id="hero-acceleration">0.00 m/s²</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="drone-intro">
+
+      <div class="section-index">
+        <span>01</span>
+        <small>CASO DE USO</small>
+      </div>
+
+      <div class="intro-main">
+
+        <h2>
+          Del GPS a una
+          <em>trayectoria útil.</em>
+        </h2>
+
+        <div class="intro-grid">
+
+          <div class="intro-copy">
+
+            <p>
+              En un sistema de reparto autónomo, el software recibe
+              continuamente coordenadas sobre la ubicación del dron.
+              Sin embargo, una lista de posiciones no indica si el vehículo
+              está acelerando, frenando o desviándose de la ruta esperada.
+            </p>
+
+            <p>
+              Un modelo cinemático permite convertir esas coordenadas en
+              vectores de posición, velocidad y aceleración. Esa información
+              puede alimentar un controlador que ajuste el movimiento cuando
+              la trayectoria cambia.
+            </p>
+
+          </div>
+
+          <aside class="software-note">
+
+            <span>INGENIERÍA DEL SOFTWARE</span>
+
+            <strong>
+              Estado físico del vehículo
+            </strong>
+
+            <p>
+              En lugar de guardar únicamente una coordenada, el sistema puede
+              mantener un estado formado por posición, velocidad y aceleración.
+            </p>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="drone-simulator-section">
+
+      <div class="simulator-heading">
+
+        <div>
+
+          <span class="simulator-label">
+            VISUALIZACIÓN INTERACTIVA
+          </span>
+
+          <h2>
+            Cambia la ruta.
+            <em>La física responde.</em>
+          </h2>
+
+        </div>
+
+        <p>
+          Cada control modifica las funciones de posición. La velocidad
+          y la aceleración se recalculan automáticamente mediante sus derivadas.
+        </p>
+
+      </div>
+
+      <div class="drone-simulator">
+
+        <aside class="drone-controls">
+
+          <div class="controls-top">
+
+            <span>PARÁMETROS</span>
+
+            <button
+              type="button"
+              class="reset-small"
+              id="drone-reset"
+            >
+              Reiniciar
+            </button>
+
+          </div>
+
+          <label class="control-field">
+
+            <div class="control-heading">
+              <span>Velocidad horizontal</span>
+              <strong id="vx-value">0.85 m/s</strong>
+            </div>
+
+            <input
+              id="vx-control"
+              type="range"
+              min="0.30"
+              max="1.60"
+              step="0.05"
+              value="0.85"
+            />
+
+            <div class="range-labels">
+              <span>0.30</span>
+              <span>1.60 m/s</span>
+            </div>
+
+          </label>
+
+          <label class="control-field">
+
+            <div class="control-heading">
+              <span>Velocidad vertical</span>
+              <strong id="vy-value">0.45 m/s</strong>
+            </div>
+
+            <input
+              id="vy-control"
+              type="range"
+              min="0.10"
+              max="1.00"
+              step="0.05"
+              value="0.45"
+            />
+
+            <div class="range-labels">
+              <span>0.10</span>
+              <span>1.00 m/s</span>
+            </div>
+
+          </label>
+
+          <label class="control-field">
+
+            <div class="control-heading">
+              <span>Corrección lateral</span>
+              <strong id="ax-value">1.20 m</strong>
+            </div>
+
+            <input
+              id="ax-control"
+              type="range"
+              min="0"
+              max="3"
+              step="0.10"
+              value="1.20"
+            />
+
+            <div class="range-labels">
+              <span>0</span>
+              <span>3.00 m</span>
+            </div>
+
+          </label>
+
+          <label class="control-field">
+
+            <div class="control-heading">
+              <span>Variación vertical</span>
+              <strong id="ay-value">2.60 m</strong>
+            </div>
+
+            <input
+              id="ay-control"
+              type="range"
+              min="0"
+              max="4"
+              step="0.10"
+              value="2.60"
+            />
+
+            <div class="range-labels">
+              <span>0</span>
+              <span>4.00 m</span>
+            </div>
+
+          </label>
+
+          <label class="control-field">
+
+            <div class="control-heading">
+              <span>Duración del vuelo</span>
+              <strong id="duration-value">24 s</strong>
+            </div>
+
+            <input
+              id="duration-control"
+              type="range"
+              min="10"
+              max="40"
+              step="1"
+              value="24"
+            />
+
+            <div class="range-labels">
+              <span>10 s</span>
+              <span>40 s</span>
+            </div>
+
+          </label>
+
+          <button
+            type="button"
+            class="flight-button"
+            id="flight-button"
+          >
+            <span id="flight-button-icon">▶</span>
+            <span id="flight-button-text">Iniciar vuelo</span>
+          </button>
+
+        </aside>
+
+        <div class="route-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <small>RUTA 2D</small>
+              <strong>Posición del dron</strong>
+            </div>
+
+            <span id="flight-progress">
+              0 %
+            </span>
+
+          </div>
+
+          <div class="route-svg-shell">
+
+            <svg
+              id="route-svg"
+              class="route-svg"
+              viewBox="0 0 720 430"
+              role="img"
+              aria-label="Ruta interactiva del dron"
+            >
+
+              <defs>
+
+                <linearGradient
+                  id="route-gradient"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                >
+                  <stop
+                    offset="0%"
+                    stop-color="#8f75ff"
+                  />
+
+                  <stop
+                    offset="100%"
+                    stop-color="#ff80c8"
+                  />
+                </linearGradient>
+
+                <filter id="point-glow">
+
+                  <feGaussianBlur
+                    stdDeviation="5"
+                    result="blur"
+                  />
+
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+
+                </filter>
+
+              </defs>
+
+              <g class="route-grid">
+
+                <line x1="70" y1="50" x2="70" y2="360"></line>
+                <line x1="70" y1="360" x2="665" y2="360"></line>
+
+                <line x1="70" y1="282" x2="665" y2="282"></line>
+                <line x1="70" y1="205" x2="665" y2="205"></line>
+                <line x1="70" y1="127" x2="665" y2="127"></line>
+
+                <line x1="218" y1="50" x2="218" y2="360"></line>
+                <line x1="367" y1="50" x2="367" y2="360"></line>
+                <line x1="516" y1="50" x2="516" y2="360"></line>
+
+              </g>
+
+              <path
+                id="route-shadow"
+                class="route-shadow"
+                d=""
+              ></path>
+
+              <path
+                id="route-path"
+                class="route-line"
+                d=""
+              ></path>
+
+              <circle
+                id="route-start"
+                class="route-start"
+                r="7"
+              ></circle>
+
+              <circle
+                id="route-end"
+                class="route-end"
+                r="7"
+              ></circle>
+
+              <g
+                id="route-drone"
+                class="route-drone-marker"
+                transform="translate(70 360)"
+              >
+
+                <circle
+                  class="marker-glow"
+                  r="18"
+                ></circle>
+
+                <circle
+                  class="marker-body"
+                  r="9"
+                ></circle>
+
+                <line
+                  x1="-14"
+                  y1="0"
+                  x2="14"
+                  y2="0"
+                ></line>
+
+                <line
+                  x1="0"
+                  y1="-14"
+                  x2="0"
+                  y2="14"
+                ></line>
+
+              </g>
+
+              <text
+                x="366"
+                y="414"
+                text-anchor="middle"
+                class="route-axis-title"
+              >
+                posición x (m)
+              </text>
+
+              <text
+                x="18"
+                y="205"
+                text-anchor="middle"
+                transform="rotate(-90 18 205)"
+                class="route-axis-title"
+              >
+                posición y (m)
+              </text>
+
+            </svg>
+
+          </div>
+
+          <div class="live-values">
+
+            <div>
+              <span>t</span>
+              <strong id="live-time">0.00 s</strong>
+            </div>
+
+            <div>
+              <span>x</span>
+              <strong id="live-x">0.00 m</strong>
+            </div>
+
+            <div>
+              <span>y</span>
+              <strong id="live-y">4.00 m</strong>
+            </div>
+
+            <div>
+              <span>|v|</span>
+              <strong id="live-v">0.00 m/s</strong>
+            </div>
+
+            <div>
+              <span>|a|</span>
+              <strong id="live-a">0.00 m/s²</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="live-equations-section">
+
+      <div class="section-index light">
+        <span>02</span>
+        <small>MODELO FÍSICO</small>
+      </div>
+
+      <div class="live-equations-main">
+
+        <h2>
+          Las ecuaciones
+          <em>también cambian.</em>
+        </h2>
+
+        <div class="equation-grid">
+
+          <article class="equation-box">
+
+            <span>POSICIÓN X</span>
+
+            <strong>
+              x(t) = vₓt + Aₓ sin(t / 3)
+            </strong>
+
+            <p id="equation-x">
+              x(0.00) = 0.00 m
+            </p>
+
+          </article>
+
+          <article class="equation-box">
+
+            <span>POSICIÓN Y</span>
+
+            <strong>
+              y(t) = 4 + vᵧt + Aᵧ sin(t / 4)
+            </strong>
+
+            <p id="equation-y">
+              y(0.00) = 4.00 m
+            </p>
+
+          </article>
+
+          <article class="equation-box">
+
+            <span>VELOCIDAD</span>
+
+            <strong>
+              v(t) = dr(t) / dt
+            </strong>
+
+            <p id="equation-v">
+              |v| = 0.00 m/s
+            </p>
+
+          </article>
+
+          <article class="equation-box">
+
+            <span>ACELERACIÓN</span>
+
+            <strong>
+              a(t) = dv(t) / dt
+            </strong>
+
+            <p id="equation-a">
+              |a| = 0.00 m/s²
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="drone-charts-section">
+
+      <div class="charts-heading">
+
+        <span>
+          RECURSO PRESCRITO · VISUALIZACIÓN DE DATOS
+        </span>
+
+        <h2>
+          Los tres perfiles
+          <em>del mismo vuelo.</em>
+        </h2>
+
+        <p>
+          Las gráficas se actualizan automáticamente al modificar los
+          parámetros de la ruta.
+        </p>
+
+      </div>
+
+      <article class="physics-chart">
+
+        <div class="physics-chart-header">
+
+          <div>
+            <span>01</span>
+            <h3>Posición</h3>
+          </div>
+
+          <div class="physics-legend">
+
+            <span>
+              <i class="legend-purple"></i>
+              x(t)
+            </span>
+
+            <span>
+              <i class="legend-pink"></i>
+              y(t)
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="physics-svg-shell">
+
+          <svg
+            id="position-chart"
+            class="physics-svg"
+            viewBox="0 0 820 320"
+          >
+
+            <g class="chart-grid">
+
+              <line x1="65" y1="30" x2="65" y2="270"></line>
+              <line x1="65" y1="270" x2="790" y2="270"></line>
+
+              <line x1="65" y1="210" x2="790" y2="210"></line>
+              <line x1="65" y1="150" x2="790" y2="150"></line>
+              <line x1="65" y1="90" x2="790" y2="90"></line>
+
+              <line x1="246" y1="30" x2="246" y2="270"></line>
+              <line x1="427" y1="30" x2="427" y2="270"></line>
+              <line x1="608" y1="30" x2="608" y2="270"></line>
+
+            </g>
+
+            <path
+              id="position-x-path"
+              class="physics-line line-purple"
+              d=""
+            ></path>
+
+            <path
+              id="position-y-path"
+              class="physics-line line-pink"
+              d=""
+            ></path>
+
+            <circle
+              id="position-x-marker"
+              class="chart-marker marker-purple"
+              r="5"
+            ></circle>
+
+            <circle
+              id="position-y-marker"
+              class="chart-marker marker-pink"
+              r="5"
+            ></circle>
+
+            <text
+              x="425"
+              y="307"
+              text-anchor="middle"
+              class="chart-axis-label"
+            >
+              tiempo (s)
+            </text>
+
+            <text
+              x="18"
+              y="150"
+              text-anchor="middle"
+              transform="rotate(-90 18 150)"
+              class="chart-axis-label"
+            >
+              posición (m)
+            </text>
+
+          </svg>
+
+        </div>
+
+      </article>
+
+      <article class="physics-chart">
+
+        <div class="physics-chart-header">
+
+          <div>
+            <span>02</span>
+            <h3>Velocidad</h3>
+          </div>
+
+          <div class="physics-legend">
+
+            <span>
+              <i class="legend-purple"></i>
+              vₓ
+            </span>
+
+            <span>
+              <i class="legend-pink"></i>
+              vᵧ
+            </span>
+
+            <span>
+              <i class="legend-blue"></i>
+              |v|
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="physics-svg-shell">
+
+          <svg
+            id="velocity-chart"
+            class="physics-svg"
+            viewBox="0 0 820 320"
+          >
+
+            <g class="chart-grid">
+
+              <line x1="65" y1="30" x2="65" y2="270"></line>
+              <line x1="65" y1="270" x2="790" y2="270"></line>
+
+              <line x1="65" y1="210" x2="790" y2="210"></line>
+              <line x1="65" y1="150" x2="790" y2="150"></line>
+              <line x1="65" y1="90" x2="790" y2="90"></line>
+
+              <line x1="246" y1="30" x2="246" y2="270"></line>
+              <line x1="427" y1="30" x2="427" y2="270"></line>
+              <line x1="608" y1="30" x2="608" y2="270"></line>
+
+            </g>
+
+            <path
+              id="velocity-x-path"
+              class="physics-line line-purple"
+              d=""
+            ></path>
+
+            <path
+              id="velocity-y-path"
+              class="physics-line line-pink"
+              d=""
+            ></path>
+
+            <path
+              id="velocity-mag-path"
+              class="physics-line line-blue"
+              d=""
+            ></path>
+
+            <circle
+              id="velocity-marker"
+              class="chart-marker marker-blue"
+              r="5"
+            ></circle>
+
+            <text
+              x="425"
+              y="307"
+              text-anchor="middle"
+              class="chart-axis-label"
+            >
+              tiempo (s)
+            </text>
+
+            <text
+              x="18"
+              y="150"
+              text-anchor="middle"
+              transform="rotate(-90 18 150)"
+              class="chart-axis-label"
+            >
+              velocidad (m/s)
+            </text>
+
+          </svg>
+
+        </div>
+
+      </article>
+
+      <article class="physics-chart">
+
+        <div class="physics-chart-header">
+
+          <div>
+            <span>03</span>
+            <h3>Aceleración</h3>
+          </div>
+
+          <div class="physics-legend">
+
+            <span>
+              <i class="legend-purple"></i>
+              aₓ
+            </span>
+
+            <span>
+              <i class="legend-pink"></i>
+              aᵧ
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="physics-svg-shell">
+
+          <svg
+            id="acceleration-chart"
+            class="physics-svg"
+            viewBox="0 0 820 320"
+          >
+
+            <g class="chart-grid">
+
+              <line x1="65" y1="30" x2="65" y2="270"></line>
+              <line x1="65" y1="270" x2="790" y2="270"></line>
+
+              <line x1="65" y1="210" x2="790" y2="210"></line>
+              <line x1="65" y1="150" x2="790" y2="150"></line>
+              <line x1="65" y1="90" x2="790" y2="90"></line>
+
+              <line x1="246" y1="30" x2="246" y2="270"></line>
+              <line x1="427" y1="30" x2="427" y2="270"></line>
+              <line x1="608" y1="30" x2="608" y2="270"></line>
+
+            </g>
+
+            <line
+              x1="65"
+              y1="150"
+              x2="790"
+              y2="150"
+              class="chart-zero"
+            ></line>
+
+            <path
+              id="acceleration-x-path"
+              class="physics-line line-purple"
+              d=""
+            ></path>
+
+            <path
+              id="acceleration-y-path"
+              class="physics-line line-pink"
+              d=""
+            ></path>
+
+            <circle
+              id="acceleration-marker"
+              class="chart-marker marker-pink"
+              r="5"
+            ></circle>
+
+            <text
+              x="425"
+              y="307"
+              text-anchor="middle"
+              class="chart-axis-label"
+            >
+              tiempo (s)
+            </text>
+
+            <text
+              x="18"
+              y="150"
+              text-anchor="middle"
+              transform="rotate(-90 18 150)"
+              class="chart-axis-label"
+            >
+              aceleración (m/s²)
+            </text>
+
+          </svg>
+
+        </div>
+
+      </article>
+
+      <div class="data-source-card">
+
+        <span>FUENTE DE LOS DATOS</span>
+
+        <p>
+          Datos generados dentro de este proyecto mediante una ruta sintética
+          declarada. Las funciones de posición se controlan desde la interfaz;
+          velocidad y aceleración se calculan mediante sus derivadas.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="drone-why">
+
+      <div class="section-index">
+        <span>03</span>
+        <small>¿POR QUÉ MODELAR?</small>
+      </div>
+
+      <div class="drone-why-main">
+
+        <h2>
+          Una ruta fija
+          <em>no sabe reaccionar.</em>
+        </h2>
+
+        <div class="comparison-grid">
+
+          <article>
+
+            <span class="comparison-x">×</span>
+
+            <h3>
+              Trayectoria precalculada
+            </h3>
+
+            <p>
+              Si el dron se desvía, una secuencia fija de coordenadas no
+              describe correctamente el nuevo estado.
+            </p>
+
+          </article>
+
+          <article class="preferred">
+
+            <span class="comparison-check">✓</span>
+
+            <h3>
+              Modelo cinemático
+            </h3>
+
+            <p>
+              El software puede recalcular el movimiento a partir del estado
+              actual y adaptar sus decisiones.
+            </p>
+
+          </article>
+
+        </div>
+
+        <div class="tradeoff-card">
+
+          <span>COSTO DEL MODELO</span>
+
+          <p>
+            La simulación exige cálculos adicionales y depende de mediciones
+            suficientemente precisas. A cambio, el comportamiento deja de estar
+            limitado a una secuencia rígida.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer class="topic-nav-footer">
+
+      <a href="/">
+        ← Inicio
+      </a>
+
+      <a
+        href="/salto-videojuegos"
+        class="next-topic"
+      >
+
+        <div>
+          <small>SIGUIENTE · 02</small>
+          <strong>Salto en videojuegos</strong>
+        </div>
+
+        <span>→</span>
+
+      </a>
+
+    </footer>
+
+  </article>
+
+  <script>
+    import "../scripts/simulations/dron.ts";
+  </script>
+
 </BaseLayout>
