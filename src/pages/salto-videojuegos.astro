@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import TopicShell from "../components/ui/TopicShell.astro";
+---
+
+<BaseLayout title="Salto en videojuegos | Physics × Software">
+  <TopicShell
+    number="02"
+    category="Cinemática · Caída libre"
+    title="El salto del personaje: cómo los motores de juego falsean la gravedad"
+    description="Un modelo interactivo para estudiar cómo el impulso inicial y la gravedad modifican la sensación de un salto."
+    resource="Simulación interactiva"
+    equation="y(t) = y₀ + v₀t - ½gt²"
+    telemetry={[
+      { label: "Impulso", value: "12.0 m/s" },
+      { label: "Gravedad", value: "9.81 m/s²" },
+      { label: "Altura máx.", value: "0.00 m" },
+    ]}
+    previousHref="/dron"
+    previousLabel="Dron de reparto"
+    nextHref="/gravedad-artificial"
+    nextLabel="Gravedad artificial"
+  >
+    <p slot="case">
+      Los motores de videojuegos utilizan ecuaciones de movimiento
+      para controlar el salto de los personajes.
+    </p>
+
+    <p slot="concept">
+      Durante el salto, la velocidad vertical disminuye debido a la
+      aceleración gravitatoria hasta llegar a cero en el punto más alto.
+    </p>
+
+    <p slot="justification">
+      Modelar el salto con ecuaciones permite modificar parámetros
+      como el impulso y la gravedad sin crear una animación distinta
+      para cada situación.
+    </p>
+
+    <p
+      slot="resource-caption"
+      class="resource-caption"
+    >
+      El usuario podrá modificar el impulso inicial y la gravedad.
+    </p>
+
+    <p slot="sources">
+      Aquí se documentarán las referencias utilizadas para analizar
+      la física del salto.
+    </p>
+  </TopicShell>
+</BaseLayout>

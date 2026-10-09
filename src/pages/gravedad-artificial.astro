@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import TopicShell from "../components/ui/TopicShell.astro";
+---
+
+<BaseLayout title="Gravedad artificial | Physics × Software">
+  <TopicShell
+    number="03"
+    category="Dinámica · Movimiento circular"
+    title="Gravedad artificial por rotación en hábitats espaciales"
+    description="Relación entre radio, velocidad angular y aceleración centrípeta para producir una gravedad aparente."
+    resource="Diagrama"
+    equation="aₙ = ω²R"
+    telemetry={[
+      { label: "Radio", value: "R m" },
+      { label: "Vel. angular", value: "ω rad/s" },
+      { label: "Objetivo", value: "1 g" },
+    ]}
+    previousHref="/salto-videojuegos"
+    previousLabel="Salto en videojuegos"
+    nextHref="/formula-1"
+    nextLabel="Llantas de Fórmula 1"
+  >
+    <p slot="case">
+      Un hábitat espacial puede rotar para producir una aceleración
+      aparente sobre sus ocupantes.
+    </p>
+
+    <p slot="concept">
+      En el movimiento circular uniforme existe una aceleración
+      dirigida hacia el centro de la trayectoria.
+    </p>
+
+    <p slot="justification">
+      El modelo físico permite calcular qué combinación de radio y
+      velocidad de rotación produce una aceleración equivalente a la
+      gravedad terrestre.
+    </p>
+
+    <p
+      slot="resource-caption"
+      class="resource-caption"
+    >
+      El diagrama señalará el eje de giro, radio, aceleración
+      centrípeta y ecuaciones.
+    </p>
+
+    <p slot="sources">
+      Se incluirán aquí las referencias empleadas para las ecuaciones
+      y el caso numérico equivalente a 1 g.
+    </p>
+  </TopicShell>
+</BaseLayout>

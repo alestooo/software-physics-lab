@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import TopicShell from "../components/ui/TopicShell.astro";
+---
+
+<BaseLayout title="Fórmula 1 | Physics × Software">
+  <TopicShell
+    number="04"
+    category="Dinámica · Fricción"
+    title="Llantas de Fórmula 1: la ventana de temperatura y el agarre"
+    description="Visualización de cómo la temperatura modifica el comportamiento del neumático y su capacidad de generar agarre."
+    resource="Visualización de datos"
+    equation="Ff = μN"
+    telemetry={[
+      { label: "Temperatura", value: "— °C" },
+      { label: "Coeficiente μ", value: "—" },
+      { label: "Agarre", value: "—" },
+    ]}
+    previousHref="/gravedad-artificial"
+    previousLabel="Gravedad artificial"
+    nextHref="/control-haptico"
+    nextLabel="Control háptico"
+  >
+    <p slot="case">
+      En simuladores de automovilismo y herramientas de análisis
+      vehicular, el software necesita representar la interacción
+      entre los neumáticos y la pista.
+    </p>
+
+    <p slot="concept">
+      El modelo básico de fricción relaciona la fuerza máxima de
+      agarre con el coeficiente de fricción y la fuerza normal.
+    </p>
+
+    <p slot="justification">
+      Un modelo dependiente de las condiciones permite que el vehículo
+      responda de forma diferente cuando los neumáticos están fríos,
+      en temperatura óptima o sobrecalentados.
+    </p>
+
+    <p
+      slot="resource-caption"
+      class="resource-caption"
+    >
+      Se mostrará una gráfica de agarre en función de la temperatura.
+    </p>
+
+    <p slot="sources">
+      Los datos definitivos de la gráfica se incorporarán únicamente
+      a partir de fuentes identificadas y citadas.
+    </p>
+  </TopicShell>
+</BaseLayout>

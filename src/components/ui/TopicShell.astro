@@ -1,0 +1,211 @@
+---
+import "../../styles/topic-shell.css";
+
+interface TelemetryItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  number: string;
+  category: string;
+  title: string;
+  description: string;
+  resource: string;
+  equation: string;
+
+  telemetry?: TelemetryItem[];
+
+  previousHref?: string;
+  previousLabel?: string;
+
+  nextHref?: string;
+  nextLabel?: string;
+}
+
+const {
+  number,
+  category,
+  title,
+  description,
+  resource,
+  equation,
+
+  telemetry = [
+    {
+      label: "Estado",
+      value: "Preparado",
+    },
+    {
+      label: "Modelo",
+      value: "Físico",
+    },
+    {
+      label: "Recurso",
+      value: "Interactivo",
+    },
+  ],
+
+  previousHref,
+  previousLabel,
+
+  nextHref,
+  nextLabel,
+} = Astro.props;
+---
+
+<article class="topic-page">
+  <header class="topic-header">
+    <div class="topic-index">
+      {number}
+    </div>
+
+    <div>
+      <p class="eyebrow">
+        {category}
+      </p>
+
+      <h1 class="topic-title">
+        {title}
+      </h1>
+
+      <p class="topic-description">
+        {description}
+      </p>
+
+      <div class="topic-tags">
+        <span class="topic-tag">
+          Física I
+        </span>
+
+        <span class="topic-tag">
+          Ingeniería del Software
+        </span>
+
+        <span class="topic-tag topic-tag-resource">
+          {resource}
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="topic-layout">
+    <div class="topic-copy">
+      <section class="topic-section">
+        <p class="topic-section-label">
+          Caso de uso en software
+        </p>
+
+        <slot name="case" />
+      </section>
+
+      <section class="topic-section">
+        <p class="topic-section-label">
+          Concepto físico
+        </p>
+
+        <slot name="concept" />
+      </section>
+
+      <div class="equation-box">
+        {equation}
+      </div>
+
+      <section class="topic-section">
+        <p class="topic-section-label">
+          Justificación
+        </p>
+
+        <slot name="justification" />
+      </section>
+    </div>
+
+    <aside class="topic-resource-column">
+      <p class="topic-section-label">
+        {resource}
+      </p>
+
+      <div class="visual-panel">
+        <div class="visual-grid"></div>
+
+        <div class="visual-placeholder">
+          <div>
+            <strong>
+              Recurso en desarrollo
+            </strong>
+
+            <span>
+              Aquí se integrará el recurso específico de este tema.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <slot name="resource-caption" />
+
+      <div class="telemetry-card">
+        <div class="telemetry-header">
+          <span>
+            Datos del modelo
+          </span>
+
+          <span class="live-indicator"></span>
+        </div>
+
+        <div class="telemetry-grid">
+          {
+            telemetry.map((item) => (
+              <div class="telemetry-item">
+                <span>
+                  {item.label}
+                </span>
+
+                <strong>
+                  {item.value}
+                </strong>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="topic-source-section">
+    <p class="topic-section-label">
+      Fuentes y notas
+    </p>
+
+    <slot name="sources" />
+  </section>
+
+  <footer class="topic-pagination">
+    <div>
+      {
+        previousHref && (
+          <a href={previousHref}>
+            <span>← Anterior</span>
+
+            <strong>
+              {previousLabel}
+            </strong>
+          </a>
+        )
+      }
+    </div>
+
+    <div class="topic-pagination-next">
+      {
+        nextHref && (
+          <a href={nextHref}>
+            <span>Siguiente →</span>
+
+            <strong>
+              {nextLabel}
+            </strong>
+          </a>
+        )
+      }
+    </div>
+  </footer>
+</article>

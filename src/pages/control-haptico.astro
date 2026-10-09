@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import TopicShell from "../components/ui/TopicShell.astro";
+---
+
+<BaseLayout title="Control háptico | Physics × Software">
+  <TopicShell
+    number="05"
+    category="Dinámica · Fuerza elástica"
+    title="El resorte virtual detrás de un control háptico"
+    description="Cómo un dispositivo puede simular una fuerza restauradora utilizando un modelo semejante al de un resorte."
+    resource="Multimedia con análisis"
+    equation="F = -kx"
+    telemetry={[
+      { label: "Desplazamiento", value: "x" },
+      { label: "Rigidez", value: "k" },
+      { label: "Fuerza", value: "F" },
+    ]}
+    previousHref="/formula-1"
+    previousLabel="Llantas de Fórmula 1"
+  >
+    <p slot="case">
+      Algunos controles y dispositivos hápticos utilizan motores
+      para ofrecer resistencia al movimiento.
+    </p>
+
+    <p slot="concept">
+      La ley de Hooke describe una fuerza restauradora proporcional
+      al desplazamiento y dirigida en sentido contrario.
+    </p>
+
+    <p slot="justification">
+      Una respuesta calculada a partir del desplazamiento permite que
+      la resistencia cambie continuamente según la acción del usuario.
+    </p>
+
+    <p
+      slot="resource-caption"
+      class="resource-caption"
+    >
+      Se incorporará un video acompañado de su análisis físico.
+    </p>
+
+    <p slot="sources">
+      Aquí se citará el material multimedia utilizado y las referencias
+      sobre la ley de Hooke.
+    </p>
+  </TopicShell>
+</BaseLayout>

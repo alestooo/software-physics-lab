@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+import Sidebar from "../components/ui/Sidebar.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  fullBleed?: boolean;
+}
+
+const {
+  title = "Physics × Software",
+  description =
+    "Portafolio interactivo sobre aplicaciones de la física en Ingeniería del Software.",
+  fullBleed = false,
+} = Astro.props;
+---
+
+<!doctype html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+
+    <meta
+      name="description"
+      content={description}
+    />
+
+    <meta
+      name="theme-color"
+      content="#20106f"
+    />
+
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <div class="app-shell">
+
+      <div class="desktop-sidebar">
+        <Sidebar />
+      </div>
+
+      <header class="mobile-header">
+        <a
+          class="mobile-brand"
+          href="/"
+        >
+          Physics × Software
+        </a>
+
+        <a href="#temas">
+          Temas
+        </a>
+      </header>
+
+      <main
+        class:list={[
+          "main-content",
+          fullBleed && "main-content-full",
+        ]}
+      >
+        <div
+          class:list={[
+            "content-container",
+            fullBleed && "content-container-full",
+          ]}
+        >
+          <slot />
+        </div>
+      </main>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+---
+import "../../styles/topic-card.css";
+
+interface Props {
+  number: string;
+  title: string;
+  subtitle: string;
+  resource: string;
+  href: string;
+}
+
+const {
+  number,
+  title,
+  subtitle,
+  resource,
+  href,
+} = Astro.props;
+---
+
+<a href={href} class="topic-card">
+  <div class="topic-card-top">
+    <span class="topic-card-number">
+      {number}
+    </span>
+
+    <span class="topic-card-arrow">
+      →
+    </span>
+  </div>
+
+  <div class="topic-card-content">
+    <p class="topic-card-subtitle">
+      {subtitle}
+    </p>
+
+    <h3 class="topic-card-title">
+      {title}
+    </h3>
+  </div>
+
+  <div class="topic-card-resource">
+    <span class="topic-card-dot"></span>
+
+    {resource}
+  </div>
+</a>

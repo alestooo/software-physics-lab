@@ -1,16 +1,876 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/home.css";
+
+const topics = [
+  {
+    number: "01",
+    title: "Movimiento",
+    description: "Trayectorias, posición, velocidad y aceleración.",
+    href: "/dron",
+    icon: "orbit",
+  },
+  {
+    number: "02",
+    title: "Gravedad",
+    description: "Caída libre, saltos y simulación numérica.",
+    href: "/salto-videojuegos",
+    icon: "planet",
+  },
+  {
+    number: "03",
+    title: "Rotación",
+    description: "Movimiento circular y gravedad artificial.",
+    href: "/gravedad-artificial",
+    icon: "rotation",
+  },
+  {
+    number: "04",
+    title: "Fricción",
+    description: "Contacto, temperatura y agarre de neumáticos.",
+    href: "/formula-1",
+    icon: "wave",
+  },
+  {
+    number: "05",
+    title: "Elasticidad",
+    description: "Resortes, fuerza restauradora y sistemas hápticos.",
+    href: "/control-haptico",
+    icon: "spring",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Physics × Software | Física I"
+  description="Portafolio interactivo de aplicaciones de Física I en Ingeniería del Software."
+  fullBleed={true}
+>
+  <div class="home-page">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section
+      class="hero-full"
+      id="inicio"
+    >
+
+      <!-- BACKGROUND -->
+
+      <div
+        class="hero-bg"
+        id="hero-bg"
+      >
+        <div class="hero-gradient hero-gradient-1"></div>
+        <div class="hero-gradient hero-gradient-2"></div>
+        <div class="hero-gradient hero-gradient-3"></div>
+
+        <div class="hero-stars hero-stars-a"></div>
+        <div class="hero-stars hero-stars-b"></div>
+
+        <div class="hero-cut hero-cut-left"></div>
+        <div class="hero-cut hero-cut-right"></div>
+      </div>
+
+      <!-- =====================================================
+           TOP NAV
+      ====================================================== -->
+
+      <header class="hero-topbar">
+
+        <!-- BRAND -->
+
+        <a
+          href="/"
+          class="hero-brand"
+        >
+          <span class="brand-mark">
+            <span class="brand-ring"></span>
+            <span class="brand-dot"></span>
+          </span>
+
+          <span class="brand-text">
+
+            <span class="brand-word">
+              Physics
+            </span>
+
+            <span class="brand-x">
+              ×
+            </span>
+
+            <span class="brand-word">
+              Software
+            </span>
+
+          </span>
+        </a>
+
+        <!-- NAVIGATION -->
+
+        <nav class="hero-nav">
+
+          <a
+            class="is-active"
+            href="#inicio"
+          >
+            Inicio
+          </a>
+
+          <a href="#temas">
+            Temas
+          </a>
+
+          <a href="#metodo">
+            Método
+          </a>
+
+          <a
+            href="https://github.com/alestooo/software-physics-lab"
+            target="_blank"
+            rel="noreferrer"
+            class="nav-github"
+          >
+            <svg
+              class="nav-github-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.5 9.5 0 0 1 5 0c2-1.3 2.8-1 2.8-1a3.6 3.6 0 0 1 .1 2.7 3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 1.9v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <span>
+              GitHub
+            </span>
+          </a>
+
+        </nav>
+
+      </header>
+
+      <!-- =====================================================
+           HERO CONTENT
+      ====================================================== -->
+
+      <div class="hero-main">
+
+        <!-- LEFT SIDE -->
+
+        <div class="hero-copy">
+
+          <div class="hero-pill">
+            <span>Física</span>
+            <i></i>
+            <span>Simulación</span>
+            <i></i>
+            <span>Software</span>
+          </div>
+
+          <h1 class="hero-title">
+
+            <span class="hero-title-serif">
+              Donde la
+              <br />
+              física
+            </span>
+
+            <span class="hero-title-sans">
+              se convierte
+              <br />
+              en software.
+            </span>
+
+          </h1>
+
+          <p class="hero-description">
+            Un laboratorio visual con cinco casos donde el movimiento,
+            la gravedad, la fricción y la elasticidad explican cómo se
+            comportan sistemas digitales reales.
+          </p>
+
+          <!-- BUTTONS -->
+
+          <div class="hero-actions">
+
+            <a
+              href="#temas"
+              class="button-main"
+            >
+              <span>
+                Explorar temas
+              </span>
+
+              <span class="button-arrow">
+                →
+              </span>
+            </a>
+
+            <a
+              href="https://github.com/alestooo/software-physics-lab"
+              target="_blank"
+              rel="noreferrer"
+              class="button-ghost repository-button"
+            >
+              <span>
+                Ver repositorio
+              </span>
+
+              <svg
+                class="repository-github-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.3-.3-4.7-1.1-4.7-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.8-.3 2.8 1a9.5 9.5 0 0 1 5 0c2-1.3 2.8-1 2.8-1a3.6 3.6 0 0 1 .1 2.7 3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.7 1 .7 1.9v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+
+          </div>
+
+          <!-- TAGS -->
+
+          <div class="hero-tags">
+
+            <span>
+              <i class="tag-dot pink"></i>
+              Astro
+            </span>
+
+            <span>
+              <i class="tag-dot blue"></i>
+              TypeScript
+            </span>
+
+            <span>
+              <i class="tag-dot purple"></i>
+              Física I
+            </span>
+
+            <span>
+              <i class="tag-dot orange"></i>
+              5 temas
+            </span>
+
+          </div>
+
+        </div>
+
+        <!-- =====================================================
+             RIGHT SIDE
+        ====================================================== -->
+
+        <div
+          class="hero-visual"
+          id="space-scene"
+        >
+
+          <!-- ORBITS -->
+
+          <div class="orbit orbit-1">
+            <span class="orbit-node orbit-node-1"></span>
+          </div>
+
+          <div class="orbit orbit-2">
+            <span class="orbit-node orbit-node-2"></span>
+          </div>
+
+          <div class="orbit orbit-3">
+            <span class="orbit-node orbit-node-3"></span>
+          </div>
+
+          <!-- =====================================================
+               MODEL LIQUID GLASS
+          ====================================================== -->
+
+          <div class="floating-card model-card liquid-card">
+
+            <div class="card-icon-shell">
+
+              <svg
+                class="card-svg-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+                />
+
+                <path
+                  d="m3.3 7 8.7 5 8.7-5"
+                />
+
+                <path
+                  d="M12 22V12"
+                />
+              </svg>
+
+            </div>
+
+            <div class="card-copy">
+
+              <small>
+                MODELO
+              </small>
+
+              <strong>
+                Movimiento + simulación
+              </strong>
+
+            </div>
+
+            <span class="card-corner-dot"></span>
+
+          </div>
+
+          <!-- =====================================================
+               EQUATION LIQUID GLASS
+          ====================================================== -->
+
+          <div class="floating-card equation-card liquid-card">
+
+            <span class="equation-accent-line"></span>
+
+            <div class="card-icon-shell waveform-shell">
+
+              <svg
+                class="card-svg-icon waveform-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2 13a2 2 0 0 0 2-2V7a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0v-4a2 2 0 0 1 2-2"
+                />
+              </svg>
+
+            </div>
+
+            <div class="card-copy">
+
+              <small>
+                ECUACIÓN
+              </small>
+
+              <strong>
+                r(t) = x(t)î + y(t)ĵ
+              </strong>
+
+            </div>
+
+            <span class="card-corner-dot"></span>
+
+          </div>
+
+          <!-- PLANETS -->
+
+          <div class="planet planet-a"></div>
+          <div class="planet planet-b"></div>
+          <div class="planet planet-c"></div>
+
+          <!-- SPARKS -->
+
+          <div class="spark spark-1"></div>
+          <div class="spark spark-2"></div>
+          <div class="spark spark-3"></div>
+          <div class="spark spark-4"></div>
+
+          <!-- =====================================================
+               ROCKET
+          ====================================================== -->
+
+          <div class="rocket-wrap">
+
+            <div class="rocket-trails">
+              <span class="trail trail-1"></span>
+              <span class="trail trail-2"></span>
+              <span class="trail trail-3"></span>
+            </div>
+
+            <svg
+              class="rocket-svg"
+              viewBox="0 0 320 420"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+
+              <defs>
+
+                <linearGradient
+                  id="rocketBody"
+                  x1="60"
+                  y1="10"
+                  x2="260"
+                  y2="360"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop
+                    offset="0"
+                    stop-color="#fff8ff"
+                  />
+
+                  <stop
+                    offset="0.35"
+                    stop-color="#f1d0ff"
+                  />
+
+                  <stop
+                    offset="0.72"
+                    stop-color="#d37bff"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#7c57ff"
+                  />
+                </linearGradient>
+
+                <linearGradient
+                  id="rocketWing"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                >
+                  <stop
+                    offset="0"
+                    stop-color="#7d3ef0"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#2b1f95"
+                  />
+                </linearGradient>
+
+                <radialGradient id="rocketWindow">
+
+                  <stop
+                    offset="0"
+                    stop-color="#83ebff"
+                  />
+
+                  <stop
+                    offset="0.52"
+                    stop-color="#4e9dff"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#40389e"
+                  />
+
+                </radialGradient>
+
+                <linearGradient
+                  id="rocketFire"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+
+                  <stop
+                    offset="0"
+                    stop-color="#fff5bd"
+                  />
+
+                  <stop
+                    offset="0.3"
+                    stop-color="#ffb146"
+                  />
+
+                  <stop
+                    offset="0.72"
+                    stop-color="#ff78ba"
+                  />
+
+                  <stop
+                    offset="1"
+                    stop-color="#8b58ff"
+                  />
+
+                </linearGradient>
+
+                <filter id="rocketGlow">
+
+                  <feGaussianBlur
+                    stdDeviation="8"
+                    result="blur"
+                  />
+
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+
+                </filter>
+
+              </defs>
+
+              <!-- FIRE -->
+
+              <g class="rocket-fire">
+
+                <path
+                  d="M145 329 C140 360 151 398 160 416 C169 394 182 359 176 329Z"
+                  fill="url(#rocketFire)"
+                  opacity="0.95"
+                />
+
+                <path
+                  d="M151 329 C150 351 156 374 160 385 C164 373 170 351 169 329Z"
+                  fill="#fff8d6"
+                />
+
+              </g>
+
+              <!-- BODY -->
+
+              <g filter="url(#rocketGlow)">
+
+                <path
+                  d="M160 28 C116 61 92 120 92 188 C92 251 114 303 143 330 L177 330 C206 302 228 250 228 188 C228 120 204 61 160 28Z"
+                  fill="url(#rocketBody)"
+                  stroke="rgba(255,255,255,0.75)"
+                  stroke-width="4"
+                />
+
+                <path
+                  d="M92 206 L40 254 L101 274 L126 241Z"
+                  fill="url(#rocketWing)"
+                />
+
+                <path
+                  d="M228 206 L280 254 L219 274 L194 241Z"
+                  fill="url(#rocketWing)"
+                />
+
+                <path
+                  d="M139 330 L112 364 L146 349 L160 330Z"
+                  fill="#34269d"
+                />
+
+                <path
+                  d="M181 330 L208 364 L174 349 L160 330Z"
+                  fill="#34269d"
+                />
+
+                <circle
+                  cx="160"
+                  cy="145"
+                  r="39"
+                  fill="#f5e8ff"
+                  stroke="#ffffff"
+                  stroke-width="5"
+                />
+
+                <circle
+                  cx="160"
+                  cy="145"
+                  r="29"
+                  fill="url(#rocketWindow)"
+                />
+
+                <circle
+                  cx="151"
+                  cy="135"
+                  r="8"
+                  fill="rgba(255,255,255,0.35)"
+                />
+
+              </g>
+
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- =====================================================
+           BOTTOM CURVE
+      ====================================================== -->
+
+      <div class="hero-divider">
+
+        <svg
+          viewBox="0 0 1440 220"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+
+          <path
+            d="M0,65 C165,145 330,150 520,128 C720,105 865,72 1036,82 C1205,92 1320,126 1440,96 L1440,220 L0,220 Z"
+            fill="#fbf8ff"
+          />
+
+        </svg>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         TOPICS
+    ====================================================== -->
+
+    <section
+      class="topics-section"
+      id="temas"
+    >
+
+      <div class="topics-head">
+
+        <h2>
+
+          <span class="topics-title-main">
+            Cinco temas,
+          </span>
+
+          <span class="topics-title-pink">
+            un mismo
+          </span>
+
+          <span class="topics-title-purple">
+            principio.
+          </span>
+
+        </h2>
+
+        <a
+          href="/dron"
+          class="topics-link"
+        >
+          Ver todos los temas
+
+          <span>
+            →
+          </span>
+        </a>
+
+      </div>
+
+      <div class="topics-grid">
+
+        {
+          topics.map((topic) => (
+            <a
+              href={topic.href}
+              class="topic-card"
+            >
+
+              <div class={`topic-icon ${topic.icon}`}>
+                {topic.icon === "spring" ? "≋" : ""}
+              </div>
+
+              <div class="topic-content">
+
+                <span class="topic-number">
+                  {topic.number}
+                </span>
+
+                <h3>
+                  {topic.title}
+                </h3>
+
+                <p>
+                  {topic.description}
+                </p>
+
+              </div>
+
+              <div class="topic-arrow">
+                →
+              </div>
+
+            </a>
+          ))
+        }
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         METHOD
+    ====================================================== -->
+
+    <section
+      class="method-section"
+      id="metodo"
+    >
+
+      <div class="method-intro">
+
+        <span class="method-label">
+          MÉTODO
+        </span>
+
+        <h2>
+
+          La ecuación
+
+          <em>
+            no es el final.
+          </em>
+
+        </h2>
+
+      </div>
+
+      <div class="method-list">
+
+        <article>
+
+          <span>
+            01
+          </span>
+
+          <h3>
+            Caso real
+          </h3>
+
+          <p>
+            Se parte de un producto o sistema donde el fenómeno físico
+            tenga una aplicación verificable.
+          </p>
+
+        </article>
+
+        <article>
+
+          <span>
+            02
+          </span>
+
+          <h3>
+            Modelo físico
+          </h3>
+
+          <p>
+            Se identifican variables y ecuaciones que describen
+            cuantitativamente el comportamiento.
+          </p>
+
+        </article>
+
+        <article>
+
+          <span>
+            03
+          </span>
+
+          <h3>
+            Aplicación en software
+          </h3>
+
+          <p>
+            Se justifica qué gana el sistema al calcular ese fenómeno
+            frente a valores fijos o animaciones rígidas.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- =====================================================
+       MOUSE PARALLAX
+  ====================================================== -->
+
+  <script>
+    const scene =
+      document.querySelector("#space-scene");
+
+    const background =
+      document.querySelector("#hero-bg");
+
+    const reducedMotion =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+    if (!reducedMotion) {
+      window.addEventListener(
+        "mousemove",
+        (event) => {
+
+          const x =
+            event.clientX /
+            window.innerWidth -
+            0.5;
+
+          const y =
+            event.clientY /
+            window.innerHeight -
+            0.5;
+
+          if (
+            scene instanceof HTMLElement
+          ) {
+            scene.style.setProperty(
+              "--scene-x",
+              `${x * 15}px`
+            );
+
+            scene.style.setProperty(
+              "--scene-y",
+              `${y * 11}px`
+            );
+          }
+
+          if (
+            background instanceof HTMLElement
+          ) {
+            background.style.setProperty(
+              "--bg-x",
+              `${x * -9}px`
+            );
+
+            background.style.setProperty(
+              "--bg-y",
+              `${y * -7}px`
+            );
+          }
+
+        },
+        {
+          passive: true,
+        }
+      );
+    }
+  </script>
+
+</BaseLayout>

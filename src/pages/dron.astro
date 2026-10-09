@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import TopicShell from "../components/ui/TopicShell.astro";
+---
+
+<BaseLayout title="Dron de reparto | Physics × Software">
+  <TopicShell
+    number="01"
+    category="Cinemática · Movimiento en 2D"
+    title="Rastreo y navegación de un dron de reparto"
+    description="Análisis de posición, velocidad y aceleración durante una ruta de navegación bidimensional."
+    resource="Visualización de datos"
+    equation="r(t) = x(t)i + y(t)j"
+    telemetry={[
+      { label: "Posición", value: "(x, y) m" },
+      { label: "Velocidad", value: "0.00 m/s" },
+      { label: "Aceleración", value: "0.00 m/s²" },
+    ]}
+    nextHref="/salto-videojuegos"
+    nextLabel="Salto en videojuegos"
+  >
+    <p slot="case">
+      Los sistemas de navegación de drones necesitan conocer
+      continuamente la posición del vehículo para seguir una ruta,
+      corregir desviaciones y alcanzar un destino de forma segura.
+    </p>
+
+    <p slot="concept">
+      En cinemática bidimensional, la posición se representa mediante
+      un vector con componentes <strong>x</strong> y
+      <strong>y</strong>. A partir de su cambio respecto al tiempo
+      pueden obtenerse la velocidad y la aceleración.
+    </p>
+
+    <p slot="justification">
+      Utilizar un modelo cinemático permite recalcular la trayectoria
+      cuando cambia la velocidad, aparece una desviación o se modifica
+      el destino.
+    </p>
+
+    <p
+      slot="resource-caption"
+      class="resource-caption"
+    >
+      La visualización mostrará posición, velocidad y aceleración
+      a lo largo de una ruta declarada.
+    </p>
+
+    <p slot="sources">
+      Las fuentes de datos y referencias utilizadas para construir
+      la visualización serán indicadas aquí.
+    </p>
+  </TopicShell>
+</BaseLayout>
