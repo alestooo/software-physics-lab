@@ -1,0 +1,551 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopicShell from "../components/ui/TopicShell.astro";
+
+import "../styles/ruedas-reaccion.css";
+
+const telemetry = [
+  {
+    label: "Sistema",
+    value: "ADCS",
+  },
+  {
+    label: "Principio",
+    value: "Momento angular",
+  },
+  {
+    label: "Recurso",
+    value: "Diagrama",
+  },
+];
+---
+
+<BaseLayout
+  title="Ruedas de reacción | Physics × Software"
+  description="Diagrama del intercambio de momento angular entre un satélite y una rueda de reacción."
+  fullBleed={true}
+>
+  <TopicShell
+    number="08"
+    category="Leyes de conservación"
+    title="Girar sin empujarse contra nada."
+    description="Una nave espacial no necesita apoyarse contra el espacio para cambiar su orientación. Puede intercambiar momento angular con una rueda que gira dentro de su propio cuerpo."
+    resource="Diagrama"
+    equation="L = Iω"
+    telemetry={telemetry}
+    previousHref="/coeficiente-restitucion"
+    previousLabel="Coeficiente de restitución"
+    nextHref="/asistencia-gravitatoria"
+    nextLabel="Asistencia gravitatoria"
+  >
+
+    <!-- VISUAL HERO -->
+
+    <div
+      slot="visual"
+      class="reaction-hero-visual"
+    >
+
+      <div class="reaction-spacecraft">
+
+        <div class="satellite-panel panel-left"></div>
+        <div class="satellite-panel panel-right"></div>
+
+        <div class="satellite-body">
+
+          <div class="satellite-wheel">
+            <div class="wheel-core"></div>
+          </div>
+
+        </div>
+
+
+        <div class="rotation-arrow wheel-arrow">
+          ↻
+        </div>
+
+        <div class="rotation-arrow body-arrow">
+          ↺
+        </div>
+
+      </div>
+
+
+      <div class="reaction-hero-equation">
+        <span>
+          CONSERVACIÓN
+        </span>
+
+        <strong>
+          ΔLrueda = −ΔLsatélite
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div slot="case">
+
+      <span class="section-kicker">
+        Ingeniería del Software
+      </span>
+
+      <h2>
+        El software de actitud convierte una velocidad de rueda
+        en una rotación de la nave.
+      </h2>
+
+      <p>
+        Los sistemas de determinación y control de actitud,
+        conocidos como <strong>ADCS</strong>, utilizan ruedas
+        de reacción para orientar cámaras, antenas,
+        instrumentos o paneles solares sin gastar propelente
+        durante cada pequeña corrección.
+      </p>
+
+      <p>
+        El software calcula cuánto debe acelerar o desacelerar
+        una rueda para producir el cambio de momento angular
+        necesario en el cuerpo del satélite.
+      </p>
+
+      <div class="reaction-case-note">
+        <span>
+          CASO CONCRETO
+        </span>
+
+        <strong>
+          Sistema de control de actitud de un satélite
+        </strong>
+
+        <p>
+          El controlador utiliza motores eléctricos para
+          modificar la velocidad de las ruedas de reacción y
+          controlar la orientación de la nave.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div slot="concept">
+
+      <span class="section-kicker">
+        Momento angular
+      </span>
+
+      <h2>
+        Si una parte gana momento angular, otra debe compensarlo.
+      </h2>
+
+      <p>
+        Para un cuerpo rígido que gira alrededor de un eje:
+      </p>
+
+      <div class="formula-highlight">
+        <span>
+          Momento angular
+        </span>
+
+        <strong>
+          L = Iω
+        </strong>
+      </div>
+
+      <p>
+        Si no existe un torque externo neto importante, el
+        momento angular total del sistema satélite + rueda se
+        conserva:
+      </p>
+
+      <div class="formula-highlight secondary">
+        <span>
+          Sistema completo
+        </span>
+
+        <strong>
+          Ltotal = Lsat + Lrueda = constante
+        </strong>
+      </div>
+
+
+      <!-- =============================================
+           DIAGRAMA OBLIGATORIO
+      ============================================== -->
+
+      <section class="reaction-diagram-card">
+
+        <div class="reaction-diagram-header">
+
+          <div>
+            <span class="section-kicker">
+              Diagrama propio
+            </span>
+
+            <h3>
+              Intercambio de momento angular
+            </h3>
+          </div>
+
+          <span class="diagram-badge">
+            ADCS
+          </span>
+
+        </div>
+
+
+        <svg
+          class="reaction-diagram"
+          viewBox="0 0 900 570"
+          role="img"
+          aria-label="Diagrama de un satélite con rueda de reacción"
+        >
+
+          <!-- PANEL IZQUIERDO -->
+
+          <rect
+            x="65"
+            y="215"
+            width="190"
+            height="140"
+            rx="12"
+            class="diagram-panel"
+          />
+
+          <line
+            x1="95"
+            y1="215"
+            x2="95"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+          <line
+            x1="135"
+            y1="215"
+            x2="135"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+          <line
+            x1="175"
+            y1="215"
+            x2="175"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+          <line
+            x1="215"
+            y1="215"
+            x2="215"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+
+          <!-- PANEL DERECHO -->
+
+          <rect
+            x="645"
+            y="215"
+            width="190"
+            height="140"
+            rx="12"
+            class="diagram-panel"
+          />
+
+          <line
+            x1="685"
+            y1="215"
+            x2="685"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+          <line
+            x1="725"
+            y1="215"
+            x2="725"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+          <line
+            x1="765"
+            y1="215"
+            x2="765"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+          <line
+            x1="805"
+            y1="215"
+            x2="805"
+            y2="355"
+            class="diagram-panel-line"
+          />
+
+
+          <!-- CUERPO -->
+
+          <rect
+            x="310"
+            y="145"
+            width="280"
+            height="280"
+            rx="54"
+            class="diagram-satellite-body"
+          />
+
+
+          <!-- RUEDA -->
+
+          <circle
+            cx="450"
+            cy="285"
+            r="82"
+            class="diagram-wheel-outer"
+          />
+
+          <circle
+            cx="450"
+            cy="285"
+            r="52"
+            class="diagram-wheel-inner"
+          />
+
+          <circle
+            cx="450"
+            cy="285"
+            r="12"
+            class="diagram-axis"
+          />
+
+
+          <!-- EJE -->
+
+          <line
+            x1="450"
+            y1="120"
+            x2="450"
+            y2="450"
+            class="diagram-axis-line"
+          />
+
+          <text
+            x="466"
+            y="135"
+            class="diagram-label"
+          >
+            Eje de giro
+          </text>
+
+
+          <!-- FLECHA RUEDA -->
+
+          <path
+            d="M 395 230 A 75 75 0 0 1 505 230"
+            class="diagram-arrow wheel-angular-arrow"
+          />
+
+          <polygon
+            points="506,230 492,220 494,238"
+            class="diagram-arrow-head"
+          />
+
+          <text
+            x="393"
+            y="200"
+            class="diagram-wheel-text"
+          >
+            ωrueda
+          </text>
+
+
+          <!-- FLECHA SATÉLITE -->
+
+          <path
+            d="M 350 435 A 155 155 0 0 0 550 435"
+            class="diagram-arrow body-angular-arrow"
+          />
+
+          <polygon
+            points="349,435 361,423 364,441"
+            class="diagram-body-arrow-head"
+          />
+
+          <text
+            x="382"
+            y="486"
+            class="diagram-body-text"
+          >
+            ωsatélite
+          </text>
+
+
+          <!-- ECUACIONES -->
+
+          <rect
+            x="70"
+            y="40"
+            width="275"
+            height="92"
+            rx="20"
+            class="diagram-equation-box"
+          />
+
+          <text
+            x="95"
+            y="78"
+            class="diagram-equation-label"
+          >
+            MOMENTO ANGULAR
+          </text>
+
+          <text
+            x="95"
+            y="110"
+            class="diagram-equation-value"
+          >
+            L = Iω
+          </text>
+
+
+          <rect
+            x="555"
+            y="40"
+            width="280"
+            height="92"
+            rx="20"
+            class="diagram-equation-box"
+          />
+
+          <text
+            x="580"
+            y="78"
+            class="diagram-equation-label"
+          >
+            CONSERVACIÓN
+          </text>
+
+          <text
+            x="580"
+            y="110"
+            class="diagram-equation-value small"
+          >
+            ΔLrueda = −ΔLsat
+          </text>
+
+        </svg>
+
+
+        <div class="reaction-diagram-legend">
+
+          <div>
+            <span class="legend-wheel"></span>
+
+            <p>
+              La rueda acelera en una dirección.
+            </p>
+          </div>
+
+          <div>
+            <span class="legend-body"></span>
+
+            <p>
+              El cuerpo responde en la dirección opuesta.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="saturation-card">
+
+        <span class="section-kicker">
+          Saturación
+        </span>
+
+        <h3>
+          ¿Qué ocurre cuando la rueda ya no puede acelerar más?
+        </h3>
+
+        <p>
+          Una rueda tiene una velocidad máxima. Cuando se
+          aproxima a ese límite, pierde capacidad para almacenar
+          más momento angular en esa dirección. Se dice que la
+          rueda está <strong>saturada</strong>.
+        </p>
+
+        <p>
+          El sistema debe realizar una descarga o
+          <em>momentum unloading</em> mediante un actuador que
+          produzca torque externo, como propulsores o
+          magnetorquers.
+        </p>
+
+      </section>
+
+    </div>
+
+
+    <div slot="justification">
+
+      <span class="section-kicker">
+        ¿Por qué modelarlo?
+      </span>
+
+      <h2>
+        La orientación no puede resolverse con una animación.
+      </h2>
+
+      <p>
+        Una nave puede tener diferentes momentos de inercia,
+        velocidades de rueda y objetivos de orientación. El
+        software debe calcular continuamente cuánto momento
+        angular intercambiar.
+      </p>
+
+      <p>
+        Una animación prediseñada podría mostrar una rotación,
+        pero no podría determinar correctamente la respuesta del
+        satélite ante una nueva condición.
+      </p>
+
+    </div>
+
+
+    <div slot="sources">
+
+      <p>
+        <strong>NASA Small Spacecraft Systems Virtual Institute.</strong>
+        State of the Art of Small Spacecraft Technology:
+        Guidance, Navigation and Control.
+      </p>
+
+      <p>
+        NASA describe las ruedas de reacción como dispositivos
+        capaces de almacenar momento angular y producir una
+        contrarrotación de la nave. También indica que, cuando
+        alcanzan su velocidad máxima, deben ser desaturadas
+        mediante un actuador externo.
+      </p>
+
+      <a
+        href="https://www.nasa.gov/smallsat-institute/sst-soa/guidance-navigation-and-control/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Fuente oficial de NASA →
+      </a>
+
+    </div>
+
+  </TopicShell>
+
+</BaseLayout>

@@ -1,0 +1,525 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopicShell from "../components/ui/TopicShell.astro";
+
+import "../styles/asistencia-gravitatoria.css";
+
+const telemetry = [
+  {
+    label: "Misión",
+    value: "Voyager 1",
+  },
+  {
+    label: "Encuentros",
+    value: "Júpiter + Saturno",
+  },
+  {
+    label: "Recurso",
+    value: "Visualización",
+  },
+];
+---
+
+<BaseLayout
+  title="Asistencia gravitatoria | Physics × Software"
+  description="Visualización de la asistencia gravitatoria utilizada por Voyager 1 en sus encuentros con Júpiter y Saturno."
+  fullBleed={true}
+>
+  <TopicShell
+    number="09"
+    category="Gravitación"
+    title="Voyager ganó velocidad sin encender un motor."
+    description="Una asistencia gravitatoria aprovecha el movimiento orbital de un planeta para cambiar la dirección y la energía de una nave respecto al Sol."
+    resource="Visualización de datos"
+    equation="F = GMm / r²"
+    telemetry={telemetry}
+    previousHref="/ruedas-reaccion"
+    previousLabel="Ruedas de reacción"
+  >
+
+    <!-- HERO -->
+
+    <div
+      slot="visual"
+      class="gravity-assist-hero"
+      id="gravity-assist-lab"
+    >
+
+      <div class="assist-space">
+
+        <div class="assist-sun">
+          <span></span>
+        </div>
+
+        <div class="assist-orbit"></div>
+
+        <div class="assist-planet">
+          <span>
+            Júpiter
+          </span>
+        </div>
+
+        <div
+          class="assist-voyager"
+          id="assist-voyager"
+        >
+          <span class="voyager-dish"></span>
+          <span class="voyager-body"></span>
+        </div>
+
+        <svg
+          class="assist-path"
+          viewBox="0 0 600 330"
+          aria-hidden="true"
+        >
+          <path
+            d="M65 250 C180 215 220 115 340 155 C430 185 455 100 555 70"
+          />
+        </svg>
+
+      </div>
+
+
+      <div class="assist-live-card">
+
+        <span>
+          REFERENCIA
+        </span>
+
+        <strong>
+          Rapidez respecto al Sol
+        </strong>
+
+        <p id="assist-live-speed">
+          Visualizando encuentro con Júpiter
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div slot="case">
+
+      <span class="section-kicker">
+        Ingeniería del Software
+      </span>
+
+      <h2>
+        Navegación interplanetaria calculada antes de llegar al planeta.
+      </h2>
+
+      <p>
+        El software de dinámica de vuelo utiliza modelos
+        gravitatorios para predecir cómo una nave será desviada
+        durante un encuentro planetario y qué trayectoria tendrá
+        después.
+      </p>
+
+      <p>
+        Voyager 1 realizó un encuentro cercano con
+        <strong>Júpiter el 5 de marzo de 1979</strong> y otro
+        con <strong>Saturno el 12 de noviembre de 1980</strong>.
+      </p>
+
+      <div class="voyager-timeline">
+
+        <article>
+          <span>
+            05 SEP 1977
+          </span>
+
+          <strong>
+            Lanzamiento
+          </strong>
+
+          <p>
+            Voyager 1 sale de la Tierra.
+          </p>
+        </article>
+
+
+        <div class="timeline-line"></div>
+
+
+        <article class="highlight">
+          <span>
+            05 MAR 1979
+          </span>
+
+          <strong>
+            Júpiter
+          </strong>
+
+          <p>
+            Primer gran encuentro gravitatorio.
+          </p>
+        </article>
+
+
+        <div class="timeline-line"></div>
+
+
+        <article class="highlight">
+          <span>
+            12 NOV 1980
+          </span>
+
+          <strong>
+            Saturno
+          </strong>
+
+          <p>
+            Segundo encuentro planetario.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+
+
+    <div slot="concept">
+
+      <span class="section-kicker">
+        Gravitación
+      </span>
+
+      <h2>
+        El planeta cambia la dirección de la velocidad.
+      </h2>
+
+      <p>
+        La atracción gravitatoria entre el planeta y la sonda se
+        modela mediante:
+      </p>
+
+      <div class="formula-highlight">
+        <span>
+          Gravitación universal
+        </span>
+
+        <strong>
+          F = GMm / r²
+        </strong>
+      </div>
+
+      <p>
+        La energía potencial gravitatoria puede escribirse como:
+      </p>
+
+      <div class="formula-highlight secondary">
+        <span>
+          Energía potencial
+        </span>
+
+        <strong>
+          U = −GMm / r
+        </strong>
+      </div>
+
+      <p>
+        En el marco del planeta, la sonda se aproxima y se aleja
+        con aproximadamente la misma rapidez muy lejos del
+        encuentro; principalmente cambia la dirección de su
+        velocidad.
+      </p>
+
+      <p>
+        Pero, visto desde el Sol, la velocidad orbital del
+        planeta se combina vectorialmente con la velocidad de la
+        nave. Esa geometría permite que la nave salga con una
+        rapidez heliocéntrica diferente.
+      </p>
+
+
+      <!-- VISUALIZACIÓN OBLIGATORIA -->
+
+      <section class="voyager-data-section">
+
+        <div class="voyager-data-heading">
+
+          <div>
+            <span class="section-kicker">
+              Visualización de datos
+            </span>
+
+            <h3>
+              Rapidez heliocéntrica durante la misión
+            </h3>
+          </div>
+
+          <div class="voyager-data-source">
+            NASA / JPL
+          </div>
+
+        </div>
+
+
+        <div class="voyager-chart-card">
+
+          <div class="voyager-chart-controls">
+
+            <button
+              type="button"
+              class="active"
+              data-voyager-view="mission"
+            >
+              Misión completa
+            </button>
+
+            <button
+              type="button"
+              data-voyager-view="jupiter"
+            >
+              Júpiter
+            </button>
+
+            <button
+              type="button"
+              data-voyager-view="saturn"
+            >
+              Saturno
+            </button>
+
+          </div>
+
+
+          <div class="voyager-chart-wrapper">
+
+            <div class="voyager-y-label">
+              Rapidez respecto al Sol (km/s)
+            </div>
+
+            <svg
+              id="voyager-speed-chart"
+              class="voyager-speed-chart"
+              viewBox="0 0 840 390"
+              role="img"
+              aria-label="Gráfica didáctica de rapidez heliocéntrica de Voyager 1"
+            >
+
+              <line
+                x1="75"
+                y1="30"
+                x2="75"
+                y2="325"
+                class="chart-axis"
+              />
+
+              <line
+                x1="75"
+                y1="325"
+                x2="810"
+                y2="325"
+                class="chart-axis"
+              />
+
+
+              <g class="chart-grid">
+
+                <line x1="75" y1="75" x2="810" y2="75" />
+                <line x1="75" y1="135" x2="810" y2="135" />
+                <line x1="75" y1="195" x2="810" y2="195" />
+                <line x1="75" y1="255" x2="810" y2="255" />
+
+              </g>
+
+
+              <polyline
+                id="voyager-speed-line"
+                class="voyager-speed-line"
+                points=""
+              />
+
+
+              <g
+                id="voyager-jupiter-marker"
+                class="encounter-marker"
+              >
+
+                <line
+                  x1="365"
+                  y1="45"
+                  x2="365"
+                  y2="325"
+                />
+
+                <circle
+                  cx="365"
+                  cy="160"
+                  r="7"
+                />
+
+                <text
+                  x="378"
+                  y="65"
+                >
+                  Júpiter · 1979
+                </text>
+
+              </g>
+
+
+              <g
+                id="voyager-saturn-marker"
+                class="encounter-marker saturn-marker"
+              >
+
+                <line
+                  x1="615"
+                  y1="45"
+                  x2="615"
+                  y2="325"
+                />
+
+                <circle
+                  cx="615"
+                  cy="130"
+                  r="7"
+                />
+
+                <text
+                  x="628"
+                  y="65"
+                >
+                  Saturno · 1980
+                </text>
+
+              </g>
+
+            </svg>
+
+
+            <div class="voyager-x-label">
+              Tiempo / etapa de misión
+            </div>
+
+          </div>
+
+
+          <div class="voyager-chart-note">
+
+            <strong>
+              Importante
+            </strong>
+
+            <p>
+              La visualización muestra una reconstrucción
+              didáctica de la tendencia de rapidez alrededor de
+              los encuentros planetarios. Las fechas de los
+              encuentros y la interpretación física se basan en
+              fuentes oficiales de NASA/JPL.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <div slot="justification">
+
+      <span class="section-kicker">
+        ¿Por qué modelarlo?
+      </span>
+
+      <h2>
+        Una trayectoria espacial no puede ser una línea dibujada a mano.
+      </h2>
+
+      <p>
+        Una pequeña variación en posición o velocidad antes del
+        encuentro cambia la distancia mínima al planeta, el
+        ángulo de salida y la trayectoria posterior.
+      </p>
+
+      <p>
+        El software de navegación necesita integrar las fuerzas
+        gravitatorias y actualizar continuamente el estado de la
+        nave. Una trayectoria precalculada únicamente mostraría
+        un caso y no permitiría analizar desviaciones.
+      </p>
+
+      <div class="model-benefit-grid">
+
+        <article>
+          <span>TRAYECTORIA FIJA</span>
+
+          <strong>
+            Solo representa un escenario
+          </strong>
+
+          <p>
+            No responde correctamente si cambia la condición
+            inicial.
+          </p>
+        </article>
+
+        <article>
+          <span>MODELO GRAVITATORIO</span>
+
+          <strong>
+            Predicción dinámica
+          </strong>
+
+          <p>
+            Permite recalcular la trayectoria ante nuevas
+            condiciones.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+
+
+    <div slot="sources">
+
+      <p>
+        <strong>NASA / Jet Propulsion Laboratory.</strong>
+        Voyager Mission y Basics of Space Flight.
+      </p>
+
+      <p>
+        NASA registra el encuentro de Voyager 1 con Júpiter el
+        5 de marzo de 1979 y con Saturno el 12 de noviembre de
+        1980. Sus materiales educativos explican que una
+        asistencia gravitatoria cambia la dirección de la
+        velocidad de la sonda respecto al planeta y puede
+        cambiar su energía y rapidez cuando se observa desde el
+        marco del Sol.
+      </p>
+
+      <div class="source-links">
+
+        <a
+          href="https://science.nasa.gov/mission/voyager/voyager-1/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Voyager 1 — NASA →
+        </a>
+
+        <a
+          href="https://science.nasa.gov/learn/basics-of-space-flight/primer/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Gravity Assist Primer — NASA →
+        </a>
+
+      </div>
+
+    </div>
+
+  </TopicShell>
+
+</BaseLayout>
+
+<script>
+  import "../scripts/simulations/asistencia-gravitatoria";
+</script>

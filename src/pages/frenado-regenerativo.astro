@@ -1,0 +1,716 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopicShell from "../components/ui/TopicShell.astro";
+
+import "../styles/frenado-regenerativo.css";
+
+const telemetry = [
+  {
+    label: "Vehículo",
+    value: "EV",
+  },
+  {
+    label: "Modelo",
+    value: "Balance energético",
+  },
+  {
+    label: "Recurso",
+    value: "Visualización",
+  },
+];
+---
+
+<BaseLayout
+  title="Frenado regenerativo | Physics × Software"
+  description="Visualización del balance de energía durante el frenado regenerativo de un vehículo eléctrico."
+  fullBleed={true}
+>
+  <TopicShell
+    number="06"
+    category="Leyes de conservación"
+    title="Frenar también puede recuperar energía."
+    description="En un vehículo eléctrico, parte de la energía cinética que normalmente terminaría convertida en calor puede regresar a la batería mediante el motor eléctrico funcionando como generador."
+    resource="Visualización de datos"
+    equation="Eₖ = ½mv²"
+    telemetry={telemetry}
+    previousHref="/control-haptico"
+    previousLabel="Control háptico"
+    nextHref="/coeficiente-restitucion"
+    nextLabel="Coeficiente de restitución"
+  >
+
+    <!-- =================================================
+         VISUAL PRINCIPAL
+    ================================================== -->
+
+    <div
+      slot="visual"
+      class="regen-hero-visual"
+      id="regen-lab"
+    >
+
+      <div class="regen-status-row">
+
+        <div>
+          <span class="regen-mini-label">
+            ESTADO
+          </span>
+
+          <strong id="regen-status">
+            Listo para frenar
+          </strong>
+        </div>
+
+        <span class="regen-live">
+          <span></span>
+          LIVE
+        </span>
+
+      </div>
+
+
+      <div class="regen-car-scene">
+
+        <div class="regen-road">
+
+          <div class="regen-road-line"></div>
+
+          <div
+            class="regen-car"
+            id="regen-car"
+            aria-label="Vehículo eléctrico"
+          >
+            <div class="regen-car-body"></div>
+
+            <div class="regen-car-window"></div>
+
+            <div class="regen-wheel regen-wheel-left"></div>
+            <div class="regen-wheel regen-wheel-right"></div>
+          </div>
+
+        </div>
+
+
+        <div class="regen-energy-flow">
+
+          <div class="energy-node energy-motor">
+            <span>Motor</span>
+          </div>
+
+          <div
+            class="energy-arrow"
+            id="regen-energy-arrow"
+          >
+            ←
+          </div>
+
+          <div class="energy-node energy-battery">
+            <span>Batería</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="regen-hero-metrics">
+
+        <div class="regen-hero-metric">
+          <span>Velocidad</span>
+
+          <strong id="regen-live-speed">
+            80 km/h
+          </strong>
+        </div>
+
+        <div class="regen-hero-metric">
+          <span>Energía cinética</span>
+
+          <strong id="regen-live-kinetic">
+            0 kJ
+          </strong>
+        </div>
+
+        <div class="regen-hero-metric">
+          <span>Recuperada</span>
+
+          <strong id="regen-live-recovered">
+            0 kJ
+          </strong>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CASO DE USO
+    ================================================== -->
+
+    <div slot="case">
+
+      <span class="section-kicker">
+        Ingeniería del Software
+      </span>
+
+      <h2>
+        Del pedal de freno a una decisión energética.
+      </h2>
+
+      <p>
+        En el software de control de un vehículo eléctrico,
+        frenar no significa únicamente reducir la velocidad.
+        El sistema debe determinar cuánto torque regenerativo
+        puede solicitar al motor, cuánto puede aceptar la
+        batería y cuándo deben participar los frenos mecánicos.
+      </p>
+
+      <p>
+        Para hacerlo de forma coherente, el controlador puede
+        estimar primero la energía cinética disponible:
+      </p>
+
+      <div class="formula-highlight">
+        <span>
+          Energía cinética
+        </span>
+
+        <strong>
+          Eₖ = ½mv²
+        </strong>
+      </div>
+
+      <p>
+        Si el vehículo tiene masa
+        <strong>m</strong> y velocidad
+        <strong>v</strong>, esa expresión permite estimar la
+        cantidad máxima de energía asociada al movimiento antes
+        del frenado.
+      </p>
+
+
+      <div class="regen-case-card">
+
+        <div>
+          <span>CASO</span>
+
+          <strong>
+            Control de frenado regenerativo de un EV
+          </strong>
+        </div>
+
+        <p>
+          El software distribuye la desaceleración entre
+          recuperación eléctrica y frenado mecánico según las
+          condiciones del vehículo y de la batería.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CONCEPTO
+    ================================================== -->
+
+    <div slot="concept">
+
+      <span class="section-kicker">
+        Trabajo y energía
+      </span>
+
+      <h2>
+        La energía no desaparece:
+        cambia de forma.
+      </h2>
+
+      <p>
+        Durante una reducción de velocidad, la variación de
+        energía cinética del automóvil puede escribirse como:
+      </p>
+
+      <div class="physics-equations-grid">
+
+        <div class="physics-equation-card">
+          <span>
+            Energía inicial
+          </span>
+
+          <strong>
+            Eᵢ = ½mvᵢ²
+          </strong>
+        </div>
+
+        <div class="physics-equation-card">
+          <span>
+            Energía final
+          </span>
+
+          <strong>
+            E𝒇 = ½mv𝒇²
+          </strong>
+        </div>
+
+        <div class="physics-equation-card">
+          <span>
+            Energía disponible
+          </span>
+
+          <strong>
+            ΔE = Eᵢ − E𝒇
+          </strong>
+        </div>
+
+      </div>
+
+      <p>
+        El sistema regenerativo no puede recuperar el 100 %.
+        Si utilizamos una eficiencia
+        <strong>η</strong>, la energía recuperada puede
+        representarse mediante:
+      </p>
+
+      <div class="formula-highlight">
+        <span>
+          Recuperación
+        </span>
+
+        <strong>
+          Eᵣ = η · ΔE
+        </strong>
+      </div>
+
+      <p>
+        El resto se pierde principalmente mediante procesos
+        térmicos, pérdidas eléctricas, resistencia mecánica y,
+        cuando es necesario, los frenos por fricción.
+      </p>
+
+
+      <!-- =============================================
+           VISUALIZACIÓN DE DATOS
+      ============================================== -->
+
+      <section class="regen-dashboard">
+
+        <div class="regen-dashboard-header">
+
+          <div>
+            <span class="section-kicker">
+              Visualización de datos
+            </span>
+
+            <h3>
+              Balance de energía durante el frenado
+            </h3>
+          </div>
+
+          <span class="calculated-data">
+            Datos calculados
+          </span>
+
+        </div>
+
+
+        <div class="regen-controls">
+
+          <label class="regen-control">
+
+            <span>
+              Masa del vehículo
+            </span>
+
+            <div class="regen-control-value">
+              <strong id="regen-mass-value">
+                1800
+              </strong>
+
+              <span>
+                kg
+              </span>
+            </div>
+
+            <input
+              id="regen-mass"
+              type="range"
+              min="1000"
+              max="2600"
+              step="50"
+              value="1800"
+            />
+
+          </label>
+
+
+          <label class="regen-control">
+
+            <span>
+              Velocidad inicial
+            </span>
+
+            <div class="regen-control-value">
+              <strong id="regen-speed-value">
+                80
+              </strong>
+
+              <span>
+                km/h
+              </span>
+            </div>
+
+            <input
+              id="regen-speed"
+              type="range"
+              min="20"
+              max="130"
+              step="5"
+              value="80"
+            />
+
+          </label>
+
+
+          <label class="regen-control">
+
+            <span>
+              Velocidad final
+            </span>
+
+            <div class="regen-control-value">
+              <strong id="regen-final-speed-value">
+                20
+              </strong>
+
+              <span>
+                km/h
+              </span>
+            </div>
+
+            <input
+              id="regen-final-speed"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              value="20"
+            />
+
+          </label>
+
+
+          <label class="regen-control">
+
+            <span>
+              Eficiencia regenerativa
+            </span>
+
+            <div class="regen-control-value">
+              <strong id="regen-efficiency-value">
+                70
+              </strong>
+
+              <span>
+                %
+              </span>
+            </div>
+
+            <input
+              id="regen-efficiency"
+              type="range"
+              min="20"
+              max="90"
+              step="1"
+              value="70"
+            />
+
+          </label>
+
+        </div>
+
+
+        <div class="regen-actions">
+
+          <button
+            id="regen-start"
+            type="button"
+            class="primary-lab-button"
+          >
+            Iniciar frenado
+          </button>
+
+          <button
+            id="regen-reset"
+            type="button"
+            class="secondary-lab-button"
+          >
+            Reiniciar
+          </button>
+
+        </div>
+
+
+        <div class="regen-results">
+
+          <article>
+            <span>
+              Energía disponible
+            </span>
+
+            <strong id="regen-total-energy">
+              0 kJ
+            </strong>
+          </article>
+
+          <article>
+            <span>
+              Recuperada
+            </span>
+
+            <strong id="regen-recovered-energy">
+              0 kJ
+            </strong>
+          </article>
+
+          <article>
+            <span>
+              Disipada
+            </span>
+
+            <strong id="regen-lost-energy">
+              0 kJ
+            </strong>
+          </article>
+
+        </div>
+
+
+        <div class="regen-chart-card">
+
+          <div class="chart-heading">
+
+            <div>
+              <span>
+                BALANCE ENERGÉTICO
+              </span>
+
+              <strong>
+                Energía durante el ciclo de frenado
+              </strong>
+            </div>
+
+            <div class="chart-unit">
+              kJ
+            </div>
+
+          </div>
+
+
+          <div class="regen-chart">
+
+            <div class="chart-y-label">
+              Energía (kJ)
+            </div>
+
+            <svg
+              id="regen-chart-svg"
+              viewBox="0 0 720 300"
+              role="img"
+              aria-label="Gráfica del balance de energía durante el frenado"
+            >
+
+              <line
+                x1="64"
+                y1="24"
+                x2="64"
+                y2="250"
+                class="chart-axis"
+              />
+
+              <line
+                x1="64"
+                y1="250"
+                x2="690"
+                y2="250"
+                class="chart-axis"
+              />
+
+
+              <g class="chart-grid">
+                <line
+                  x1="64"
+                  y1="70"
+                  x2="690"
+                  y2="70"
+                />
+
+                <line
+                  x1="64"
+                  y1="115"
+                  x2="690"
+                  y2="115"
+                />
+
+                <line
+                  x1="64"
+                  y1="160"
+                  x2="690"
+                  y2="160"
+                />
+
+                <line
+                  x1="64"
+                  y1="205"
+                  x2="690"
+                  y2="205"
+                />
+              </g>
+
+
+              <polyline
+                id="regen-kinetic-line"
+                class="regen-line kinetic-line"
+                points=""
+              />
+
+              <polyline
+                id="regen-recovered-line"
+                class="regen-line recovered-line"
+                points=""
+              />
+
+              <polyline
+                id="regen-lost-line"
+                class="regen-line lost-line"
+                points=""
+              />
+
+            </svg>
+
+            <div class="chart-x-label">
+              Tiempo de frenado
+            </div>
+
+          </div>
+
+
+          <div class="regen-chart-legend">
+
+            <span>
+              <i class="legend-kinetic"></i>
+              Energía cinética
+            </span>
+
+            <span>
+              <i class="legend-recovered"></i>
+              Energía recuperada
+            </span>
+
+            <span>
+              <i class="legend-lost"></i>
+              Energía disipada
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- =================================================
+         JUSTIFICACIÓN
+    ================================================== -->
+
+    <div slot="justification">
+
+      <span class="section-kicker">
+        ¿Por qué modelarlo?
+      </span>
+
+      <h2>
+        Un porcentaje fijo no describe todos los frenados.
+      </h2>
+
+      <p>
+        La energía disponible depende cuadráticamente de la
+        velocidad. Por eso, un frenado desde 120 km/h no es
+        simplemente “el doble” de uno desde 60 km/h.
+      </p>
+
+      <p>
+        Un modelo físico permite que el software responda a
+        diferentes masas, velocidades, eficiencias y estados
+        de carga sin tener que guardar una respuesta
+        precalculada para cada situación.
+      </p>
+
+      <div class="model-benefit-grid">
+
+        <article>
+          <span>
+            VALOR FIJO
+          </span>
+
+          <strong>
+            Respuesta limitada
+          </strong>
+
+          <p>
+            No representa correctamente cambios de masa,
+            velocidad o eficiencia.
+          </p>
+        </article>
+
+        <article>
+          <span>
+            MODELO FÍSICO
+          </span>
+
+          <strong>
+            Respuesta recalculada
+          </strong>
+
+          <p>
+            El resultado cambia automáticamente cuando cambian
+            las condiciones del vehículo.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FUENTES
+    ================================================== -->
+
+    <div slot="sources">
+
+      <p>
+        La visualización utiliza datos calculados por esta
+        aplicación mediante las ecuaciones de energía cinética
+        y un parámetro didáctico de eficiencia regenerativa.
+        No representa telemetría de un vehículo comercial
+        específico.
+      </p>
+
+      <p>
+        El caso se utiliza como representación educativa del
+        funcionamiento de sistemas de frenado regenerativo en
+        vehículos eléctricos.
+      </p>
+
+    </div>
+
+  </TopicShell>
+
+</BaseLayout>
+
+<script>
+  import "../scripts/simulations/frenado-regenerativo";
+</script>

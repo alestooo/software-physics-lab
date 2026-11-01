@@ -1,0 +1,492 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopicShell from "../components/ui/TopicShell.astro";
+
+import "../styles/coeficiente-restitucion.css";
+
+const telemetry = [
+  {
+    label: "Motor",
+    value: "Unity / PhysX",
+  },
+  {
+    label: "Fenómeno",
+    value: "Colisión",
+  },
+  {
+    label: "Recurso",
+    value: "Simulación",
+  },
+];
+---
+
+<BaseLayout
+  title="Coeficiente de restitución | Physics × Software"
+  description="Simulación interactiva del coeficiente de restitución y el rebote de una pelota en un motor de videojuegos."
+  fullBleed={true}
+>
+  <TopicShell
+    number="07"
+    category="Leyes de conservación"
+    title="¿Por qué una pelota puede rebotar mal?"
+    description="En un motor de videojuegos, una colisión no termina cuando dos objetos se tocan. El software necesita decidir qué parte de la velocidad relativa se conserva después del impacto."
+    resource="Simulación interactiva"
+    equation="e = |v después| / |v antes|"
+    telemetry={telemetry}
+    previousHref="/frenado-regenerativo"
+    previousLabel="Frenado regenerativo"
+    nextHref="/ruedas-reaccion"
+    nextLabel="Ruedas de reacción"
+  >
+
+    <div
+      slot="visual"
+      class="bounce-hero-visual"
+      id="bounce-lab"
+    >
+
+      <div class="bounce-scene">
+
+        <div class="bounce-height-guide">
+          <span>ALTURA</span>
+        </div>
+
+        <div
+          id="bounce-ball"
+          class="bounce-ball"
+          aria-label="Pelota simulada"
+        ></div>
+
+        <div class="bounce-shadow"></div>
+
+        <div class="bounce-floor"></div>
+
+      </div>
+
+
+      <div class="bounce-hero-metrics">
+
+        <div>
+          <span>
+            Coeficiente e
+          </span>
+
+          <strong id="bounce-live-e">
+            0.70
+          </strong>
+        </div>
+
+        <div>
+          <span>
+            Altura
+          </span>
+
+          <strong id="bounce-live-height">
+            4.00 m
+          </strong>
+        </div>
+
+        <div>
+          <span>
+            Rebotes
+          </span>
+
+          <strong id="bounce-live-count">
+            0
+          </strong>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div slot="case">
+
+      <span class="section-kicker">
+        Ingeniería del Software
+      </span>
+
+      <h2>
+        Unity necesita decidir cuánto debe rebotar una colisión.
+      </h2>
+
+      <p>
+        Los motores de física permiten asignar propiedades a
+        los materiales de los colliders. En Unity, por ejemplo,
+        la propiedad <strong>Bounciness</strong> controla el
+        rebote de una colisión y se relaciona directamente con
+        el coeficiente de restitución.
+      </p>
+
+      <p>
+        Un valor cercano a cero produce una colisión casi
+        inelástica. Un valor próximo a uno produce una colisión
+        mucho más elástica.
+      </p>
+
+      <div class="restitution-scale">
+
+        <div>
+          <strong>e = 0</strong>
+          <span>Sin rebote</span>
+        </div>
+
+        <div>
+          <strong>0 &lt; e &lt; 1</strong>
+          <span>Rebote realista</span>
+        </div>
+
+        <div>
+          <strong>e ≈ 1</strong>
+          <span>Casi elástico</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div slot="concept">
+
+      <span class="section-kicker">
+        Colisiones
+      </span>
+
+      <h2>
+        El rebote conserva solo una parte de la velocidad.
+      </h2>
+
+      <p>
+        Para una pelota que impacta verticalmente contra una
+        superficie fija, podemos representar el coeficiente de
+        restitución como:
+      </p>
+
+      <div class="formula-highlight">
+        <span>
+          Coeficiente de restitución
+        </span>
+
+        <strong>
+          e = |vᵣ| / |vᵢ|
+        </strong>
+      </div>
+
+      <p>
+        Por tanto:
+      </p>
+
+      <div class="formula-highlight secondary">
+        <span>
+          Velocidad después del impacto
+        </span>
+
+        <strong>
+          |vᵣ| = e |vᵢ|
+        </strong>
+      </div>
+
+      <p>
+        Como la energía cinética depende de
+        <strong>v²</strong>, cada impacto reduce todavía más
+        la energía disponible para el siguiente rebote cuando
+        <strong>e &lt; 1</strong>.
+      </p>
+
+
+      <!-- SIMULACIÓN -->
+
+      <section class="bounce-simulator">
+
+        <div class="bounce-simulator-header">
+
+          <div>
+            <span class="section-kicker">
+              Simulación interactiva
+            </span>
+
+            <h3>
+              Laboratorio de rebote
+            </h3>
+          </div>
+
+          <span
+            class="bounce-state"
+            id="bounce-state"
+          >
+            LISTO
+          </span>
+
+        </div>
+
+
+        <div class="bounce-controls">
+
+          <label>
+
+            <span>
+              Coeficiente de restitución
+            </span>
+
+            <div>
+              <strong id="bounce-e-value">
+                0.70
+              </strong>
+            </div>
+
+            <input
+              id="bounce-e"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.70"
+            />
+
+          </label>
+
+
+          <label>
+
+            <span>
+              Altura inicial
+            </span>
+
+            <div>
+              <strong id="bounce-height-value">
+                4.0
+              </strong>
+              <span>m</span>
+            </div>
+
+            <input
+              id="bounce-height"
+              type="range"
+              min="1"
+              max="8"
+              step="0.25"
+              value="4"
+            />
+
+          </label>
+
+
+          <label>
+
+            <span>
+              Gravedad
+            </span>
+
+            <div>
+              <strong id="bounce-gravity-value">
+                9.81
+              </strong>
+              <span>m/s²</span>
+            </div>
+
+            <input
+              id="bounce-gravity"
+              type="range"
+              min="3"
+              max="15"
+              step="0.01"
+              value="9.81"
+            />
+
+          </label>
+
+        </div>
+
+
+        <div class="bounce-presets">
+
+          <button
+            type="button"
+            data-bounce-preset="dead"
+          >
+            Sin rebote
+          </button>
+
+          <button
+            type="button"
+            data-bounce-preset="realistic"
+            class="active"
+          >
+            Realista
+          </button>
+
+          <button
+            type="button"
+            data-bounce-preset="arcade"
+          >
+            Arcade
+          </button>
+
+          <button
+            type="button"
+            data-bounce-preset="elastic"
+          >
+            Casi elástico
+          </button>
+
+        </div>
+
+
+        <div class="bounce-actions">
+
+          <button
+            id="bounce-start"
+            type="button"
+            class="primary-lab-button"
+          >
+            Soltar pelota
+          </button>
+
+          <button
+            id="bounce-reset"
+            type="button"
+            class="secondary-lab-button"
+          >
+            Reiniciar
+          </button>
+
+        </div>
+
+
+        <div class="bounce-results">
+
+          <article>
+            <span>
+              Velocidad de impacto
+            </span>
+
+            <strong id="bounce-impact-speed">
+              0.00 m/s
+            </strong>
+          </article>
+
+          <article>
+            <span>
+              Velocidad de rebote
+            </span>
+
+            <strong id="bounce-rebound-speed">
+              0.00 m/s
+            </strong>
+          </article>
+
+          <article>
+            <span>
+              Altura siguiente
+            </span>
+
+            <strong id="bounce-next-height">
+              0.00 m
+            </strong>
+          </article>
+
+          <article>
+            <span>
+              Energía relativa
+            </span>
+
+            <strong id="bounce-energy">
+              100 %
+            </strong>
+          </article>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <div slot="justification">
+
+      <span class="section-kicker">
+        ¿Por qué modelarlo?
+      </span>
+
+      <h2>
+        Una animación fija solo funciona para un impacto.
+      </h2>
+
+      <p>
+        Si un diseñador animara manualmente cada rebote, el
+        resultado dejaría de ser coherente al cambiar la
+        altura, la gravedad o el material.
+      </p>
+
+      <p>
+        Utilizar el coeficiente de restitución permite que el
+        motor calcule automáticamente la respuesta para muchas
+        condiciones distintas.
+      </p>
+
+      <div class="model-benefit-grid">
+
+        <article>
+          <span>ANIMACIÓN FIJA</span>
+
+          <strong>
+            Resultado precalculado
+          </strong>
+
+          <p>
+            Solo representa correctamente la situación para la
+            que fue animada.
+          </p>
+        </article>
+
+        <article>
+          <span>MODELO FÍSICO</span>
+
+          <strong>
+            Colisión dinámica
+          </strong>
+
+          <p>
+            El rebote responde al estado real de cada impacto.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+
+
+    <div slot="sources">
+
+      <p>
+        <strong>Unity Technologies.</strong>
+        Physics Material 2D y propiedad
+        <em>Bounciness</em>.
+      </p>
+
+      <p>
+        Unity identifica la propiedad de rebote de sus
+        materiales físicos como coeficiente de restitución:
+        un valor 0 representa ausencia de rebote y un valor
+        cercano a 1 representa una colisión aproximadamente
+        elástica.
+      </p>
+
+      <a
+        href="https://docs.unity3d.com/ScriptReference/PhysicsMaterial2D-bounciness.html"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Documentación oficial de Unity →
+      </a>
+
+    </div>
+
+  </TopicShell>
+
+</BaseLayout>
+
+<script>
+  import "../scripts/simulations/coeficiente-restitucion";
+</script>
