@@ -1,14 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import LegacyTopicHero from "../components/ui/LegacyTopicHero.astro";
 import "../styles/dron.css";
 ---
 
 <BaseLayout
   title="Dron de reparto | Physics × Software"
   description="Visualización interactiva de cinemática bidimensional aplicada a la navegación de un dron de reparto."
+  fullBleed={true}
 >
-  <article class="drone-page" id="drone-lab">
+  <article class="drone-page topic-page legacy-topic-page" id="drone-lab">
 
+    <LegacyTopicHero>
     <section class="drone-hero">
 
       <div class="drone-hero-grid"></div>
@@ -114,6 +118,8 @@ import "../styles/dron.css";
       </div>
 
     </section>
+    </LegacyTopicHero>
+    <div class="topic-body"><div class="topic-body-shell legacy-topic-body">
 
     <section class="drone-intro">
 
@@ -1002,7 +1008,9 @@ import "../styles/dron.css";
 
     </section>
 
-    <footer class="topic-nav-footer">
+    <section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Caso verificable: Zipline</h2><p>Zipline documenta que sus aeronaves realizan entregas autónomas, seleccionan rutas y evitan obstáculos. La ruta de este laboratorio es sintética, no telemetría de Zipline. En dos dimensiones, r(t)=(x(t), y(t)), v(t)=dr/dt y a(t)=dv/dt. El modelo permite actualizar posiciones y velocidades sin animar trayectorias individuales. En producción habría que incorporar mediciones GPS/IMU, incertidumbre y cambios de viento; el costo es calibración, procesamiento de sensores y validación, frente a una ruta fija barata pero incapaz de adaptarse.</p><p><a href="https://go.zipline.com/technology">Zipline — Autonomous Delivery Technology</a> (fuente del caso; perfiles calculados por el laboratorio).</p></section>
+    <Bibliography topic="dron" />
+<footer class="topic-nav-footer">
 
       <a href="/">
         ← Inicio
@@ -1024,6 +1032,7 @@ import "../styles/dron.css";
 
     </footer>
 
+  </div></div>
   </article>
 
   <script>

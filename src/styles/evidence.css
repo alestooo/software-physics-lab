@@ -1,0 +1,34 @@
+.evidence-panel{box-sizing:border-box;width:100%;min-width:0;margin:2rem 0;padding:clamp(1rem,3vw,2rem);background:#fff;border:1px solid #e1d6f5;border-radius:20px;color:#2a1854;font-family:system-ui,sans-serif;line-height:1.65}
+.evidence-panel h2{font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;margin:0 0 1rem}
+.evidence-panel h3,.evidence-chart h3{font-weight:750;font-size:1.15rem;margin:1rem 0}
+.evidence-panel a,.evidence-bibliography a{color:#7135c7;overflow-wrap:anywhere}
+.evidence-chart{margin:1.5rem 0;padding:1rem;border-radius:14px;border:1px solid #e8e0f5;min-width:0;background:#fcfaff}
+.evidence-chart-scroll,.evidence-table-scroll{overflow:auto;max-width:100%;overscroll-behavior-inline:contain}
+.evidence-chart svg{display:block;width:100%;height:auto;min-width:520px;font:13px system-ui,sans-serif;color:#3e325b}
+.evidence-chart text{fill:#504568}
+.evidence-legend{display:flex;flex-wrap:wrap;gap:.6rem 1rem;font-size:.81rem}
+.evidence-legend span{display:inline-flex;align-items:center;gap:6px}
+.evidence-legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+.evidence-chart figcaption,.evidence-caption{font-size:.8rem;color:#5d5371;margin-top:.75rem}
+.evidence-panel table{border-collapse:collapse;width:100%;min-width:460px;font-size:.9rem}
+.evidence-panel td,.evidence-panel th{padding:.65rem;text-align:left;border-bottom:1px solid #e7dff4}
+.evidence-panel th{background:#f5efff;color:#4c297e}
+.evidence-bibliography{margin:1.5rem 0;padding:1.3rem;border:1px solid #e1d6f5;border-radius:16px;color:#30204c;background:#fff;font-family:system-ui,sans-serif;line-height:1.65}
+.evidence-bibliography h3{margin:0 0 .75rem;font-size:1.15rem}
+.evidence-bibliography ol{padding-left:1.5rem;margin:0}
+.evidence-bibliography li{margin:.65rem 0;overflow-wrap:anywhere}
+.evidence-bibliography small{display:block;color:#645975}
+/* Keep long data tables and charts scrollable locally, not the entire page. */
+@media(max-width:760px){
+  .evidence-panel{padding:1rem;margin:1rem 0}
+  .evidence-chart{padding:.7rem}
+  .evidence-chart svg{min-width:540px}
+  .sidebar-navigation{overflow-y:auto!important;min-height:0;overscroll-behavior:contain}
+  .sidebar{max-height:calc(100dvh - 24px)}
+  .sidebar-nav-item{touch-action:manipulation}
+  .topic-body-shell,.topic-section-main,.legacy-topic-body{min-width:0;max-width:100%;box-sizing:border-box}
+  .voyager-chart-wrapper,.regen-chart,.final-panel{max-width:100%;min-width:0;overflow-x:auto}
+  .voyager-chart-wrapper svg,.regen-chart svg{min-width:520px}
+  .topic-topbar-nav{flex-wrap:wrap;gap:.65rem}
+  .topic-hero-grid,.topic-section-grid{min-width:0}
+}

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
 import TopicShell from "../components/ui/TopicShell.astro";
 
 import "../styles/coeficiente-restitucion.css";
@@ -404,6 +405,7 @@ const telemetry = [
 
 
     <div slot="justification">
+<section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Conservación del momento del sistema pelota–suelo</h2><p>Durante el impacto, si se desprecia el impulso externo, m v<sub>antes</sub>+M V<sub>antes</sub>=m v<sub>después</sub>+M V<sub>después</sub>. El contacto produce impulsos iguales y opuestos. Al tomar arriba como positivo, la pelota llega con velocidad −u y sale aproximadamente con +eu; el suelo recibe Δp=−m(1+e)u. Como M (masa efectiva de la Tierra) es enorme, su cambio de velocidad es despreciable. La pelota sola no conserva momento. Para suelo prácticamente inmóvil, e=|vdespués|/|vantes|, Kdespués/Kantes=e² y hdespués/hantes=e². Por ejemplo, e=0,7 retiene 49 % de la energía cinética tras cada choque; la restante se transforma en deformación, calor y sonido. El modelo evita animaciones fijas, pero requiere detectar contacto continuamente para evitar penetraciones y calibrar materiales.</p></section>
 
       <span class="section-kicker">
         ¿Por qué modelarlo?
@@ -458,6 +460,8 @@ const telemetry = [
 
 
     <div slot="sources">
+<Bibliography topic="coeficiente-restitucion" />
+
 
       <p>
         <strong>Unity Technologies.</strong>

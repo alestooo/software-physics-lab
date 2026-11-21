@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
 import TopicShell from "../components/ui/TopicShell.astro";
 
 import "../styles/ruedas-reaccion.css";
@@ -439,6 +440,7 @@ const telemetry = [
             ΔLrueda = −ΔLsat
           </text>
 
+        <text x="450" y="535" text-anchor="middle" fill="currentColor" font-size="20">τ = dL/dt = Iα; τrueda = −τsatélite</text>
         </svg>
 
 
@@ -495,6 +497,7 @@ const telemetry = [
 
 
     <div slot="justification">
+<section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Torque, momento angular y saturación</h2><p>El torque es τ=dL/dt=Iα para un eje fijo e inercia constante; L=Iω. Si se desprecia torque externo, τrueda=−τsatélite y ΔLrueda=−ΔLsatélite. Ejemplo: una rueda con I=0,02 kg·m² acelera 100 rad/s en 10 s; ΔL=2 kg·m²/s y τ=0,2 N·m. Un cuerpo con I=20 kg·m² cambia ω en −0,1 rad/s. Al alcanzar el límite de velocidad, la rueda no puede almacenar más momento en ese sentido; un magnetopar o propulsor suministra torque externo para descargarlo. El software de actitud integra el torque y monitorea la saturación; cuesta calibrar inercias, sensores y perturbaciones, pero evita giros arbitrarios sin fundamento físico.</p><p><a href="https://www.nasa.gov/smallsat-institute/sst-soa/guidance-navigation-and-control/">NASA — Guidance, Navigation and Control</a>.</p></section>
 
       <span class="section-kicker">
         ¿Por qué modelarlo?
@@ -521,6 +524,8 @@ const telemetry = [
 
 
     <div slot="sources">
+<Bibliography topic="ruedas-reaccion" />
+
 
       <p>
         <strong>NASA Small Spacecraft Systems Virtual Institute.</strong>

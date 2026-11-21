@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Qué aprendí | Physics × Software">
+<section class="final-close" id="que-aprendi">
+<span class="method-label">REFLEXIÓN FINAL</span><h2>Qué aprendí</h2>
+<h3>Mapa de conexiones</h3>
+<article><h3><a href="/control-haptico">05 · Control háptico</a> × <a href="/spring-animations">10 · Spring animations</a></h3><p>La ley de Hooke une ambos temas: una fuerza restauradora proporcional al desplazamiento, F=−kx. El control háptico convierte esa fuerza en una resistencia perceptible; la interfaz gráfica la convierte en aceleración visual, junto con el amortiguamiento. Aunque una aplicación actúa sobre un objeto físico y la otra sobre una propiedad de pantalla, ambas modelan una respuesta dependiente del estado y pueden evitar un comportamiento fijo.</p></article>
+<article><h3><a href="/frenado-regenerativo">06 · Frenado regenerativo</a> × <a href="/coeficiente-restitucion">07 · Restitución</a></h3><p>Los dos fenómenos se explican con la transformación de energía cinética K=mv²/2. En el vehículo, una fracción del descenso de K puede regresar a la batería; en el rebote, la fracción e² permanece como energía cinética de la pelota y el resto se transforma en energía interna. Ambos modelos obligan a distinguir la energía que permanece disponible de la que cambia de forma.</p></article>
+<article><h3><a href="/gravedad-artificial">03 · Gravedad artificial</a> × <a href="/ruedas-reaccion">08 · Ruedas de reacción</a></h3><p>Ambas aplicaciones involucran la dinámica rotacional, con ω=2π/T, a=ω²r y L=Iω. En el hábitat, la rotación crea aceleración centrípeta; en el satélite, cambiar el momento angular de la rueda modifica el del cuerpo. Para ambos, la inercia y la velocidad angular son variables que el software debe representar y no simplemente animar.</p></article>
+<h3>Aplicación propia: simulación y verificación de una montaña rusa</h3>
+<article><p>Me interesa desarrollar un software que permita diseñar y analizar recorridos virtuales de montaña rusa. El reto no es solamente mostrar un carrito que se mueve, sino determinar si puede completar un recorrido de acuerdo con las condiciones físicas del modelo. Para ello utilizaría conservación de energía, dinámica y movimiento circular. En un tramo ideal, la energía mecánica E=mgh+mv²/2 permite relacionar la altura y la rapidez. Si se considera fricción, el trabajo de las fuerzas no conservativas modifica la energía y el software debe estimar las pérdidas a lo largo del recorrido.</p><p>También calcularía la aceleración a=v²/r en curvas y la fuerza normal mediante la segunda ley de Newton, teniendo en cuenta cómo cambia la orientación de la pista. El usuario podría modificar la altura inicial y la geometría del recorrido, y comparar las gráficas de rapidez y energía resultantes. El programa señalaría cuándo una hipótesis del modelo deja de cumplirse y explicaría las variables que influyen en el resultado. Para comprobar la implementación usaría casos analíticos simples, comparación de balances de energía y pruebas de convergencia al reducir el paso de tiempo. El resultado sería un laboratorio educativo, no una certificación de seguridad de una instalación real. Esta aplicación me permitiría integrar programación, visualización y física para construir una herramienta que explica sus resultados, en lugar de una animación sin fundamento cuantitativo.</p></article>
+</section><nav class="reflection-nav" aria-label="Navegación del portafolio"><a href="/enfriamiento-liquido">← Enfriamiento líquido</a><a href="/#temas">Volver a los temas →</a></nav>
+</BaseLayout>
+<style>
+  .final-close {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    color: #2a1854;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .method-label {
+    display: inline-flex;
+    padding: .55rem .9rem;
+    border-radius: 999px;
+    background: #eee7ff;
+    color: #7135c7;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+  }
+  h2 {
+    margin: .9rem 0 2rem;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -.055em;
+  }
+  h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.4; margin: 1.5rem 0 1rem; }
+  article {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    margin: 1rem 0;
+    border: 1px solid #e1d6f5;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 8px 25px #28145708;
+  }
+  article h3 { margin: 0 0 .85rem; }
+  article p { font-size: 1rem; line-height: 1.8; color: #504568; margin: 0; }
+  article p + p { margin-top: 1rem; }
+  a { color: #7135c7; text-decoration: none; font-weight: 700; }
+  a:hover { text-decoration: underline; }
+  .reflection-nav {
+    max-width: 1200px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 4vw, 3rem) 3rem;
+    font-family: system-ui, sans-serif;
+  }
+  @media (max-width: 640px) {
+    .final-close { padding: 1rem; }
+    .reflection-nav { padding: 0 1rem 2rem; }
+  }
+</style>

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import VoyagerEvidence from "../components/ui/VoyagerEvidence.astro";
 import TopicShell from "../components/ui/TopicShell.astro";
 
 import "../styles/asistencia-gravitatoria.css";
@@ -35,6 +37,8 @@ const telemetry = [
     telemetry={telemetry}
     previousHref="/ruedas-reaccion"
     previousLabel="Ruedas de reacción"
+    nextHref="/spring-animations"
+    nextLabel="Spring animations"
   >
 
     <!-- HERO -->
@@ -318,14 +322,15 @@ const telemetry = [
 
               <g class="chart-grid">
 
-                <line x1="75" y1="75" x2="810" y2="75" />
-                <line x1="75" y1="135" x2="810" y2="135" />
-                <line x1="75" y1="195" x2="810" y2="195" />
-                <line x1="75" y1="255" x2="810" y2="255" />
+                <line x1="75" y1="89" x2="810" y2="89" />
+                <line x1="75" y1="148" x2="810" y2="148" />
+                <line x1="75" y1="207" x2="810" y2="207" />
+                <line x1="75" y1="266" x2="810" y2="266" />
 
               </g>
 
 
+              <g id="voyager-ticks" fill="currentColor" font-size="12"></g>
               <polyline
                 id="voyager-speed-line"
                 class="voyager-speed-line"
@@ -392,7 +397,7 @@ const telemetry = [
 
 
             <div class="voyager-x-label">
-              Tiempo / etapa de misión
+              Tiempo (días desde 05/09/1977; UTC)
             </div>
 
           </div>
@@ -405,11 +410,7 @@ const telemetry = [
             </strong>
 
             <p>
-              La visualización muestra una reconstrucción
-              didáctica de la tendencia de rapidez alrededor de
-              los encuentros planetarios. Las fechas de los
-              encuentros y la interpretación física se basan en
-              fuentes oficiales de NASA/JPL.
+              Las velocidades se calculan con el modelo idealizado descrito abajo; las fechas y radios de máxima aproximación proceden de NASA. No es telemetría ni una efeméride real.
             </p>
 
           </div>
@@ -422,6 +423,9 @@ const telemetry = [
 
 
     <div slot="justification">
+<VoyagerEvidence />
+
+<section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Modelo calculado y transferencia de momento</h2><p>En un encuentro idealizado, v<sub>Sol</sub>=V<sub>planeta</sub>+u, donde u es la velocidad relativa. Lejos del planeta, |uentrada|≈|usalida|; la gravedad cambia su dirección. Para una hipérbola, ehip=1+rp u∞²/μp y δ=2 asin(1/ehip). Se construyen velocidades heliocéntricas por suma vectorial antes y después del encuentro. El modelo usa radios de periapsis de NASA (4,89 radios jovianos y 3,09 radios saturnianos), parámetros gravitatorios aproximados 126686534 y 37931187 km³/s², velocidades orbitales circulares aproximadas 13,06 y 9,68 km/s, ángulo ilustrativo de entrada relativo de 90° en ambos encuentros; u∞=√(ventrada²−Vplaneta²), calculada a partir del tramo anterior. Se inicia con una rapidez supuesta de 42 km/s a 1 UA. El giro se orienta hacia el movimiento del planeta. Entre encuentros se aproxima el balance de energía solar mediante v²=vref²+2μSol(1/r−1/rref), con μSol=132712440018 km³/s² y radio interpolado por tramos (1, 5,2, 9,58 y 11 UA; 1 UA=149597870,7 km). Los saltos instantáneos son la aproximación de cónicas parcheadas, no telemetría de Voyager ni una reconstrucción orbital exacta. El eje usa días UTC desde el 5 de septiembre de 1977; las fechas de encuentros son históricas. Cada tramo comienza con la rapidez de salida del encuentro anterior; la interpolación radial no integra la trayectoria orbital real. La hipótesis de entrada perpendicular es ilustrativa, no geometría medida.</p><p>Durante el sobrevuelo Δpplaneta≈−Δpsonda, por fuerzas gravitatorias mutuas. La energía orbital que gana la nave se obtiene del planeta, cuyo cambio es minúsculo por su masa. El costo del software real es integrar fuerzas de varios cuerpos, efemérides y errores de navegación; una trayectoria fija no responde a nuevas condiciones.</p><p><a href="https://nssdc.gsfc.nasa.gov/planetary/voyager-periapse.html">NASA — distancias y tiempos de máxima aproximación</a> · <a href="https://science.nasa.gov/learn/basics-of-space-flight/primer/">NASA — Gravity Assist Primer</a>. Las velocidades del gráfico son calculadas por el modelo propio, no datos de NASA.</p></section>
 
       <span class="section-kicker">
         ¿Por qué modelarlo?
@@ -478,6 +482,8 @@ const telemetry = [
 
 
     <div slot="sources">
+<Bibliography topic="asistencia-gravitatoria" />
+
 
       <p>
         <strong>NASA / Jet Propulsion Laboratory.</strong>

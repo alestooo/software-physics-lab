@@ -1,0 +1,68 @@
+
+/* Keep the original lab visuals and calculations; share the later topics' hero shell. */
+.legacy-topic-page {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.legacy-space-hero { overflow: hidden; }
+.legacy-space-hero :is(.drone-hero,.jump-hero,.advanced-hero) {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: clamp(2rem, 5vw, 4.5rem) 0 clamp(4rem, 7vw, 7rem) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  box-sizing: border-box;
+}
+.legacy-space-hero :is(.drone-hero,.jump-hero,.advanced-hero)::before,
+.legacy-space-hero :is(.drone-hero,.jump-hero,.advanced-hero)::after {
+  display: none !important;
+}
+.legacy-space-hero :is(.drone-hero-grid,.drone-hero-glow,.jump-stars,.jump-glow,.advanced-hero-grid,.advanced-glow) {
+  display: none !important;
+}
+.legacy-space-hero :is(.drone-hero-copy,.jump-hero-copy,.advanced-hero-copy) {
+  min-width: 0;
+  max-width: 100% !important;
+  color: #fff;
+}
+.legacy-space-hero :is(.drone-hero-copy,.jump-hero-copy,.advanced-hero-copy) h1 {
+  max-width: 100% !important;
+  font-size: clamp(2.8rem, 5.5vw, 6.2rem) !important;
+  line-height: .99 !important;
+  color: #fff;
+  overflow-wrap: break-word;
+}
+.legacy-space-hero :is(.drone-hero-copy,.jump-hero-copy,.advanced-hero-copy) h1 em {
+  color: #f0b5eb;
+}
+.legacy-space-hero :is(.drone-hero-card,.jump-hero-preview,.hero-metric-card,.f1-wheel-card) {
+  position: relative !important;
+  min-width: 0;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+  inset: auto !important;
+}
+.legacy-topic-body { min-width: 0; }
+@media (max-width: 1050px) {
+  .legacy-space-hero :is(.drone-hero,.jump-hero,.advanced-hero) {
+    grid-template-columns: minmax(0,1fr);
+    gap: 2rem;
+  }
+  .legacy-space-hero :is(.drone-hero-copy,.jump-hero-copy,.advanced-hero-copy) h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  }
+}

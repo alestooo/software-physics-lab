@@ -1,0 +1,27 @@
+---
+import "../../styles/evidence.css";
+type Point = {x:number,y:number};
+type Series = {label:string,color:string,points:Point[],dots?:boolean,dashed?:boolean};
+interface Props { title:string; xLabel:string; yLabel:string; series:Series[]; xMax:number; yMax:number; xMin?:number; yMin?:number; xTicks?:number[]; yTicks?:number[]; source:string }
+const {title,xLabel,yLabel,series,xMax,yMax,xMin=0,yMin=0,xTicks=Array.from({length:6},(_,i)=>xMin+(xMax-xMin)*i/5),yTicks=Array.from({length:6},(_,i)=>yMin+(yMax-yMin)*i/5),source}=Astro.props;
+const X=(v:number)=>78+(v-xMin)/(xMax-xMin)*650;
+const Y=(v:number)=>264-(v-yMin)/(yMax-yMin)*225;
+const fmt=(v:number)=>Number(v.toFixed(2)).toString();
+---
+<figure class="evidence-chart">
+  <h3>{title}</h3>
+  <div class="evidence-legend">{series.map(s=><span><i style={`background:${s.color}`}></i>{s.label}</span>)}</div>
+  <div class="evidence-chart-scroll" tabindex="0" aria-label="Gráfica desplazable horizontalmente en pantallas pequeñas">
+    <svg viewBox="0 0 760 320" role="img" aria-label={title}>
+      {yTicks.map(v=><g><line x1="78" x2="728" y1={Y(v)} y2={Y(v)} stroke="#ddd6ed"/><text x="68" y={Y(v)+4} text-anchor="end">{fmt(v)}</text></g>)}
+      {xTicks.map(v=><g><line x1={X(v)} x2={X(v)} y1="39" y2="264" stroke="#f0ecf7"/><text x={X(v)} y="283" text-anchor="middle">{fmt(v)}</text></g>)}
+      <path d="M78 39 V264 H728" fill="none" stroke="#776b92" stroke-width="1.5"/>
+      <text x="78" y="20">{yLabel}</text><text x="403" y="309" text-anchor="middle">{xLabel}</text>
+      {series.map(s=><g>
+        {!s.dots && <polyline points={s.points.map(p=>`${X(p.x)},${Y(p.y)}`).join(" ")} fill="none" stroke={s.color} stroke-width="2.8" stroke-linejoin="round" stroke-dasharray={s.dashed?"8 5":undefined}/>}
+        {s.dots && s.points.map(p=><circle cx={X(p.x)} cy={Y(p.y)} r="5" fill={s.color} stroke="white" stroke-width="1.5"><title>{fmt(p.x)} · {fmt(p.y)}</title></circle>)}
+      </g>)}
+    </svg>
+  </div>
+  <figcaption>{source}</figcaption>
+</figure>

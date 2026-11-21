@@ -285,6 +285,20 @@ if (root) {
       );
 
 
+    const ticks = document.querySelector("#regen-ticks");
+    if (ticks) {
+      ticks.replaceChildren();
+      const label = (x: number, y: number, value: string, anchor: string) => {
+        const el = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        el.setAttribute("x", String(x)); el.setAttribute("y", String(y));
+        el.setAttribute("text-anchor", anchor); el.textContent = value;
+        ticks.append(el);
+      };
+      for (let i = 0; i <= 5; i++) {
+        label(widthStart + (widthEnd-widthStart)*i/5, 272, String(i), "middle");
+        label(widthStart-8, heightBottom-(heightBottom-heightTop)*i/5+4, (maxEnergy*i/5000).toFixed(1), "end");
+      }
+    }
     const kineticPoints: string[] = [];
     const recoveredPoints: string[] = [];
     const lostPoints: string[] = [];

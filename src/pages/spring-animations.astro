@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import TopicShell from "../components/ui/TopicShell.astro";
+import "../styles/final-labs.css";
+---
+<BaseLayout title="Spring animations | Physics × Software" description="Rigidez y amortiguamiento determinan la forma en que un objeto alcanza su destino." fullBleed={true}>
+  <TopicShell number="10" category="Oscilaciones" title="El resorte amortiguado detrás de las interfaces" description="Rigidez y amortiguamiento determinan la forma en que un objeto alcanza su destino." resource="Simulación interactiva" equation="m x″ + c x′ + k(x − x₀) = 0" previousHref="/asistencia-gravitatoria" previousLabel="Asistencia gravitatoria" nextHref="/sintesis-sonido" nextLabel="Síntesis de sonido" telemetry={[{label:"Avance",value:"Final"},{label:"Tema",value:"10"},{label:"Recurso",value:"Simulación interactiva"}]}>
+    <div slot="visual" class="final-visual"><div class="final-brand">SPRING · MODELO M = 1</div>
+<div class="spring-track"><span class="spring-target">Meta</span><span id="spring-object" class="spring-object"></span></div>
+<div class="final-metrics"><strong id="spring-regime">Subamortiguado</strong><span id="spring-ratio">ζ = 0,50</span></div></div>
+    <div slot="case"><span class="section-kicker">Ingeniería del Software</span><h2>Spring animations en SwiftUI y Motion</h2><p>SwiftUI ofrece animaciones interpolatingSpring, mientras que Motion para React permite configurar stiffness, damping y mass. Los valores físicos determinan la respuesta al cambio de destino y pueden conservar la velocidad de un gesto anterior. Por ejemplo, una tarjeta arrastrada puede regresar a su lugar sin reiniciar bruscamente el movimiento.</p></div>
+    <div slot="concept"><span class="section-kicker">Física aplicada</span><h2>Simulación interactiva: tres regímenes</h2>
+<p>Con masa m=1 kg, desplazamiento normalizado x, rigidez k (N/m) y amortiguamiento c (N·s/m), la ecuación es m x″+c x′+k(x−1)=0. La frecuencia natural angular es ω₀=√(k/m), el amortiguamiento crítico cₘ=2√(km) y la razón ζ=c/cₘ. Si ζ&lt;1 hay oscilaciones; ζ=1 retorna sin sobrepasar la meta en el menor tiempo sin oscilación para reposo inicial; ζ&gt;1 retorna más lentamente.</p>
+<div class="final-panel">
+<label>Rigidez k: <output id="spring-k-val">100</output> N/m <input id="spring-k" type="range" min="20" max="200" value="100" step="1"/></label>
+<label>Amortiguamiento c: <output id="spring-c-val">10</output> N·s/m <input id="spring-c" type="range" min="0" max="60" value="10" step="0.01"/></label>
+<div class="final-actions"><button data-spring="under">Subamortiguado</button><button data-spring="critical">Crítico</button><button data-spring="over">Sobreamortiguado</button><button id="spring-replay">Repetir</button></div>
+<svg viewBox="0 0 600 260" class="final-chart" role="img" aria-label="Desplazamiento normalizado en función del tiempo">
+<path d="M 45 20 V 220 H 580" fill="none" stroke="currentColor"/>
+<line x1="45" x2="580" y1="120" y2="120" stroke="#ed68ae" stroke-dasharray="5 5"/>
+<text x="6" y="224">0</text><text x="6" y="124">1</text><text x="6" y="24">2</text>
+{[0,1,2,3,4,5].map(v=><text x={45+535*v/5} y="242" text-anchor="middle">{v}</text>)}
+<text x="310" y="257" text-anchor="middle">Tiempo (s)</text>
+<polyline id="spring-curve" fill="none" stroke="#7438dc" stroke-width="3"/>
+</svg><p id="spring-summary" aria-live="polite"></p><small>Fuente de datos: solución analítica propia con x(0)=0, x′(0)=0; tiempo 0–5 s.</small>
+</div></div>
+    <div slot="justification"><span class="section-kicker">¿Por qué modelarlo?</span><h2>Un movimiento que responde al estado actual</h2><p>Una animación con tiempo fijo tiene una trayectoria predefinida. El resorte puede recalcularse con la posición y velocidad actuales cuando cambia la meta. La ventaja es continuidad; el costo es encontrar parámetros cómodos, definir tolerancias de reposo y comprobar que el movimiento no afecte la accesibilidad ni el rendimiento. No todas las animaciones necesitan este modelo: una transición sencilla de opacidad puede usar una duración.</p></div>
+    <div slot="sources">
+<Bibliography topic="spring-animations" />
+<p><a href="https://developer.apple.com/documentation/swiftui/animation/interpolatingspring">Apple Developer — interpolatingSpring</a></p><p><a href="https://motion.dev/docs/react-transitions">Motion — Transitions, stiffness, damping y mass</a></p></div>
+  </TopicShell>
+</BaseLayout>
+<script>import "../scripts/simulations/spring-animations.ts";</script>

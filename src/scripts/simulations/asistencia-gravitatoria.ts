@@ -1,398 +1,70 @@
-const root =
-  document.querySelector<HTMLElement>(
-    "#gravity-assist-lab"
-  );
-
+const root = document.querySelector("#gravity-assist-lab");
 if (root) {
-  type VoyagerView =
-    | "mission"
-    | "jupiter"
-    | "saturn";
-
-
-  interface VoyagerPoint {
-    t: number;
-    speed: number;
-  }
-
-
-  const speedLine =
-    document.querySelector<SVGPolylineElement>(
-      "#voyager-speed-line"
-    );
-
-
-  const buttons =
-    document.querySelectorAll<HTMLButtonElement>(
-      "[data-voyager-view]"
-    );
-
-
-  const liveSpeed =
-    document.querySelector<HTMLElement>(
-      "#assist-live-speed"
-    );
-
-
-  const voyager =
-    document.querySelector<HTMLElement>(
-      "#assist-voyager"
-    );
-
-
-  const jupiterMarker =
-    document.querySelector<SVGGElement>(
-      "#voyager-jupiter-marker"
-    );
-
-
-  const saturnMarker =
-    document.querySelector<SVGGElement>(
-      "#voyager-saturn-marker"
-    );
-
-
-  /*
-    Reconstrucción didáctica.
-
-    No pretende ser telemetría continua exacta.
-    La intención es representar la tendencia
-    heliocéntrica alrededor de los encuentros.
-  */
-
-  const missionData: VoyagerPoint[] = [
-    {
-      t: 0.00,
-      speed: 38.0,
-    },
-    {
-      t: 0.10,
-      speed: 37.2,
-    },
-    {
-      t: 0.20,
-      speed: 35.8,
-    },
-    {
-      t: 0.30,
-      speed: 34.6,
-    },
-    {
-      t: 0.38,
-      speed: 34.1,
-    },
-
-    /*
-      Encuentro con Júpiter.
-      Se representa un cambio notable
-      en la rapidez heliocéntrica.
-    */
-
-    {
-      t: 0.44,
-      speed: 39.5,
-    },
-    {
-      t: 0.50,
-      speed: 40.4,
-    },
-    {
-      t: 0.58,
-      speed: 39.6,
-    },
-    {
-      t: 0.66,
-      speed: 38.4,
-    },
-
-    /*
-      Encuentro con Saturno.
-    */
-
-    {
-      t: 0.74,
-      speed: 40.8,
-    },
-    {
-      t: 0.80,
-      speed: 41.3,
-    },
-    {
-      t: 0.88,
-      speed: 40.1,
-    },
-    {
-      t: 1.00,
-      speed: 39.0,
-    },
-  ];
-
-
-  const jupiterData: VoyagerPoint[] = [
-    {
-      t: 0.00,
-      speed: 34.4,
-    },
-    {
-      t: 0.20,
-      speed: 34.1,
-    },
-    {
-      t: 0.40,
-      speed: 34.8,
-    },
-    {
-      t: 0.55,
-      speed: 37.0,
-    },
-    {
-      t: 0.68,
-      speed: 39.5,
-    },
-    {
-      t: 0.80,
-      speed: 40.4,
-    },
-    {
-      t: 1.00,
-      speed: 39.6,
-    },
-  ];
-
-
-  const saturnData: VoyagerPoint[] = [
-    {
-      t: 0.00,
-      speed: 38.5,
-    },
-    {
-      t: 0.20,
-      speed: 38.3,
-    },
-    {
-      t: 0.40,
-      speed: 38.7,
-    },
-    {
-      t: 0.58,
-      speed: 39.6,
-    },
-    {
-      t: 0.72,
-      speed: 40.8,
-    },
-    {
-      t: 0.84,
-      speed: 41.3,
-    },
-    {
-      t: 1.00,
-      speed: 40.2,
-    },
-  ];
-
-
-  const minSpeed = 30;
-  const maxSpeed = 44;
-
-
-  const chartLeft = 75;
-  const chartRight = 810;
-
-  const chartTop = 30;
-  const chartBottom = 325;
-
-
-  const mapPoint = (
-    point: VoyagerPoint
-  ): string => {
-    const x =
-      chartLeft +
-      point.t *
-        (
-          chartRight -
-          chartLeft
-        );
-
-
-    const normalized =
-      (
-        point.speed -
-        minSpeed
-      ) /
-      (
-        maxSpeed -
-        minSpeed
-      );
-
-
-    const y =
-      chartBottom -
-      normalized *
-        (
-          chartBottom -
-          chartTop
-        );
-
-
-    return `${x},${y}`;
+  type View = "mission" | "jupiter" | "saturn";
+  type Point = { t: number; speed: number };
+  const day = 86400000;
+  const epoch = Date.UTC(1977, 8, 5);
+  const days = (y: number, m: number, d: number) => (Date.UTC(y,m-1,d)-epoch)/day;
+  const j = days(1979,3,5), s = days(1980,11,12), end = days(1981,6,1);
+  const AU = 149597870.7, muSun = 132712440018;
+  const solarSpeed = (v: number, r0: number, r: number) =>
+    Math.sqrt(Math.max(0, v*v+2*muSun/AU*(1/r-1/r0)));
+  const flyby = (v: number, V: number, mu: number, rp: number) => {
+    const u = Math.sqrt(v*v-V*V);
+    const delta = 2*Math.asin(1/(1+rp*u*u/mu));
+    return Math.hypot(V+u*Math.sin(delta),u*Math.cos(delta));
   };
-
-
-  const drawData = (
-    data: VoyagerPoint[]
-  ): void => {
-    if (!speedLine) {
-      return;
-    }
-
-
-    const points =
-      data
-        .map(mapPoint)
-        .join(" ");
-
-
-    speedLine.setAttribute(
-      "points",
-      points
-    );
+  const jIn = solarSpeed(42,1,5.2), jOut = flyby(jIn,13.06,126686534,4.89*71398);
+  const sIn = solarSpeed(jOut,5.2,9.58), sOut = flyby(sIn,9.68,37931187,3.09*60330);
+  const arc = (ta:number,tb:number,ra:number,rb:number,v:number):Point[] =>
+    Array.from({length:121},(_,i)=>({t:ta+(tb-ta)*i/120,speed:solarSpeed(v,ra,ra+(rb-ra)*i/120)}));
+  const a=arc(0,j,1,5.2,42), b=arc(j,s,5.2,9.58,jOut), c=arc(s,end,9.58,11,sOut);
+  const all=[...a,...b,...c];
+  const line=document.querySelector<SVGPolylineElement>("#voyager-speed-line");
+  const ticks=document.querySelector("#voyager-ticks");
+  const label=document.querySelector("#assist-live-speed");
+  const craft=document.querySelector<HTMLElement>("#assist-voyager");
+  const buttons=document.querySelectorAll<HTMLButtonElement>("[data-voyager-view]");
+  const marker=(id:string,t:number,speed:number,visible:boolean,x:(t:number)=>number,y:(v:number)=>number)=>{
+    const g=document.querySelector<SVGGElement>(id);
+    if(!g)return;
+    g.style.display=visible?"":"none";
+    const px=x(t), py=y(speed);
+    const l=g.querySelector("line"), dot=g.querySelector("circle"), txt=g.querySelector("text");
+    l?.setAttribute("x1",String(px)); l?.setAttribute("x2",String(px));
+    dot?.setAttribute("cx",String(px)); dot?.setAttribute("cy",String(py));
+    txt?.setAttribute("x",String(Math.min(px+10,680)));
   };
-
-
-  const setView = (
-    view: VoyagerView
-  ): void => {
-    buttons.forEach(
-      (button) => {
-        button.classList.toggle(
-          "active",
-          button.dataset
-            .voyagerView ===
-            view
-        );
+  function setView(view:View) {
+    const lo=view==="jupiter"?j-100:view==="saturn"?s-100:0;
+    const hi=view==="jupiter"?j+100:view==="saturn"?s+100:end;
+    const data=all.filter(p=>p.t>=lo&&p.t<=hi);
+    const ymin=0,ymax=50;
+    const x=(t:number)=>75+(t-lo)/(hi-lo)*735;
+    const y=(v:number)=>325-(v-ymin)/(ymax-ymin)*295;
+    line?.setAttribute("points",data.map(p=>x(p.t)+","+y(p.speed)).join(" "));
+    if(ticks){
+      ticks.replaceChildren();
+      const text=(px:number,py:number,value:string,anchor:string)=>{
+        const e=document.createElementNS("http://www.w3.org/2000/svg","text");
+        e.setAttribute("x",String(px));e.setAttribute("y",String(py));e.setAttribute("text-anchor",anchor);
+        e.textContent=value;ticks.append(e);
+      };
+      for(let i=0;i<=5;i++){
+        text(x(lo+(hi-lo)*i/5),347,Math.round(lo+(hi-lo)*i/5).toString(),"middle");
+        text(63,y(i*10)+4,String(i*10),"end");
       }
-    );
-
-
-    switch (view) {
-      case "mission":
-        drawData(
-          missionData
-        );
-
-        if (liveSpeed) {
-          liveSpeed.textContent =
-            "Misión completa · Júpiter + Saturno";
-        }
-
-        if (jupiterMarker) {
-          jupiterMarker.style.display =
-            "";
-        }
-
-        if (saturnMarker) {
-          saturnMarker.style.display =
-            "";
-        }
-
-        if (voyager) {
-          voyager.style.transform =
-            "translate(0, 0)";
-        }
-
-        break;
-
-
-      case "jupiter":
-        drawData(
-          jupiterData
-        );
-
-        if (liveSpeed) {
-          liveSpeed.textContent =
-            "Encuentro con Júpiter · 5 marzo 1979";
-        }
-
-        if (jupiterMarker) {
-          jupiterMarker.style.display =
-            "";
-        }
-
-        if (saturnMarker) {
-          saturnMarker.style.display =
-            "none";
-        }
-
-        if (voyager) {
-          voyager.style.transform =
-            "translate(25px, -15px)";
-        }
-
-        break;
-
-
-      case "saturn":
-        drawData(
-          saturnData
-        );
-
-        if (liveSpeed) {
-          liveSpeed.textContent =
-            "Encuentro con Saturno · 12 noviembre 1980";
-        }
-
-        if (jupiterMarker) {
-          jupiterMarker.style.display =
-            "none";
-        }
-
-        if (saturnMarker) {
-          saturnMarker.style.display =
-            "";
-        }
-
-        if (voyager) {
-          voyager.style.transform =
-            "translate(50px, -35px)";
-        }
-
-        break;
     }
-  };
-
-
-  buttons.forEach(
-    (button) => {
-      button.addEventListener(
-        "click",
-        () => {
-          const value =
-            button.dataset
-              .voyagerView;
-
-
-          if (
-            value ===
-              "mission" ||
-            value ===
-              "jupiter" ||
-            value ===
-              "saturn"
-          ) {
-            setView(
-              value
-            );
-          }
-        }
-      );
-    }
-  );
-
-
-  setView(
-    "mission"
-  );
+    marker("#voyager-jupiter-marker",j,jOut,view!=="saturn",x,y);
+    marker("#voyager-saturn-marker",s,sOut,view!=="jupiter",x,y);
+    if(label)label.textContent=view==="jupiter"?`Júpiter: ${jIn.toFixed(2)} → ${jOut.toFixed(2)} km/s (modelo)`:view==="saturn"?`Saturno: ${sIn.toFixed(2)} → ${sOut.toFixed(2)} km/s (modelo)`:"Modelo calculado · Júpiter + Saturno";
+    if(craft)craft.style.transform=view==="jupiter"?"translate(25px,-15px)":view==="saturn"?"translate(50px,-35px)":"translate(0,0)";
+    buttons.forEach(b=>b.classList.toggle("active",b.dataset.voyagerView===view));
+  }
+  buttons.forEach(b=>b.addEventListener("click",()=>{
+    const v=b.dataset.voyagerView;
+    if(v==="mission"||v==="jupiter"||v==="saturn")setView(v);
+  }));
+  setView("mission");
 }
-
 export {};

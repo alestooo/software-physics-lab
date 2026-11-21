@@ -1,17 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import LegacyTopicHero from "../components/ui/LegacyTopicHero.astro";
 import "../styles/salto-videojuegos.css";
 ---
 
 <BaseLayout
   title="Salto en videojuegos | Physics × Software"
   description="Simulación interactiva del salto de un personaje y el uso de gravedad modificada en motores de videojuegos."
+  fullBleed={true}
 >
   <article
-    class="jump-page"
+    class="jump-page topic-page legacy-topic-page"
     id="jump-lab"
   >
 
+    <LegacyTopicHero>
     <section class="jump-hero">
 
       <div class="jump-stars"></div>
@@ -108,6 +112,8 @@ import "../styles/salto-videojuegos.css";
       </div>
 
     </section>
+    </LegacyTopicHero>
+    <div class="topic-body"><div class="topic-body-shell legacy-topic-body">
 
     <section class="jump-case">
 
@@ -903,7 +909,9 @@ import "../styles/salto-videojuegos.css";
 
     </section>
 
-    <footer class="jump-footer">
+    <section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Caso verificable: Unity CharacterController</h2><p>La API CharacterController.Move de Unity recibe el desplazamiento de cada actualización y no aplica automáticamente la gravedad. Su ejemplo calcula la velocidad inicial a partir de la altura deseada y actualiza velocidad vertical con gravedad y tiempo de cuadro. Para un salto desde el suelo, y(t)=v₀t − gt²/2, t<sub>vuelo</sub>=2v₀/g y h=v₀²/(2g). Si el control es un impulso J, v₀=J/m. El modelo de este laboratorio interpreta el control como velocidad vertical inicial. Permite ajustar la sensación del salto sin nuevas animaciones. El costo es sincronizar colisiones, entrada, pasos de tiempo y animación; una trayectoria fija es barata pero no se adapta a plataformas ni cambios de gravedad.</p><p><a href="https://docs.unity.com/en-us/engine/6000.5/script-reference/unityengine/charactercontroller/move">Unity — CharacterController.Move, documentación oficial</a>.</p></section>
+    <Bibliography topic="salto-videojuegos" />
+<footer class="jump-footer">
 
       <a href="/dron">
         ← Dron de reparto
@@ -934,6 +942,7 @@ import "../styles/salto-videojuegos.css";
 
     </footer>
 
+  </div></div>
   </article>
 
   <script>

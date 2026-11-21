@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import FullDriveCycle from "../components/ui/FullDriveCycle.astro";
 import TopicShell from "../components/ui/TopicShell.astro";
 
 import "../styles/frenado-regenerativo.css";
@@ -568,6 +570,7 @@ const telemetry = [
               </g>
 
 
+              <g id="regen-ticks" fill="currentColor" font-size="12"></g>
               <polyline
                 id="regen-kinetic-line"
                 class="regen-line kinetic-line"
@@ -589,7 +592,7 @@ const telemetry = [
             </svg>
 
             <div class="chart-x-label">
-              Tiempo de frenado
+              Tiempo de frenado (s)
             </div>
 
           </div>
@@ -626,6 +629,9 @@ const telemetry = [
     ================================================== -->
 
     <div slot="justification">
+<FullDriveCycle />
+
+<section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Caso verificable: Tesla Model 3 y balance de la visualización</h2><p>El <a href="https://www.tesla.com/ownersmanual/model3/en_pr/GUID-3DFFB071-C0F6-474D-8A45-17BE1A006365.html">manual del Tesla Model 3</a> explica que la regeneración puede limitarse con batería fría o completamente cargada, y que el indicador de potencia distingue la recuperación. El laboratorio no pretende reproducir su controlador propietario.</p><p>Datos calculados por el laboratorio para un evento de frenado de 5 s con desaceleración constante: v(t)=vi+(vf−vi)t/5; K(t)=mv(t)²/2; Erec(t)=η[K(0)−K(t)]; Edis(t)=(1−η)[K(0)−K(t)]. La suma K+Erec+Edis permanece igual a K(0). Masa en kg, velocidades convertidas de km/h a m/s y energía en kJ. No son mediciones de un vehículo real ni un ciclo homologado. La eficiencia constante omite temperatura, potencia máxima, estado de batería y resistencia aerodinámica. Implementar un controlador real requiere mapas de eficiencia y límites de carga; una proporción fija no captura esas restricciones.</p><p><a href="https://www.fueleconomy.gov/feg/atv-ev.shtml">Departamento de Energía de EE. UU. — Where the Energy Goes: Electric Cars</a> (explica el mecanismo de recuperación; cifras de esta gráfica calculadas, no atribuidas al DOE).</p></section>
 
       <span class="section-kicker">
         ¿Por qué modelarlo?
@@ -690,6 +696,8 @@ const telemetry = [
     ================================================== -->
 
     <div slot="sources">
+<Bibliography topic="frenado-regenerativo" />
+
 
       <p>
         La visualización utiliza datos calculados por esta

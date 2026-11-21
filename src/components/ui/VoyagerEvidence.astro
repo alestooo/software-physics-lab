@@ -1,0 +1,34 @@
+---
+import EvidenceChart from "./EvidenceChart.astro";
+import horizons from "../../data/voyager-horizons.json";
+const precise = horizons.points as {t:number;v:number;jd:number;vx:number;vy:number;vz:number}[];
+const maxReal=precise.length?Math.ceil(Math.max(...precise.map(r=>r.v))/10)*10:50;
+const epoch=Date.UTC(1977,8,5);
+const days=(date:string)=>(Date.parse(date+"T00:00:00Z")-epoch)/86400000;
+const jupiter="https://ntrs.nasa.gov/api/citations/19790009614/downloads/19790009614.pdf";
+const chron="https://www.nasa.gov/wp-content/uploads/2023/04/1978.pdf";
+const saturn="https://www.nasa.gov/wp-content/uploads/2023/04/sp-4227.pdf";
+const records=[
+  {date:"1977-09-06",original:143300,unit:"km/h",v:143300/3600,note:"Salida histórica; ficha de encuentro",url:jupiter},
+  {date:"1978-07-01",original:39886,unit:"mph",v:39886*1.609344/3600,note:"Estado de misión",url:"https://historycollection.jsc.nasa.gov/JSCHistoryPortal/history/roundups/issues/78-07-07.pdf"},
+  {date:"1978-10-05",original:15.43,unit:"km/s",v:15.43,note:"Estado de misión, NASA Release 78-154",url:chron},
+  {date:"1978-12-22",original:49262,unit:"km/h",v:49262/3600,note:"Estado de misión, NASA Release 78-194",url:chron},
+  {date:"1979-02-15",original:47300,unit:"km/h",v:47300/3600,note:"Mínimo previsto en ficha de encuentro",url:jupiter},
+  {date:"1979-03-05",original:130300,unit:"km/h",v:130300/3600,note:"Encuentro con Júpiter; valor previsto",url:jupiter},
+  {date:"1979-04-01",original:85100,unit:"km/h",v:85100/3600,note:"Después de Júpiter; valor previsto",url:jupiter},
+  {date:"1980-08-22",original:45675,unit:"mph",v:45675*1.609344/3600,note:"Inicio de observación de Saturno",url:saturn}
+];
+---
+<section class="evidence-panel">
+  <h2>Contraste con documentos históricos de NASA</h2>
+  <p>La curva interactiva anterior es un modelo idealizado de cónicas parcheadas, no telemetría. Los siguientes puntos se transcriben de documentos de NASA, con valores de estado de misión y estimaciones contemporáneas identificados por separado. Todos son heliocéntricos. La conversión es km/h ÷ 3600, o mph × 1,609344 ÷ 3600.</p>
+  <EvidenceChart title="Voyager 1: velocidades heliocéntricas publicadas" xLabel="Días desde el 5/9/1977" yLabel="Rapidez (km/s)" xMax={1200} yMax={45} xTicks={[0,200,400,600,800,1000,1200]} yTicks={[0,10,20,30,40,45]} series={[{label:"Estados de misión",color:"#008f78",dots:true,points:records.filter(r=>r.note.startsWith("Estado")||r.date==="1980-08-22").map(r=>({x:days(r.date),y:r.v}))},{label:"Ficha NASA de febrero de 1979",color:"#a04cde",dots:true,points:records.filter(r=>r.url===jupiter).map(r=>({x:days(r.date),y:r.v}))}]} source="Fuentes: NASA NTRS 19790009614, p. 4; Astronautics and Aeronautics, 1978; JSC Roundup, 7 julio 1978; NASA SP-4227, p. 181. Puntos discretos, sin interpolación."/>
+  <div class="evidence-table-scroll"><table><thead><tr><th>Fecha</th><th>Valor publicado</th><th>km/s</th><th>Documento</th></tr></thead><tbody>{records.map(r=><tr><td>{r.date}</td><td>{r.original} {r.unit}</td><td>{r.v.toFixed(2)}</td><td><a href={r.url}>{r.note}</a></td></tr>)}</tbody></table></div>
+  <p>En la ficha de Júpiter, la rapidez mínima prevista era { (47300/3600).toFixed(2) } km/s; alcanza { (130300/3600).toFixed(2) } km/s durante el encuentro y queda en { (85100/3600).toFixed(2) } km/s el 1 de abril. El máximo durante un sobrevuelo no equivale a la ganancia neta final. El dato del 22 de agosto de 1980 antecede al encuentro con Saturno (12 de noviembre); no se dispone aquí de una serie histórica completa de sus velocidades durante ese segundo paso, por lo que no se inventan puntos. El segundo salto del gráfico principal sigue siendo una predicción ilustrativa.</p>
+  <p>Para reproducir una efeméride completa con <a href="https://ssd.jpl.nasa.gov/horizons/">JPL Horizons</a>, seleccionar Voyager 1 (-31), centro Sol (500@10), tabla de vectores cartesianos, unidades km y km/s, intervalo 06/09/1977–01/06/1981, y calcular v=√(vₓ²+vᵧ²+v_z²). <a href="https://ssd.jpl.nasa.gov/horizons/manual.html">Manual oficial del sistema</a>.</p>
+  {precise.length>0 && <>
+    <h3>Efeméride de alta resolución — NASA/JPL Horizons</h3>
+    <EvidenceChart title="Trayectoria heliocéntrica de Voyager 1" xLabel="Días desde el 5/9/1977 (TDB)" yLabel="Rapidez (km/s)" xMax={Math.ceil(precise[precise.length-1].t/100)*100} yMax={maxReal} series={[{label:"Rapidez a partir de vectores Horizons",color:"#7135c7",points:precise.map(r=>({x:r.t,y:r.v}))}]} source={horizons.source+"; rapidez obtenida con la norma euclídea de cada vector. No es telemetría en vivo."}/>
+    <p>Se incluyen {precise.length} muestras, con mayor resolución en los sobrevuelos de Júpiter y Saturno. <a href="https://ssd-api.jpl.nasa.gov/doc/horizons.html">Documentación de la API</a>. El archivo de vectores y el script de descarga forman parte del repositorio.</p>
+  </>}
+</section>

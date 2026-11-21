@@ -1,0 +1,15 @@
+---
+import EvidenceChart from "./EvidenceChart.astro";
+const href="https://odr.chalmers.se/server/api/core/bitstreams/e0b7d2dc-1159-4ce7-8ba2-264a5cf28e46/content";
+// Approximate manual read-off of Fig. 3.6, not original raw data.
+const sample=[{load:110,mu:2.85},{load:320,mu:2.74},{load:535,mu:2.63},{load:750,mu:2.52},{load:965,mu:2.41},{load:1180,mu:2.30},{load:1500,mu:2.14}];
+---
+<section class="evidence-panel">
+  <h2>Validación experimental de la sensibilidad a la carga</h2>
+  <p>Los datos comerciales de la curva completa de agarre de neumáticos de F1 no se incluyen en las fuentes consultadas. Se añade una comparación experimental de automovilismo universitario para verificar la tendencia física: la tesis de Rakholia y Tisell (2019), figura 3.6, presenta fuerza lateral normalizada por carga vertical a partir de mediciones. Estos puntos son lecturas aproximadas de la figura publicada, no datos de Pirelli ni un neumático de Fórmula 1.</p>
+  <EvidenceChart title="Fuerza lateral normalizada frente a carga" xLabel="Carga vertical Fz (N)" yLabel="Fy/Fz (adimensional)" xMax={1600} yMax={3.5} xTicks={[0,400,800,1200,1600]} yTicks={[0,.5,1,1.5,2,2.5,3,3.5]} series={[{label:"Mediciones aproximadas, Formula Student",color:"#7135c7",dots:true,points:sample.map(r=>({x:r.load,y:r.mu}))}]} source="Rakholia y Tisell (2019), p. 15, fig. 3.6. Lectura aproximada de los marcadores, no archivo original."/>
+  <EvidenceChart title="Fuerza lateral reconstruida desde las mediciones" xLabel="Carga vertical Fz (N)" yLabel="Fuerza lateral Fy (N)" xMax={1600} yMax={5000} xTicks={[0,400,800,1200,1600]} yTicks={[0,1000,2000,3000,4000,5000]} series={[{label:"Fy=μFz (aprox.)",color:"#008f78",dots:true,points:sample.map(r=>({x:r.load,y:r.load*r.mu}))},{label:"μ constante=2,85",color:"#d75a9e",dashed:true,points:[{x:0,y:0},{x:1600,y:1600*2.85}]}]} source="Cálculo propio usando las lecturas aproximadas anteriores; recta de referencia del modelo de Coulomb."/>
+  <p>Al pasar de 110 N a 1500 N, μ disminuye aproximadamente de 2,85 a 2,14. La fuerza lateral aumenta, pero menos que proporcionalmente: a 1500 N, Fy≈3210 N frente a 4275 N de un modelo con μ constante. Esto explica por qué un simulador necesita sensibilidad a carga y no basta un coeficiente fijo.</p>
+  <p>En Fórmula 1, el trabajo académico <a href="https://ifatwww.et.uni-magdeburg.de/ifac2020/media/pdfs/0335.pdf">Optimal Tyre Management of a Formula One Car (IFAC, 2020)</a>, fig. 3, usa una característica térmica representativa de un compuesto superblando, con ventana de 90–105 °C; es una curva de modelo, no mediciones de Pirelli. La gama histórica de Pirelli se documenta por separado.</p>
+  <p><a href={href}>Consultar la tesis y la figura experimental original</a>.</p>
+</section>

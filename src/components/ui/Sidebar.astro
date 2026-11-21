@@ -1,260 +1,130 @@
 ---
+import "../../styles/evidence.css";
 import "../../styles/sidebar.css";
-
-const currentPath =
-  Astro.url.pathname;
-
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const sections = [
   {
-    title: "Cinemática",
-    items: [
+    "title": "Cinemática",
+    "items": [
       {
-        number: "01",
-        label: "Dron de reparto",
-        href: "/dron",
+        "number": "01",
+        "label": "Dron de reparto",
+        "href": "/dron"
       },
       {
-        number: "02",
-        label: "Salto en videojuegos",
-        href: "/salto-videojuegos",
-      },
-    ],
+        "number": "02",
+        "label": "Salto en videojuegos",
+        "href": "/salto-videojuegos"
+      }
+    ]
   },
   {
-    title: "Dinámica",
-    items: [
+    "title": "Dinámica",
+    "items": [
       {
-        number: "03",
-        label: "Gravedad artificial",
-        href: "/gravedad-artificial",
+        "number": "03",
+        "label": "Gravedad artificial",
+        "href": "/gravedad-artificial"
       },
       {
-        number: "04",
-        label: "Fórmula 1",
-        href: "/formula-1",
+        "number": "04",
+        "label": "Fórmula 1",
+        "href": "/formula-1"
       },
       {
-        number: "05",
-        label: "Control háptico",
-        href: "/control-haptico",
-      },
-    ],
+        "number": "05",
+        "label": "Control háptico",
+        "href": "/control-haptico"
+      }
+    ]
   },
   {
-    title: "Conservación",
-    items: [
+    "title": "Conservación",
+    "items": [
       {
-        number: "06",
-        label: "Frenado regenerativo",
-        href: "/frenado-regenerativo",
+        "number": "06",
+        "label": "Frenado regenerativo",
+        "href": "/frenado-regenerativo"
       },
       {
-        number: "07",
-        label: "Coeficiente de restitución",
-        href: "/coeficiente-restitucion",
+        "number": "07",
+        "label": "Coeficiente de restitución",
+        "href": "/coeficiente-restitucion"
       },
       {
-        number: "08",
-        label: "Ruedas de reacción",
-        href: "/ruedas-reaccion",
-      },
-    ],
+        "number": "08",
+        "label": "Ruedas de reacción",
+        "href": "/ruedas-reaccion"
+      }
+    ]
   },
   {
-    title: "Gravitación",
-    items: [
+    "title": "Gravitación",
+    "items": [
       {
-        number: "09",
-        label: "Asistencia gravitatoria",
-        href: "/asistencia-gravitatoria",
-      },
-    ],
+        "number": "09",
+        "label": "Asistencia gravitatoria",
+        "href": "/asistencia-gravitatoria"
+      }
+    ]
   },
-];
-
-const isActive = (
-  href: string
-): boolean => {
-  if (href === "/") {
-    return currentPath === "/";
+  {
+    "title": "Oscilaciones",
+    "items": [
+      {
+        "number": "10",
+        "label": "Spring animations",
+        "href": "/spring-animations"
+      },
+      {
+        "number": "11",
+        "label": "Síntesis de sonido",
+        "href": "/sintesis-sonido"
+      },
+      {
+        "number": "12",
+        "label": "Resonancia estructural",
+        "href": "/resonancia-estructural"
+      }
+    ]
+  },
+  {
+    "title": "Fluidos",
+    "items": [
+      {
+        "number": "13",
+        "label": "Enfriamiento líquido",
+        "href": "/enfriamiento-liquido"
+      }
+    ]
+  },
+  {
+    "title": "Cierre",
+    "items": [
+      {
+        "number": "✦",
+        "label": "Qué aprendí",
+        "href": "/que-aprendi"
+      }
+    ]
   }
-
-  return currentPath.startsWith(href);
-};
+];
+const isActive = (href:string) => currentPath === href;
 ---
-
 <aside class="sidebar">
-
-  <!-- =====================================================
-       BRAND
-  ====================================================== -->
-
-  <a
-    href="/"
-    class="sidebar-brand"
-    aria-label="Ir al inicio"
-  >
-    <span
-      class="sidebar-brand-icon"
-      aria-hidden="true"
-    >
-      <span class="sidebar-brand-ring"></span>
-      <span class="sidebar-brand-dot"></span>
-    </span>
-
-    <span class="sidebar-brand-copy">
-
-      <strong class="sidebar-brand-title">
-        <span>Physics</span>
-
-        <span class="sidebar-brand-x">
-          ×
-        </span>
-
-        <span>Software</span>
-      </strong>
-
-      <span class="sidebar-brand-subtitle">
-        Portafolio de evidencias
-        <br />
-        — Alejandro Soto Víquez
-      </span>
-
-    </span>
+  <a href="/" class="sidebar-brand" aria-label="Ir al inicio">
+    <span class="sidebar-brand-icon" aria-hidden="true"><span class="sidebar-brand-ring"></span><span class="sidebar-brand-dot"></span></span>
+    <span class="sidebar-brand-copy"><strong class="sidebar-brand-title"><span>Physics</span><span class="sidebar-brand-x">×</span><span>Software</span></strong><span class="sidebar-brand-subtitle">Portafolio de evidencias<br/>— Alejandro Soto Víquez</span></span>
   </a>
-
-
   <div class="sidebar-divider"></div>
-
-
-  <!-- =====================================================
-       INICIO
-  ====================================================== -->
-
-  <a
-    href="/"
-    class:list={[
-      "sidebar-home",
-      isActive("/") && "active",
-    ]}
-  >
-    <span
-      class="sidebar-home-icon"
-      aria-hidden="true"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M4 10.5L12 4L20 10.5V20H14.8V14H9.2V20H4V10.5Z"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linejoin="round"
-        />
-      </svg>
-    </span>
-
-    <span class="sidebar-home-label">
-      Inicio
-    </span>
-
-    <span class="sidebar-item-arrow">
-      →
-    </span>
+  <a href="/" class:list={["sidebar-home",isActive("/")&&"active"]}>
+    <span class="sidebar-home-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5L12 4L20 10.5V20H14.8V14H9.2V20H4V10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+    <span class="sidebar-home-label">Inicio</span><span class="sidebar-item-arrow">→</span>
   </a>
-
-
-  <!-- =====================================================
-       TEMAS
-  ====================================================== -->
-
-  <nav
-    class="sidebar-navigation"
-    aria-label="Temas del portafolio"
-  >
-    {
-      sections.map((section) => (
-        <section class="sidebar-section">
-
-          <h2 class="sidebar-heading">
-            {section.title}
-          </h2>
-
-          <div class="sidebar-items">
-            {
-              section.items.map((item) => (
-                <a
-                  href={item.href}
-                  class:list={[
-                    "sidebar-nav-item",
-                    isActive(item.href) &&
-                      "active",
-                  ]}
-                >
-                  <span class="sidebar-topic-number">
-                    {item.number}
-                  </span>
-
-                  <span class="sidebar-topic-name">
-                    {item.label}
-                  </span>
-
-                  <span class="sidebar-item-arrow">
-                    →
-                  </span>
-                </a>
-              ))
-            }
-          </div>
-
-        </section>
-      ))
-    }
+  <nav class="sidebar-navigation" aria-label="Temas del portafolio" style="overflow-y:auto;min-height:0;flex:1">
+  {sections.map(section=><section class="sidebar-section"><h2 class="sidebar-heading">{section.title}</h2><div class="sidebar-items">
+  {section.items.map(item=><a href={item.href} aria-current={isActive(item.href)?"page":undefined} class:list={["sidebar-nav-item",isActive(item.href)&&"active"]}><span class="sidebar-topic-number">{item.number}</span><span class="sidebar-topic-name">{item.label}</span><span class="sidebar-item-arrow">→</span></a>)}
+  </div></section>)}
   </nav>
-
-
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
-
-  <div class="sidebar-bottom">
-
-    <div class="sidebar-divider"></div>
-
-    <a
-      href="https://github.com/alestooo/software-physics-lab"
-      target="_blank"
-      rel="noreferrer"
-      class="sidebar-github"
-    >
-      <svg
-        class="sidebar-github-icon"
-        viewBox="0 0 24 24"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M12 2.7C6.86 2.7 2.7 6.86 2.7 12C2.7 16.11 5.37 19.6 9.07 20.83C9.53 20.91 9.7 20.63 9.7 20.39V18.76C7.14 19.32 6.6 17.67 6.6 17.67C6.18 16.61 5.57 16.33 5.57 16.33C4.73 15.75 5.63 15.76 5.63 15.76C6.56 15.83 7.05 16.72 7.05 16.72C7.88 18.14 9.23 17.73 9.76 17.49C9.84 16.89 10.08 16.48 10.35 16.25C8.31 16.02 6.16 15.23 6.16 11.7C6.16 10.69 6.52 9.87 7.11 9.23C7.01 9 6.7 8.06 7.2 6.79C7.2 6.79 7.98 6.54 9.73 7.73C10.47 7.52 11.25 7.42 12.03 7.42C12.81 7.42 13.59 7.52 14.33 7.73C16.08 6.54 16.86 6.79 16.86 6.79C17.36 8.06 17.05 9 16.95 9.23C17.54 9.87 17.9 10.69 17.9 11.7C17.9 15.24 15.74 16.01 13.69 16.24C14.02 16.52 14.32 17.07 14.32 17.91V20.39C14.32 20.63 14.49 20.92 14.95 20.83C18.64 19.59 21.3 16.11 21.3 12C21.3 6.86 17.14 2.7 12 2.7Z"
-          stroke="currentColor"
-          stroke-width="1.4"
-          stroke-linejoin="round"
-        />
-      </svg>
-
-      <span>
-        Repositorio
-      </span>
-
-      <span class="sidebar-github-arrow">
-        ↗
-      </span>
-    </a>
-
-    <span class="sidebar-course">
-      Física I · CENFOTEC
-    </span>
-
-  </div>
-
+  <div class="sidebar-bottom"><div class="sidebar-divider"></div><a href="https://github.com/alestooo/software-physics-lab" target="_blank" rel="noreferrer" class="sidebar-github"><span>Repositorio</span><span class="sidebar-github-arrow">↗</span></a><span class="sidebar-course">Física I · CENFOTEC</span></div>
 </aside>

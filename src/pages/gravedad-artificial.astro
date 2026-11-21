@@ -1,17 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import LegacyTopicHero from "../components/ui/LegacyTopicHero.astro";
 import "../styles/advanced-labs.css";
 ---
 
 <BaseLayout
   title="Gravedad artificial | Physics × Software"
   description="Simulación y diagrama interactivo de gravedad artificial mediante rotación."
+  fullBleed={true}
 >
   <article
-    class="advanced-page gravity-page"
+    class="advanced-page gravity-page topic-page legacy-topic-page"
     id="gravity-lab"
   >
 
+    <LegacyTopicHero>
     <section class="advanced-hero">
 
       <div class="advanced-hero-grid"></div>
@@ -68,6 +72,8 @@ import "../styles/advanced-labs.css";
       </div>
 
     </section>
+    </LegacyTopicHero>
+    <div class="topic-body"><div class="topic-body-shell legacy-topic-body">
 
     <section class="advanced-case">
 
@@ -653,7 +659,9 @@ import "../styles/advanced-labs.css";
 
     </section>
 
-    <footer class="advanced-footer">
+    <section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Caso verificable: concepto Nautilus-X de NASA</h2><p>Un estudio de NASA compara la rotación parcial del vehículo Nautilus-X (radio 6 m, 12 rpm) con otros conceptos. No es una estación operativa. Con ω=2πn/60 y a=ω²r, esos valores dan a≈9,47 m/s² (0,97 g). Para lograr 1 g con r=6 m se requieren n=(60/2π)√(9,81/6)≈12,21 rpm. La aceleración centrípeta apunta hacia el eje; la sensación aparente de peso se dirige hacia el exterior en el marco rotatorio. El software de diseño debe predecir el nivel de gravedad y su variación con el radio, no asignar un valor fijo. Los costos son modelar estabilidad, cargas estructurales y efectos de Coriolis; el modelo circular ideal no valida la habitabilidad.</p><p><a href="https://ntrs.nasa.gov/api/citations/20150009516/downloads/20150009516.pdf">NASA Technical Reports Server, Rotation Concepts for Artificial Gravity, p. 5</a>.</p></section>
+    <Bibliography topic="gravedad-artificial" />
+<footer class="advanced-footer">
 
       <a href="/salto-videojuegos">
         ← Salto en videojuegos
@@ -675,6 +683,7 @@ import "../styles/advanced-labs.css";
 
     </footer>
 
+  </div></div>
   </article>
 
   <script>

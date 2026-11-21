@@ -1,71 +1,76 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/home.css";
+import "../styles/final-labs.css";
 
 const topics = [
   {
     number: "01",
-    title: "Movimiento",
+    title: "Dron de reparto",
     description: "Trayectorias, posición, velocidad y aceleración.",
     href: "/dron",
     icon: "orbit",
   },
   {
     number: "02",
-    title: "Gravedad",
+    title: "Salto en videojuegos",
     description: "Caída libre, saltos y simulación numérica.",
     href: "/salto-videojuegos",
     icon: "planet",
   },
   {
     number: "03",
-    title: "Rotación",
+    title: "Gravedad artificial",
     description: "Movimiento circular y gravedad artificial.",
     href: "/gravedad-artificial",
     icon: "rotation",
   },
   {
     number: "04",
-    title: "Fricción",
+    title: "Llantas de Fórmula 1",
     description: "Contacto, temperatura y agarre de neumáticos.",
     href: "/formula-1",
     icon: "wave",
   },
   {
     number: "05",
-    title: "Elasticidad",
+    title: "Control háptico",
     description: "Resortes, fuerza restauradora y sistemas hápticos.",
     href: "/control-haptico",
     icon: "spring",
   },
   {
     number: "06",
-    title: "Energía",
+    title: "Frenado regenerativo",
     description: "Trabajo, energía cinética y frenado regenerativo.",
     href: "/frenado-regenerativo",
     icon: "energy",
   },
   {
     number: "07",
-    title: "Colisiones",
+    title: "Coeficiente de restitución",
     description: "Momento lineal, restitución y rebotes físicos.",
     href: "/coeficiente-restitucion",
     icon: "collision",
   },
   {
     number: "08",
-    title: "Momento angular",
+    title: "Ruedas de reacción",
     description: "Torque, rotación y control de actitud satelital.",
     href: "/ruedas-reaccion",
     icon: "angular",
   },
   {
     number: "09",
-    title: "Gravitación",
+    title: "Asistencia gravitatoria",
     description: "Trayectorias espaciales y asistencia gravitatoria.",
     href: "/asistencia-gravitatoria",
     icon: "gravity",
   },
+  { number: "10", title: "Spring animations", description: "Rigidez y amortiguamiento determinan la forma en que un objeto alcanza su destino.", href: "/spring-animations", icon: "spring" },
+  { number: "11", title: "Síntesis de sonido", description: "La suma de armónicos cambia el sonido sin modificar su frecuencia fundamental.", href: "/sintesis-sonido", icon: "wave" },
+  { number: "12", title: "Resonancia estructural", description: "El análisis modal ayuda a diseñar estructuras que respondan de manera controlada.", href: "/resonancia-estructural", icon: "rotation" },
+  { number: "13", title: "Enfriamiento líquido", description: "La continuidad y Bernoulli explican cómo distribuir el refrigerante.", href: "/enfriamiento-liquido", icon: "energy" },
 ];
 
 const methodSteps = [
@@ -140,6 +145,7 @@ const methodSteps = [
           <a href="#temas">Temas</a>
           <a href="#avances">Avances</a>
           <a href="#metodo">Método</a>
+          <a href="#que-aprendi">Qué aprendí</a>
 
           <a
             href="https://github.com/alestooo/software-physics-lab"
@@ -193,10 +199,7 @@ const methodSteps = [
           </h1>
 
           <p class="hero-description">
-            Un laboratorio visual acumulativo con nueve casos:
-            cinco aplicaciones desarrolladas en el primer avance y
-            cuatro nuevos casos sobre conservación y gravitación
-            incorporados en este segundo avance.
+            Un laboratorio visual acumulativo con trece aplicaciones de Física I a la Ingeniería del Software: nueve casos revisados y cuatro nuevos sobre oscilaciones y fluidos.
           </p>
 
           <div class="hero-actions">
@@ -247,7 +250,7 @@ const methodSteps = [
 
             <span>
               <i class="tag-dot orange"></i>
-              9 temas
+              13 temas
             </span>
           </div>
         </div>
@@ -432,13 +435,13 @@ const methodSteps = [
     <section class="topics-section" id="temas">
       <div class="topics-head">
         <h2>
-          <span class="topics-title-main">Nueve temas,</span>
+          <span class="topics-title-main">Trece temas,</span>
           <span class="topics-title-pink">un mismo</span>
           <span class="topics-title-purple">principio.</span>
         </h2>
 
         <a href="#topic-grid" class="topics-link">
-          Avance 1 + Avance 2
+          Avances 1, 2 y final
           <span>→</span>
         </a>
       </div>
@@ -488,13 +491,11 @@ const methodSteps = [
 
         <h2>
           Del primer avance
-          <em>al segundo.</em>
+          <em>a la entrega final.</em>
         </h2>
 
         <p>
-          El segundo avance mantiene los cinco casos desarrollados
-          anteriormente y amplía el portafolio con cuatro nuevas
-          aplicaciones de conservación y gravitación.
+          La entrega final reúne los trece casos, incorpora las correcciones de los avances anteriores y añade oscilaciones y mecánica de fluidos.
         </p>
       </div>
 
@@ -520,7 +521,7 @@ const methodSteps = [
           </div>
         </article>
 
-        <article class="advance-card advance-card-current">
+        <article class="advance-card">
           <span class="advance-number">02</span>
 
           <small>AVANCE 2</small>
@@ -537,6 +538,16 @@ const methodSteps = [
             <span>07 · Coeficiente de restitución</span>
             <span>08 · Ruedas de reacción</span>
             <span>09 · Asistencia gravitatoria</span>
+          </div>
+        </article>
+        <article class="advance-card advance-card-current">
+          <span class="advance-number">03</span><small>ENTREGA FINAL</small><h3>Oscilaciones y fluidos</h3><p>Cuatro casos nuevos y reflexión final, para trece temas acumulativos.</p>
+          <div class="advance-items">
+          <a href="/spring-animations">10 · Spring animations</a>
+          <a href="/sintesis-sonido">11 · Síntesis de sonido</a>
+          <a href="/resonancia-estructural">12 · Resonancia estructural</a>
+          <a href="/enfriamiento-liquido">13 · Enfriamiento líquido</a>
+          <a href="#que-aprendi">Qué aprendí →</a>
           </div>
         </article>
       </div>
@@ -570,6 +581,18 @@ const methodSteps = [
         }
       </div>
     </section>
+<section class="method-section index-reflection" id="que-aprendi">
+<div class="reflection-inner">
+<span class="method-label">REFLEXIÓN FINAL</span><h2>Qué aprendí</h2>
+<h3>Mapa de conexiones</h3>
+<article><h3><a href="/control-haptico">05 · Control háptico</a> × <a href="/spring-animations">10 · Spring animations</a></h3><p>La ley de Hooke une ambos temas: una fuerza restauradora proporcional al desplazamiento, F=−kx. El control háptico convierte esa fuerza en una resistencia perceptible; la interfaz gráfica la convierte en aceleración visual, junto con el amortiguamiento. Aunque una aplicación actúa sobre un objeto físico y la otra sobre una propiedad de pantalla, ambas modelan una respuesta dependiente del estado y pueden evitar un comportamiento fijo.</p></article>
+<article><h3><a href="/frenado-regenerativo">06 · Frenado regenerativo</a> × <a href="/coeficiente-restitucion">07 · Restitución</a></h3><p>Los dos fenómenos se explican con la transformación de energía cinética K=mv²/2. En el vehículo, una fracción del descenso de K puede regresar a la batería; en el rebote, la fracción e² permanece como energía cinética de la pelota y el resto se transforma en energía interna. Ambos modelos obligan a distinguir la energía que permanece disponible de la que cambia de forma.</p></article>
+<article><h3><a href="/gravedad-artificial">03 · Gravedad artificial</a> × <a href="/ruedas-reaccion">08 · Ruedas de reacción</a></h3><p>Ambas aplicaciones involucran la dinámica rotacional, con ω=2π/T, a=ω²r y L=Iω. En el hábitat, la rotación crea aceleración centrípeta; en el satélite, cambiar el momento angular de la rueda modifica el del cuerpo. Para ambos, la inercia y la velocidad angular son variables que el software debe representar y no simplemente animar.</p></article>
+<h3>Aplicación propia: simulación y verificación de una montaña rusa</h3>
+<article><p>Me interesa desarrollar un software que permita diseñar y analizar recorridos virtuales de montaña rusa. El reto no es solamente mostrar un carrito que se mueve, sino determinar si puede completar un recorrido de acuerdo con las condiciones físicas del modelo. Para ello utilizaría conservación de energía, dinámica y movimiento circular. En un tramo ideal, la energía mecánica E=mgh+mv²/2 permite relacionar la altura y la rapidez. Si se considera fricción, el trabajo de las fuerzas no conservativas modifica la energía y el software debe estimar las pérdidas a lo largo del recorrido.</p><p>También calcularía la aceleración a=v²/r en curvas y la fuerza normal mediante la segunda ley de Newton, teniendo en cuenta cómo cambia la orientación de la pista. El usuario podría modificar la altura inicial y la geometría del recorrido, y comparar las gráficas de rapidez y energía resultantes. El programa señalaría cuándo una hipótesis del modelo deja de cumplirse y explicaría las variables que influyen en el resultado. Para comprobar la implementación usaría casos analíticos simples, comparación de balances de energía y pruebas de convergencia al reducir el paso de tiempo. El resultado sería un laboratorio educativo, no una certificación de seguridad de una instalación real. Esta aplicación me permitiría integrar programación, visualización y física para construir una herramienta que explica sus resultados, en lugar de una animación sin fundamento cuantitativo.</p></article>
+<a class="reflection-link" href="/que-aprendi">Ver reflexión completa <span aria-hidden="true">→</span></a>
+</div>
+</section>
   </div>
 
   <script>
@@ -654,3 +677,43 @@ const methodSteps = [
     }
   </script>
 </BaseLayout>
+<style>
+  .index-reflection {
+    display: block;
+    box-sizing: border-box;
+    scroll-margin-top: 5rem;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: #2a1854;
+  }
+  .reflection-inner { box-sizing: border-box; width: 100%; max-width: 1200px; margin: 0 auto; }
+  .reflection-inner h2 {
+    margin: .9rem 0 2rem;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -.055em;
+  }
+  .reflection-inner h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.4; margin: 1.5rem 0 1rem; }
+  .reflection-inner article {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    margin: 1rem 0;
+    border: 1px solid #e1d6f5;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 8px 25px #28145708;
+  }
+  .reflection-inner article h3 { margin: 0 0 .85rem; }
+  .reflection-inner article p { font-size: 1rem; line-height: 1.8; color: #504568; margin: 0; }
+  .reflection-inner article p + p { margin-top: 1rem; }
+  .reflection-inner a { color: #7135c7; text-decoration: none; font-weight: 700; }
+  .reflection-inner a:hover { text-decoration: underline; }
+  .reflection-inner .reflection-link {
+    display: inline-flex;
+    gap: .8rem;
+    align-items: center;
+    padding: .85rem 1.2rem;
+    margin-top: 1rem;
+    border: 1px solid #dfcef8;
+    border-radius: 12px;
+    background: #f1e9ff;
+  }
+</style>

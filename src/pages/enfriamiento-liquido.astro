@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import TopicShell from "../components/ui/TopicShell.astro";
+import "../styles/final-labs.css";
+---
+<BaseLayout title="Enfriamiento líquido | Physics × Software" description="La continuidad y Bernoulli explican cómo distribuir el refrigerante." fullBleed={true}>
+  <TopicShell number="13" category="Mecánica de fluidos" title="El caudal detrás de un centro de datos" description="La continuidad y Bernoulli explican cómo distribuir el refrigerante." resource="Visualización de datos" equation="Q = Av; P + ½ρv² + ρgh = constante" previousHref="/resonancia-estructural" previousLabel="Resonancia estructural" nextHref="/que-aprendi" nextLabel="Qué aprendí" telemetry={[{label:"Avance",value:"Final"},{label:"Tema",value:"13"},{label:"Recurso",value:"Visualización de datos"}]}>
+    <div slot="visual" class="final-visual"><div class="final-brand">CDU · FLUJO DE REFRIGERANTE</div><div class="fluid-pipe"><span>CDU</span><i>→</i><span>Rack</span><i>→</i><span>Cold plate</span></div><div class="final-metrics">Q = Av · Conservación de masa</div></div>
+    <div slot="case"><span class="section-kicker">Ingeniería del Software</span><h2>Refrigeración directa al chip</h2><p>ASHRAE describe las placas frías de servidores refrigerados por líquido y el compromiso entre transferencia térmica y caída de presión. El software de supervisión de una unidad de distribución de refrigerante (CDU) puede comparar caudal y presión con requisitos de cada equipo, identificar desviaciones y ajustar controles. Una velocidad fija no representa los cambios de área; el balance físico permite estimar diferencias entre segmentos.</p></div>
+    <div slot="concept"><span class="section-kicker">Física aplicada</span><h2>Visualización de datos: velocidad y presión</h2><p>Para agua ideal incompresible, Q=Av y P+½ρv²+ρgh=constante. Supuestos: caudal de una rama Q=12 L/min (0,0002 m³/s), densidad ρ=1000 kg/m³, sección circular A=πD²/4, altura constante y presión manométrica de entrada de 150 kPa con D=30 mm. Se omiten pérdidas y bombeo entre los puntos. Elige un caudal para recalcular la curva.</p><div class="final-panel">
+<label>Caudal por rama: <output id="flow-value">12</output> L/min <input type="range" id="flow" min="4" max="16" step="1" value="12"/></label>
+<svg class="final-chart" viewBox="0 0 600 260" role="img" aria-label="Velocidad en función del diámetro de la sección">
+<path d="M55 20 V215 H580" fill="none" stroke="currentColor"/>
+{[0,1,2,3,4].map(v=><text x="42" y={219-v*195/4} text-anchor="end">{v}</text>)}
+{[10,15,20,25,30].map(v=><text x={55+(v-10)*525/20} y="237" text-anchor="middle">{v}</text>)}
+<text x="5" y="12">v (m/s)</text><text x="300" y="255" text-anchor="middle">Diámetro interior D (mm)</text><polyline id="fluid-speed" stroke="#7438dc" stroke-width="3" fill="none"/></svg>
+<svg class="final-chart" viewBox="0 0 600 260" role="img" aria-label="Presión en función del diámetro">
+<path d="M55 20 V215 H580" fill="none" stroke="currentColor"/>
+{[140,142.5,145,147.5,150].map(v=><text x="42" y={219-(v-140)*195/10} text-anchor="end">{v}</text>)}
+{[10,15,20,25,30].map(v=><text x={55+(v-10)*525/20} y="237" text-anchor="middle">{v}</text>)}
+<text x="5" y="12">P (kPa)</text><text x="300" y="255" text-anchor="middle">Diámetro interior D (mm)</text><polyline id="fluid-pressure" stroke="#d7469e" stroke-width="3" fill="none"/></svg><p id="flow-result" aria-live="polite"></p><small>Fuente de datos: cálculo propio mediante continuidad y Bernoulli, con parámetros declarados arriba.</small></div><p>Para ramas en paralelo, Qtotal=ΣQi; cuatro servidores con 12 L/min sumarían 48 L/min si las ramas están equilibradas. La distribución real depende de la resistencia de cada ramal; no basta dividir automáticamente el caudal.</p></div>
+    <div slot="justification"><span class="section-kicker">¿Por qué modelarlo?</span><h2>Del modelo ideal al sistema real</h2><p>Una reducción del diámetro eleva la velocidad y, a igual altura, reduce la presión estática ideal. Un sistema real incorpora pérdidas por fricción y accesorios, curvas de bomba, viscosidad, caídas de presión de placas frías y límites de temperatura. La física permite evaluar escenarios de distribución sin construir un circuito para cada caso; los costos son sensores, caracterización de componentes y validación. Este modelo es educativo, no una especificación de instalación.</p></div>
+    <div slot="sources">
+<Bibliography topic="enfriamiento-liquido" />
+<p><a href="https://resourcecenter.ashrae.org/File%20Library/Technical%20Resources/Bookstore/WhitePaper_TC099-WaterCooledServers.pdf">ASHRAE — Water-Cooled Servers: Common Designs, Components, and Processes</a>, sección de placas frías. Datos numéricos de la página: elaboración propia.</p></div>
+  </TopicShell>
+</BaseLayout>
+<script>import "../scripts/simulations/enfriamiento-liquido.ts";</script>

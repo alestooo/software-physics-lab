@@ -1,17 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Bibliography from "../components/ui/Bibliography.astro";
+import LegacyTopicHero from "../components/ui/LegacyTopicHero.astro";
 import "../styles/advanced-labs.css";
 ---
 
 <BaseLayout
   title="Control háptico | Physics × Software"
   description="Multimedia con análisis y modelo de Ley de Hooke aplicado a la resistencia de un gatillo adaptativo."
+  fullBleed={true}
 >
   <article
-    class="advanced-page haptic-page"
+    class="advanced-page haptic-page topic-page legacy-topic-page"
     id="haptic-lab"
   >
 
+    <LegacyTopicHero>
     <section class="advanced-hero haptic-hero">
 
       <div class="advanced-hero-grid"></div>
@@ -66,6 +70,8 @@ import "../styles/advanced-labs.css";
       </div>
 
     </section>
+    </LegacyTopicHero>
+    <div class="topic-body"><div class="topic-body-shell legacy-topic-body">
 
     <section class="advanced-case">
 
@@ -684,20 +690,22 @@ import "../styles/advanced-labs.css";
 
     </section>
 
-    <footer class="advanced-footer">
+    <section style="margin:2rem auto;padding:1.5rem;max-width:1100px;border:1px solid #c4b5fd;border-radius:1rem;background:#f8f5ff;color:#24144e;line-height:1.7;"><h2>Alcance del modelo háptico</h2><p>La fuerza restauradora ideal es F=−kx; el signo indica oposición al desplazamiento. La mano ejerce una fuerza sobre el gatillo y recibe una fuerza opuesta, de acuerdo con la tercera ley de Newton. DualSense permite variar la resistencia del gatillo, pero Sony no publica los valores internos k de cada efecto: los perfiles del laboratorio son una aproximación calculada, no una medición del dispositivo. Un modelo adaptativo exige calibración de actuadores, límites de respuesta y sincronización de eventos; un efecto fijo es más simple, pero no expresa tensión variable.</p><p><a href="https://www.playstation.com/es-es/accessories/dualsense-wireless-controller/">PlayStation — DualSense</a>.</p></section>
+    <Bibliography topic="control-haptico" />
+<footer class="advanced-footer">
 
       <a href="/formula-1">
         ← Fórmula 1
       </a>
 
       <a
-        href="/"
+        href="/frenado-regenerativo"
         class="advanced-next"
       >
 
         <div>
-          <small>PORTAFOLIO</small>
-          <strong>Volver al inicio</strong>
+          <small>SIGUIENTE · 06</small>
+          <strong>Frenado regenerativo</strong>
         </div>
 
         <span>→</span>
@@ -706,6 +714,7 @@ import "../styles/advanced-labs.css";
 
     </footer>
 
+  </div></div>
   </article>
 
   <script>
